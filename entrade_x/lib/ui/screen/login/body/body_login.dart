@@ -1,9 +1,11 @@
+import 'package:entrade_x/ui/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../../api/local_auth_api.dart';
 import '../../../../blocs/login/login_bloc.dart';
 import '../../../components/button_default.dart';
 import '../../../components/circle_k.dart';
@@ -135,6 +137,15 @@ class _BodyLoginState extends State<BodyLogin> {
                     width: 20.w,
                   ),
                   buildCircleK(
+                    onClicked: () async {
+                      final isAuthenticated = await LocalAuthApi.authenticate();
+
+                      if (isAuthenticated) {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => const HomeScreen()),
+                        );
+                      }
+                    },
                     demo: const Image(
                       image: AssetImage('assets/images/fingerprint_scan.png'),
                       fit: BoxFit.cover,
@@ -170,11 +181,13 @@ class _BodyLoginState extends State<BodyLogin> {
                           alignment: Alignment.center,
                           // fit: BoxFit.cover,
                         ),
-                        color: Colors.white),
+                        color: Colors.white,
+                        onClicked: () {}),
                     SizedBox(
                       width: 20.w,
                     ),
                     buildCircleK(
+                        onClicked: () {},
                         demo: SvgPicture.asset(
                           'assets/icons/google-icon.svg',
                           alignment: Alignment.center,

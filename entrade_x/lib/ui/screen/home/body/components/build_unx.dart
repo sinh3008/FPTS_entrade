@@ -12,7 +12,7 @@ Container buildUnx(
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20),
       // color: const Color(0xff202123),
-      color: isActive ? Color(0xff54534c) : Color(0xff202123),
+      color: isActive ? const Color(0xff54534c) : const Color(0xff202123),
     ),
     child: Row(
 
@@ -23,11 +23,11 @@ Container buildUnx(
           width: 10,
           height: 10,
           decoration: BoxDecoration(
-            color: isActive ? Colors.red : Color(0xff202123),
+            color: isActive ? Colors.red : const Color(0xff202123),
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 1,
         ),
         Column(

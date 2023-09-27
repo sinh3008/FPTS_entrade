@@ -66,6 +66,7 @@ AppBar buildAppBarHome(double width, double height) {
               width: width * 0.02,
             ),
             buildCircleK(
+                onClicked: (){},
                 demo: const Image(
                   image: AssetImage('assets/images/lightbulb.png'),
                   fit: BoxFit.cover,

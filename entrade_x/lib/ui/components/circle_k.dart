@@ -6,9 +6,10 @@ GestureDetector buildCircleK({required Widget demo,
   double width = 50,
   double height = 50,
   BoxShape shape = BoxShape.circle,
+  required VoidCallback onClicked,
 }) {
   return GestureDetector(
-    onTap: () {},
+    onTap: onClicked,
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       width: width,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../../components/circle_k.dart';
+
 Container buildEventContainer(
     {required String txt1,
-      required String txt2,
-      required String txt3,
-      String iconPath = 'assets/images/ready_stock.png'}) {
+    required String txt2,
+    required String txt3,
+    String iconPath = 'assets/images/ready_stock.png'}) {
   return Container(
     padding: const EdgeInsets.only(left: 10, top: 24, bottom: 24, right: 6),
     decoration: BoxDecoration(
@@ -42,6 +43,7 @@ Container buildEventContainer(
           width: 10,
         ),
         buildCircleK(
+          onClicked: () {},
           demo: Image(
             image: AssetImage(iconPath),
           ),
