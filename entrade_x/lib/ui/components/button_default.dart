@@ -23,9 +23,9 @@ class ButtonLoginWidget extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
-            fontSize: 16.sp,
+            fontSize: 16,
           ),
         ),
       ),);

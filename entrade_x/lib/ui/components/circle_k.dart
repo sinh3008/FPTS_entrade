@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-GestureDetector buildCircleK({required Widget demo,
+GestureDetector buildCircleK({
+  required Widget demo,
   required Color color,
   double width = 50,
   double height = 50,
@@ -15,33 +16,32 @@ GestureDetector buildCircleK({required Widget demo,
       width: width,
       height: height,
       decoration: BoxDecoration(
-          color: color,
-          shape: shape,
+        color: color,
+        shape: shape,
       ),
       child: demo,
     ),
   );
 }
 
-GestureDetector buildRecBorder({required Widget demo,
+GestureDetector buildRecBorder({
+  required Widget demo,
   required Color color,
-  double width = 60,
-  double height = 50,
+  double width = 50,
+  double height = 40,
   BoxShape shape = BoxShape.rectangle,
+  void Function()?  func,
+  int index = 0,
 }) {
   return GestureDetector(
-    onTap: () {},
+    onTap: func,
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       width: width.w,
       height: height.h,
       decoration: BoxDecoration(
-        color: color,
-        shape: shape,
-        borderRadius: BorderRadius.circular(26)
-      ),
+          color: color, shape: shape, borderRadius: BorderRadius.circular(26)),
       child: demo,
     ),
   );
 }
-

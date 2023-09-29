@@ -26,8 +26,7 @@ class _BodyLoginState extends State<BodyLogin> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    double width = screenSize.width;
-    double height = screenSize.height;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -55,14 +54,14 @@ class _BodyLoginState extends State<BodyLogin> {
                     height: 100.h,
                     width: 100.h,
                   ),
-                  Text(
+                  const Text(
                     'Entrade ',
-                    style: TextStyle(fontSize: 44.sp, color: Colors.white),
+                    style: TextStyle(fontSize: 44, color: Colors.white),
                   ),
-                  Text(
+                  const Text(
                     'X',
                     style: TextStyle(
-                      fontSize: 25.sp,
+                      fontSize: 25,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -98,9 +97,9 @@ class _BodyLoginState extends State<BodyLogin> {
               ),
               TextButton(
                 onPressed: () {},
-                child: Text(
+                child: const Text(
                   'Quên mật khẩu?',
-                  style: TextStyle(color: Colors.red, fontSize: 14.sp),
+                  style: TextStyle(color: Colors.red, fontSize: 16),
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -142,7 +141,7 @@ class _BodyLoginState extends State<BodyLogin> {
 
                       if (isAuthenticated) {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => const HomeScreen()),
+                          MaterialPageRoute(builder: (context) =>  HomeScreen()),
                         );
                       }
                     },
@@ -159,11 +158,11 @@ class _BodyLoginState extends State<BodyLogin> {
               ),
               SizedBox(
                 width: screenSize.width,
-                child: Text(
+                child: const Text(
                   'Hoặc sử dụng',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 14.sp,
+                    fontSize: 16,
                     color: Colors.grey,
                   ),
                 ),

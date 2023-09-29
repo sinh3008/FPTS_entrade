@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../../components/circle_k.dart';
-AppBar buildAppBarHome(double width, double height) {
+import '../../../../pages_test/add_page.dart';
+
+AppBar buildAppBarHome(double width, double height, BuildContext context) {
   return AppBar(
     automaticallyImplyLeading: false,
     backgroundColor: Colors.transparent,
@@ -42,22 +45,28 @@ AppBar buildAppBarHome(double width, double height) {
                   ),
                   Expanded(
                     child: TextField(
+                      autofocus: false,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: '   Tìm mã để đặt lệnh',
                         hintStyle: TextStyle(color: Colors.grey),
                       ),
-                      onChanged: (value) {
-                        // Xử lý sự kiện khi người dùng thay đổi nội dung tìm kiếm
+                      onTap: () {
+                        PersistentNavBarNavigator
+                            .pushNewScreenWithRouteSettings(
+                          context,
+                          settings: RouteSettings(name: Page2.routerName),
+                          screen: const Page2(),
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.scale,
+                        );
                       },
                     ),
                   ),
                   IconButton(
                     icon: const Icon(Icons.search),
                     color: Colors.white,
-                    onPressed: () {
-                      // Xử lý sự kiện tìm kiếm ở cuối
-                    },
+                    onPressed: () {},
                   ),
                 ],
               ),
@@ -66,7 +75,7 @@ AppBar buildAppBarHome(double width, double height) {
               width: width * 0.02,
             ),
             buildCircleK(
-                onClicked: (){},
+                onClicked: () {},
                 demo: const Image(
                   image: AssetImage('assets/images/lightbulb.png'),
                   fit: BoxFit.cover,

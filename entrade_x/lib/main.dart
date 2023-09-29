@@ -1,3 +1,4 @@
+import 'package:entrade_x/blocs/chart/chart_bloc.dart';
 import 'package:entrade_x/blocs/home/home_bloc.dart';
 import 'package:entrade_x/blocs/login/login_bloc.dart';
 import 'package:entrade_x/routes.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
           BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
+          BlocProvider<ChartBloc>(create: (context) => ChartBloc()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

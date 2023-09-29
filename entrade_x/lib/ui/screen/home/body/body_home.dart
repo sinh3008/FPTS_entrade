@@ -1,20 +1,32 @@
-import 'package:entrade_x/ui/components/circle_k.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:entrade_x/repo/i_data_info_fake.dart';
+import 'package:entrade_x/ui/screen/home/body/components/event_money_rewards.dart';
+import 'package:entrade_x/ui/screen/home/body/components/hots.dart';
+import 'package:entrade_x/ui/screen/home/body/components/widget_market_today.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../components/button_default.dart';
-import 'components/build_app_bar_home.dart';
-import 'components/build_dot.dart';
-import 'components/build_event_container.dart';
-import 'components/build_text_demo.dart';
-import 'components/build_unx.dart';
+import '../../../../blocs/chart/chart_bloc.dart';
+import 'mini_compo/build_app_bar_home.dart';
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
-class BodyHome extends StatelessWidget {
+class BodyHome extends StatefulWidget {
   const BodyHome({
     super.key,
   });
+
+  @override
+  State<BodyHome> createState() => _BodyHomeState();
+}
+
+class _BodyHomeState extends State<BodyHome> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ChartBloc>().add(ChartClickItemEvent(id: 0));
+  }
+
+  IDataInfoFake infoFake = IDataInfoFake();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +35,7 @@ class BodyHome extends StatelessWidget {
     double height = screenSize.height;
     return Scaffold(
       backgroundColor: const Color(0xff1c1c1c),
-      appBar: buildAppBarHome(width, height),
+      appBar: buildAppBarHome(width, height, context),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,123 +43,11 @@ class BodyHome extends StatelessWidget {
             SizedBox(
               height: height * 0.02,
             ),
-            Container(
-              color: const Color(0xff202123),
-              height: height * 0.3,
-              width: width,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: width * 0.06,
-                      ),
-                      const Text(
-                        'Chào Sinh, hãy hoàn thành để nhận 200,000đ',
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                      SizedBox(
-                        width: width * 0.02,
-                      ),
-                      Expanded(
-                        child: InkWell(
-                          onHover: (sss) {},
-                          child: const SizedBox(
-                            width: 30,
-                            height: 30,
-                            child: Image(
-                              image: AssetImage('assets/images/help.png'),
-                              color: Colors.white,
-                              fit: BoxFit.scaleDown,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: width * 0.02,
-                      ),
-                    ],
-                  ),
-                  const Text(
-                    '+0đ',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      3,
-                      (index) => buildDot(
-                          index: index, width: width * 0.3, height: height),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      buildTextDemo(
-                          width: width,
-                          title: 'Kích hoạt',
-                          money: '+50,000đ'),
-                      buildTextDemo(
-                          width: width, title: 'Nộp tiền', money: '+50,000đ'),
-                      buildTextDemo(
-                          width: width,
-                          title: 'Đầu tư (5 triệu)',
-                          money: '+100,000đ'),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height * 0.03,
-                  ),
-                  ButtonLoginWidget(
-                    screenSize: screenSize,
-                    onTap: () {},
-                    text: 'Kích hoạt ngay',
-                  ),
-                ],
-              ),
-            ),
+            const EventMoneyRewardsWidget(),
             SizedBox(
               height: height * 0.02,
             ),
-            Row(
-              children: [
-                const SizedBox(
-                  width: 10,
-                ),
-                buildEventContainer(
-                    txt1: 'Phí giao dịch',
-                    txt2: 'Miễn phí',
-                    txt3: 'trọn đời',
-                    iconPath: 'assets/images/ready_stock.png'),
-                const SizedBox(
-                  width: 10,
-                ),
-                buildEventContainer(
-                  txt1: 'Ấp trứng vàng',
-                  txt2: '7.0%/năm',
-                  txt3: 'Lợi suất',
-                  iconPath: 'assets/images/ready_stock.png',
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-              ],
-            ),
+            const HostWidget(),
             SizedBox(
               height: height * 0.02,
             ),
@@ -161,187 +61,100 @@ class BodyHome extends StatelessWidget {
             SizedBox(
               height: height * 0.01,
             ),
-            Container(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-              // color: const Color(0xff202123),
-              color: const Color(0xff202123),
-              // height: height * 0.3,
-              width: width,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      buildRecBorder(
-                        demo: const Text(
-                          '1W',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        color: Colors.red,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      buildRecBorder(
-                        demo: const Text(
-                          '1M',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        color: Colors.black,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      buildRecBorder(
-                        demo: const Text(
-                          '6M',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        color: Colors.black,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      buildRecBorder(
-                        demo: const Text(
-                          '1Y',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                        color: Colors.black,
-                      ),
-                    ],
+            const MarketTodayWidget(),
+            SizedBox(
+              height: height * 0.03,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(width: width * 0.03),
+                const Text(
+                  'Tin vĩ mô',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(width: width * 0.03),
+                InkWell(
+                  onHover: (sss) {},
+                  child: const SizedBox(
+                    width: 28,
+                    height: 28,
+                    child: Icon(Icons.info_outline),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: height * 0.2,
-                    child: LineChart(
-                      LineChartData(
-                        gridData: const FlGridData(show: false),
-                        titlesData: const FlTitlesData(show: false),
-                        borderData: FlBorderData(
-                          show: false,
-                          border: Border.all(
-                            color: const Color(0xff37434d),
-                            width: 1,
-                          ),
-                        ),
-                        minX: 0,
-                        maxX: 6,
-                        minY: 0,
-                        maxY: 6,
-                        lineBarsData: [
-                          LineChartBarData(
-                            spots: [
-                              const FlSpot(0, 4),
-                              const FlSpot(1, 5),
-                              const FlSpot(2, 4),
-                              const FlSpot(3, 2),
-                              const FlSpot(4, 3),
-                              const FlSpot(5, 1),
-                              const FlSpot(6, 2),
-                            ],
-                            isCurved: true,
-                            color: Colors.redAccent,
-                            dotData: const FlDotData(show: false),
-                            belowBarData: BarAreaData(
-                              show: true, // Hiển thị bóng
-                              color: Colors.red.withOpacity(0.2),
-                            ),
-                          ),
-                        ],
-                      ),
+                ),
+                const Expanded(
+                  child: Text(
+                    'Xem tất cả',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                      decoration: TextDecoration.underline,
                     ),
+                    textAlign: TextAlign.end,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      buildDot(width: width * 0.2, height: height),
-                      buildDot(
-                          width: width * 0.3,
-                          height: height,
-                          color: Colors.yellow),
-                      buildDot(
-                          width: width * 0.4,
-                          height: height,
-                          color: Colors.red),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      buildUnx(
-                        txt1: 'VN-INDEX',
-                        txt2: '1149.36',
-                        txt3: '-3.84(-0.33%)',
-                        txt4: '3,666.273 tỷ',
-                        width: width,
-                        isActive: true,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      buildUnx(
-                        txt1: 'VN30',
-                        txt2: '1159.48',
-                        txt3: '-0.46(-0.04%)',
-                        txt4: '1,331.273 tỷ',
-                        width: width,
-                        isActive: false,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      buildUnx(
-                        txt1: 'VN-INDEX',
-                        txt2: '1149.36',
-                        txt3: '-3.84(-0.33%)',
-                        txt4: '3,666.273 tỷ',
-                        width: width,
-                        isActive: false,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  width: width * 0.03,
+                ),
+              ],
             ),
             SizedBox(
               height: height * 0.01,
             ),
-            Container(
-              // color: const Color(0xff202123),
-              color: Colors.orange,
-              height: height * 0.3,
+            SizedBox(
               width: width,
-              child: const Column(
-                children: [],
+              height: 120,
+              child: PageView.builder(
+                itemBuilder: (context, index) => Container(
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                  width: width,
+                  color: const Color(0xff202123),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: width * 0.6,
+                                child: Text(
+                                  infoFake.list[index].title,
+                                  style: _biggerFont,
+                                  maxLines: 2,
+                                ),
+                              ),
+                              Row(
+                                children: [
+                                  Text(infoFake.list[index].time),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text(infoFake.list[index].author),
+                                ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            width: width * 0.3,
+                            child: Image(
+                              image: AssetImage(infoFake.list[index].imagePath),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Text(
+                          '${index + 1}/${infoFake.list.length}',
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                scrollDirection: Axis.horizontal,
+                itemCount: infoFake.list.length,
               ),
             ),
           ],
@@ -349,4 +162,6 @@ class BodyHome extends StatelessWidget {
       ),
     );
   }
+
+  static const _biggerFont = TextStyle(fontSize: 18.0, color: Colors.white);
 }
