@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
       itemAnimationProperties: const ItemAnimationProperties(
-        duration: Duration(milliseconds: 200),
+        duration: Duration(milliseconds: 300),
         curve: Curves.ease,
       ),
       screenTransitionAnimation: const ScreenTransitionAnimation(

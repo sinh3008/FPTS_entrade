@@ -1,8 +1,5 @@
-import 'package:entrade_x/ui/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../components/circle_k.dart';
-import '../screen/home/body/body_home.dart';
 
 class SearchPage extends StatelessWidget {
   static String routerName = 'inboxpage';
@@ -16,35 +13,6 @@ class SearchPage extends StatelessWidget {
     double height = screenSize.height;
     return Scaffold(
       appBar: AppBar(
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.arrow_back_ios_sharp),
-              onPressed: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return const BodyHomeScreen();
-                    },
-                  ),
-                  (_) => false,
-                );
-
-                // FocusScope.of(context).unfocus();
-                //
-                // Navigator.of(context).pushAndRemoveUntil(
-                //   MaterialPageRoute(
-                //     builder: (BuildContext context) {
-                //       return const BodyHomeScreen();
-                //     },
-                //   ),
-                //   (_) => false,
-                // );
-              },
-              // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            );
-          },
-        ),
         backgroundColor: Colors.transparent,
         toolbarHeight: 100, // Set this height
         flexibleSpace: SafeArea(
@@ -61,13 +29,9 @@ class SearchPage extends StatelessWidget {
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: width * 0.02,
-                ),
                 Container(
-                  width: width * 0.64,
+                  width: width * 0.8,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: const Color(0xff2c2d2f),
@@ -103,16 +67,6 @@ class SearchPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: width * 0.02,
-                ),
-                buildCircleK(
-                    onClicked: () {},
-                    demo: const Image(
-                      image: AssetImage('assets/images/lightbulb.png'),
-                      fit: BoxFit.cover,
-                    ),
-                    color: const Color(0xff2c2d2f)),
               ],
             ),
           ),
