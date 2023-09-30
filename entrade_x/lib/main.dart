@@ -1,6 +1,7 @@
 import 'package:entrade_x/blocs/chart/chart_bloc.dart';
 import 'package:entrade_x/blocs/home/home_bloc.dart';
 import 'package:entrade_x/blocs/login/login_bloc.dart';
+import 'package:entrade_x/blocs/money/money_bloc.dart';
 import 'package:entrade_x/routes.dart';
 import 'package:entrade_x/theme.dart';
 import 'package:entrade_x/ui/screen/login/login_screen.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
           BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
           BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
           BlocProvider<ChartBloc>(create: (context) => ChartBloc()),
+          BlocProvider<MoneyBloc>(create: (context) => MoneyBloc()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

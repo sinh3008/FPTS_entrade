@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../../components/circle_k.dart';
-import '../../../../pages_test/add_page.dart';
+import '../../../../pages_test/order_page.dart';
+import '../../../../pages_test/search_page.dart';
 
 AppBar buildAppBarHome(double width, double height, BuildContext context) {
   return AppBar(
@@ -56,9 +57,9 @@ AppBar buildAppBarHome(double width, double height, BuildContext context) {
                             .pushNewScreenWithRouteSettings(
                           context,
                           settings: RouteSettings(name: Page2.routerName),
-                          screen: const Page2(),
+                          screen:  const SearchPage(),
                           pageTransitionAnimation:
-                              PageTransitionAnimation.scale,
+                              PageTransitionAnimation.cupertino,
                         );
                       },
                     ),

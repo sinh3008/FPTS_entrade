@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../body_home.dart';
+import '../../../../../constrants.dart';
 
 AnimatedContainer buildDot(
     {int? index,
@@ -14,7 +14,6 @@ AnimatedContainer buildDot(
     // width: currentPage == index ? 20 : 6,
     width: width,
     decoration: BoxDecoration(
-      // color: currentPage == index ? kPrimaryColor : Color(0xFFD8D8D8),
       color: color,
       borderRadius: BorderRadius.circular(30),
     ),

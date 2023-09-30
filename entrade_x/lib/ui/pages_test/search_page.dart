@@ -1,38 +1,13 @@
-// TODO Implement this library.
-import 'package:entrade_x/ui/screen/home/body/body_home.dart';
+import 'package:entrade_x/ui/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../components/circle_k.dart';
+import '../screen/home/body/body_home.dart';
 
-class AddPage extends StatelessWidget {
-  const AddPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-          child: Text('Go to page 2'),
-          onPressed: () {
-            PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
-              context,
-              settings: RouteSettings(name: Page2.routerName),
-              screen: const Page2(),
-              withNavBar: true,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class Page2 extends StatelessWidget {
+class SearchPage extends StatelessWidget {
   static String routerName = 'inboxpage';
 
-  const Page2({super.key});
+  const SearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +21,25 @@ class Page2 extends StatelessWidget {
             return IconButton(
               icon: const Icon(Icons.arrow_back_ios_sharp),
               onPressed: () {
-                FocusScope.of(context).unfocus();
                 Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                     builder: (BuildContext context) {
-                      return const BodyHome();
+                      return const BodyHomeScreen();
                     },
                   ),
                   (_) => false,
                 );
+
+                // FocusScope.of(context).unfocus();
+                //
+                // Navigator.of(context).pushAndRemoveUntil(
+                //   MaterialPageRoute(
+                //     builder: (BuildContext context) {
+                //       return const BodyHomeScreen();
+                //     },
+                //   ),
+                //   (_) => false,
+                // );
               },
               // tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
@@ -134,18 +119,7 @@ class Page2 extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: TextButton(
-            child: Text('Page 2'),
-            onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const AddPage();
-                  },
-                ),
-                (_) => false,
-              );
-            }),
+        child: TextButton(child: const Text('Tìm kiếm'), onPressed: () {}),
       ),
     );
   }
