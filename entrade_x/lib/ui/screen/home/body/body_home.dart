@@ -1,13 +1,19 @@
+import 'package:entrade_x/blocs/banks/bank_bloc.dart';
 import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
+import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:entrade_x/ui/screen/home/body/components/event_money_rewards.dart';
 import 'package:entrade_x/ui/screen/home/body/components/hots.dart';
+import 'package:entrade_x/ui/screen/home/body/components/investment_ideas.dart';
 import 'package:entrade_x/ui/screen/home/body/components/money_widget.dart';
 import 'package:entrade_x/ui/screen/home/body/components/widget_market_today.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../blocs/bank/bankitem_bloc.dart';
 import '../../../../blocs/chart/chart_bloc.dart';
 import '../../../../blocs/money/money_bloc.dart';
+import 'components/ideas_widget.dart';
 import 'components/latest_news.dart';
 import 'mini_compo/build_app_bar_home.dart';
 
@@ -27,6 +33,7 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
     context.read<MoneyBloc>().add(ShowHideMoneyEvent());
     context.read<ChartBloc>().add(ChartClickItemEvent(id: 0));
     context.read<IdeasBloc>().add(IdeasShowEvent());
+    context.read<BankitemBloc>().add(BankClickedItemEvent(0));
   }
 
   @override
@@ -60,10 +67,33 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
             SizedBox(
               height: height * 0.02,
             ),
-            LatestNews(),
+            LatestNewsWidget(),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            IdeasWidget(width, context, height),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: width * 0.03),
+                  child: const Text(
+                    'Có gì hay cho bạn? ',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: height * 0.2,
+            ),
           ],
         ),
       ),
     );
   }
+
+// ignore: non_constant_identifier_names
 }

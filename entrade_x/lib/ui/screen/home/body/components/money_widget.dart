@@ -1,3 +1,4 @@
+import 'package:entrade_x/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -114,7 +115,9 @@ class MoneyWidget extends StatelessWidget {
                       width: width * 0.02,
                     ),
                     InkWell(
-                      onHover: (sss) {},
+                      onTap: () {
+                        showToast('Hôm nay, khoản đầu tư của bạn tăng 0đ');
+                      },
                       child: const SizedBox(
                         width: 28,
                         height: 28,

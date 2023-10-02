@@ -1,8 +1,10 @@
+import 'package:entrade_x/toast.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../components/button_default.dart';
 import '../mini_compo/build_dot.dart';
 import '../mini_compo/build_text_demo.dart';
+import 'active_now.dart';
 
 class EventMoneyRewardsWidget extends StatefulWidget {
   const EventMoneyRewardsWidget({super.key});
@@ -43,7 +45,9 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
               ),
               Expanded(
                 child: InkWell(
-                  onHover: (sss) {},
+                  onTap: () {
+                    showToast('Hãy hoàn thành để nhận 200,000 đ');
+                  },
                   child: const SizedBox(
                     width: 30,
                     height: 30,
@@ -97,7 +101,14 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
           ),
           ButtonLoginWidget(
             screenSize: screenSize,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ActiveNowPage(id: 0),
+                ),
+              );
+            },
             text: 'Kích hoạt ngay',
           ),
         ],

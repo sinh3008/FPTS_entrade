@@ -1,3 +1,5 @@
+import 'package:entrade_x/blocs/bank/bankitem_bloc.dart';
+import 'package:entrade_x/blocs/banks/bank_bloc.dart';
 import 'package:entrade_x/blocs/chart/chart_bloc.dart';
 import 'package:entrade_x/blocs/home/home_bloc.dart';
 import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<ChartBloc>(create: (context) => ChartBloc()),
           BlocProvider<MoneyBloc>(create: (context) => MoneyBloc()),
           BlocProvider<IdeasBloc>(create: (context) => IdeasBloc()),
+          BlocProvider<BankBloc>(create: (context) => BankBloc()),
+          BlocProvider<BankitemBloc>(create: (context) => BankitemBloc()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

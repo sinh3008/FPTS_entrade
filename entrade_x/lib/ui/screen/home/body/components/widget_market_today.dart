@@ -1,7 +1,7 @@
+import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../blocs/chart/chart_bloc.dart';
 import '../../../../components/circle_k.dart';
@@ -16,6 +16,7 @@ class MarketTodayWidget extends StatefulWidget {
 }
 
 class _MarketTodayWidgetState extends State<MarketTodayWidget> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -99,56 +100,94 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                   buildDot(width: width * 0.2, height: height),
                   buildDot(
                       width: width * 0.3, height: height, color: Colors.yellow),
-                  buildDot(width: width * 0.4, height: height, color: Colors.red),
+                  buildDot(
+                      width: width * 0.4, height: height, color: Colors.red),
                 ],
               ),
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  buildUnx(
-                    txt1: 'VN-INDEX',
-                    txt2: '1149.36',
-                    txt3: '-3.84(-0.33%)',
-                    txt4: '3,666.273 tỷ',
-                    width: width,
-                    isActive: true,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  buildUnx(
-                    txt1: 'VN30',
-                    txt2: '1159.48',
-                    txt3: '-0.46(-0.04%)',
-                    txt4: '1,331.273 tỷ',
-                    width: width,
-                    isActive: false,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  buildUnx(
-                    txt1: 'VN-INDEX',
-                    txt2: '1149.36',
-                    txt3: '-3.84(-0.33%)',
-                    txt4: '3,666.273 tỷ',
-                    width: width,
-                    isActive: false,
-                  ),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                ],
+              BlocBuilder<IdeasBloc, IdeasState>(
+                builder: (context, state) {
+                  if (state is IdeasLoadingState) {
+                    return const CircularProgressIndicator();
+                  } else if (state is IdeasSuccessState) {
+                    return Row(
+                      children: [
+                        selectedMethod(state, width, 0),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        selectedMethod(state, width, 1),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        selectedMethod(state, width, 2),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Center(
+                      child: Text(state.toString()),
+                    );
+                  }
+                },
               ),
             ],
           ),
         ),
       ],
+    );
+  }
+
+  InkWell selectedMethod(IdeasSuccessState state, double width, int index) {
+    return buildUnx(
+      color2: selectedIndex == index
+          ? const Color(0xff54534c)
+          : const Color(0xff202123),
+      color: selectedIndex == index ? Colors.red : const Color(0xff202123),
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      txt1: Text(
+        '${state.stocks[index].name}-${state.stocks[index].producer}',
+        style: const TextStyle(color: Colors.grey, fontSize: 14),
+      ),
+      txt2: state.stocks[index].currentPrice - state.stocks[index].price > 0
+          ? Text(
+              '${state.stocks[index].currentPrice}',
+              style: const TextStyle(
+                  color: Colors.green,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold),
+            )
+          : Text(
+              '${state.stocks[index].currentPrice}',
+              style: const TextStyle(
+                  color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+      txt3: Text(
+        '${state.stocks[index].profit}(${state.stocks[index].revenue})',
+        style: state.stocks[index].profit > 0
+            ? const TextStyle(
+                color: Colors.green,
+                fontSize: 14,
+              )
+            : const TextStyle(
+                color: Colors.red,
+                fontSize: 14,
+              ),
+      ),
+      txt4: Text(
+        '${state.stocks[index].totalPrice} tỷ',
+        style: const TextStyle(color: Colors.grey),
+      ),
+      width: width,
+      isActive: false,
     );
   }
 }
@@ -180,7 +219,7 @@ class _TimeWidgetState extends State<TimeWidget> {
             '1W',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               color: Colors.white,
             ),
           ),
@@ -196,11 +235,11 @@ class _TimeWidgetState extends State<TimeWidget> {
               selectIndex = 1;
             });
           },
-          demo: Text(
+          demo: const Text(
             '1M',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14,
               color: Colors.white,
             ),
           ),
@@ -216,11 +255,11 @@ class _TimeWidgetState extends State<TimeWidget> {
               selectIndex = 2;
             });
           },
-          demo: Text(
+          demo: const Text(
             '6M',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14,
               color: Colors.white,
             ),
           ),
@@ -236,11 +275,11 @@ class _TimeWidgetState extends State<TimeWidget> {
               selectIndex = 3;
             });
           },
-          demo: Text(
+          demo: const Text(
             '1Y',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 16.sp,
+              fontSize: 14,
               color: Colors.white,
             ),
           ),

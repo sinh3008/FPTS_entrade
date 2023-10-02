@@ -1,14 +1,16 @@
+import 'package:entrade_x/toast.dart';
+import 'package:entrade_x/ui/screen/home/body/components/last_new_all.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../repo/i_data_info_fake.dart';
 
 // ignore: must_be_immutable
-class LatestNews extends StatelessWidget {
+class LatestNewsWidget extends StatelessWidget {
   IDataInfoFake infoFake = IDataInfoFake();
 
-  static const _biggerFont = TextStyle(fontSize: 18.0, color: Colors.white);
+  static const _biggerFont = TextStyle(fontSize: 16.0, color: Colors.white);
 
-  LatestNews({super.key});
+  LatestNewsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,23 +29,34 @@ class LatestNews extends StatelessWidget {
             ),
             SizedBox(width: width * 0.03),
             InkWell(
-              onHover: (sss) {},
+              onTap: () {
+                showToast('Tin tức được cập nhật mới nhất');
+              },
               child: const SizedBox(
                 width: 28,
                 height: 28,
                 child: Icon(Icons.info_outline),
               ),
             ),
-            const Expanded(
-              child: Text(
-                'Xem tất cả',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red,
-                  decoration: TextDecoration.underline,
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return LastNewAll();
+                    },
+                  ));
+                },
+                child: const Text(
+                  'Xem tất cả',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                    decoration: TextDecoration.underline,
+                  ),
+                  textAlign: TextAlign.end,
                 ),
-                textAlign: TextAlign.end,
               ),
             ),
             SizedBox(

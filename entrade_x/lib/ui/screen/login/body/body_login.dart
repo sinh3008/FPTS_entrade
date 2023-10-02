@@ -209,9 +209,10 @@ class _BodyLoginState extends State<BodyLogin> {
                   child: const Text(
                     'Mở tài khoản',
                     style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.red,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -224,7 +225,22 @@ class _BodyLoginState extends State<BodyLogin> {
                     'Điều khoản sử dụng',
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 18,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              SizedBox(
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  width: screenSize.width,
+                  child: const Text(
+                    'Điều khoản sử dụng',
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,
