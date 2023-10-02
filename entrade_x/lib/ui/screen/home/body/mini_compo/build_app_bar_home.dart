@@ -1,3 +1,4 @@
+import 'package:entrade_x/ui/screen/home/body/components/investment_ideas.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -57,7 +58,7 @@ AppBar buildAppBarHome(double width, double height, BuildContext context) {
                             .pushNewScreenWithRouteSettings(
                           context,
                           settings: RouteSettings(name: Page2.routerName),
-                          screen:  const SearchPage(),
+                          screen: const SearchPage(),
                           pageTransitionAnimation:
                               PageTransitionAnimation.cupertino,
                         );
@@ -76,7 +77,13 @@ AppBar buildAppBarHome(double width, double height, BuildContext context) {
               width: width * 0.02,
             ),
             buildCircleK(
-                onClicked: () {},
+                onClicked: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const InvestmentIdeas();
+                    },
+                  ));
+                },
                 demo: const Image(
                   image: AssetImage('assets/images/lightbulb.png'),
                   fit: BoxFit.cover,

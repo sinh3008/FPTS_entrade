@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class ButtonLoginWidget extends StatelessWidget {
   const ButtonLoginWidget(
-      {super.key, required this.screenSize, required this.onTap, this.text = ''});
+      {super.key,
+      required this.screenSize,
+      required this.onTap,
+      this.text = ''});
 
   final void Function()? onTap;
   final Size screenSize;
@@ -28,6 +31,7 @@ class ButtonLoginWidget extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-      ),);
+      ),
+    );
   }
 }

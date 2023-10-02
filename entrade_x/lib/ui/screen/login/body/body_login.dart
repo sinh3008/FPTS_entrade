@@ -27,7 +27,6 @@ class _BodyLoginState extends State<BodyLogin> {
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
 
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Entrade X'),
@@ -74,7 +73,6 @@ class _BodyLoginState extends State<BodyLogin> {
               TextFormField(
                 onChanged: (value) {
                   email = value;
-                  print(email);
                 },
                 // onTap: onTap,
                 decoration: const InputDecoration(
@@ -85,7 +83,6 @@ class _BodyLoginState extends State<BodyLogin> {
                 obscureText: true,
                 onChanged: (value) {
                   pass = value;
-                  print(pass);
                 },
                 // onTap: onTap,
                 decoration: const InputDecoration(
@@ -140,8 +137,10 @@ class _BodyLoginState extends State<BodyLogin> {
                       final isAuthenticated = await LocalAuthApi.authenticate();
 
                       if (isAuthenticated) {
+                        // ignore: use_build_context_synchronously
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) =>  HomeScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => const HomeScreen()),
                         );
                       }
                     },

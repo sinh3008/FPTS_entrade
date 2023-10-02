@@ -1,9 +1,5 @@
-// TODO Implement this library.
-import 'package:entrade_x/ui/screen/home/body/body_home.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
-
-import '../components/circle_k.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -36,7 +32,6 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(),
       body: Center(

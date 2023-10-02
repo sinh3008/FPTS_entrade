@@ -1,4 +1,4 @@
-import 'package:entrade_x/repo/i_data_info_fake.dart';
+import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
 import 'package:entrade_x/ui/screen/home/body/components/event_money_rewards.dart';
 import 'package:entrade_x/ui/screen/home/body/components/hots.dart';
 import 'package:entrade_x/ui/screen/home/body/components/money_widget.dart';
@@ -10,7 +10,6 @@ import '../../../../blocs/chart/chart_bloc.dart';
 import '../../../../blocs/money/money_bloc.dart';
 import 'components/latest_news.dart';
 import 'mini_compo/build_app_bar_home.dart';
-
 
 class BodyHomeScreen extends StatefulWidget {
   const BodyHomeScreen({
@@ -27,6 +26,7 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
     super.initState();
     context.read<MoneyBloc>().add(ShowHideMoneyEvent());
     context.read<ChartBloc>().add(ChartClickItemEvent(id: 0));
+    context.read<IdeasBloc>().add(IdeasShowEvent());
   }
 
   @override

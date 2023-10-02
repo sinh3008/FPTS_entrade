@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../repo/i_data_info_fake.dart';
 
+// ignore: must_be_immutable
 class LatestNews extends StatelessWidget {
-
   IDataInfoFake infoFake = IDataInfoFake();
 
-
   static const _biggerFont = TextStyle(fontSize: 18.0, color: Colors.white);
+
+  LatestNews({super.key});
 
   @override
   Widget build(BuildContext context) {

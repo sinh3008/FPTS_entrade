@@ -11,11 +11,14 @@ import '../../pages_test/menu_page.dart';
 class HomeScreen extends StatelessWidget {
   static String routeName = "/home";
 
+  const HomeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     PersistentTabController controller;
     controller = PersistentTabController(initialIndex: 0);
 
+    // ignore: no_leading_underscores_for_local_identifiers
     List<Widget> _buildScreens() {
       return [
         const BodyHomeScreen(),
@@ -27,6 +30,7 @@ class HomeScreen extends StatelessWidget {
       ];
     }
 
+    // ignore: no_leading_underscores_for_local_identifiers
     List<PersistentBottomNavBarItem> _navBarsItems() {
       return [
         PersistentBottomNavBarItem(

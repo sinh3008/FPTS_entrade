@@ -8,11 +8,14 @@ GestureDetector buildCircleK({
   double height = 50,
   BoxShape shape = BoxShape.circle,
   required VoidCallback onClicked,
+  EdgeInsetsGeometry padding =
+      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
 }) {
   return GestureDetector(
     onTap: onClicked,
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: padding,
       width: width,
       height: height,
       decoration: BoxDecoration(
@@ -30,7 +33,7 @@ GestureDetector buildRecBorder({
   double width = 50,
   double height = 40,
   BoxShape shape = BoxShape.rectangle,
-  void Function()?  func,
+  void Function()? func,
   int index = 0,
 }) {
   return GestureDetector(
