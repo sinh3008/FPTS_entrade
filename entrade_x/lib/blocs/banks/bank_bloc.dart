@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:entrade_x/repo/banks.dart';
-import 'package:meta/meta.dart';
 
 import '../../models/bank.dart';
 
@@ -20,9 +19,9 @@ class BankBloc extends Bloc<BankEvent, BankState> {
     Banks banks = Banks();
     List<Bank> list = banks.list;
     emit(BankLoadingState());
-    if(list.isNotEmpty){
+    if (list.isNotEmpty) {
       emit(BankSuccessState(list));
-    }else{
+    } else {
       emit(BankErrorState());
     }
   }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../blocs/bank/bankitem_bloc.dart';
 import 'list_bank_page.dart';
 
+// ignore: must_be_immutable
 class ActiveNowPage extends StatelessWidget {
   ActiveNowPage({super.key, required this.id});
 
@@ -17,96 +18,93 @@ class ActiveNowPage extends StatelessWidget {
     double width = screenSize.width;
     double height = screenSize.height;
     return Scaffold(
-      backgroundColor: Color(0xff131313),
+      backgroundColor: const Color(0xff131313),
       appBar: AppBar(
         title: const Text('Nộp tiền'),
       ),
-      body: Container(
-        child: BlocBuilder<BankitemBloc, BankitemState>(
-          builder: (context, state) {
-            if (state is BankitemLoadingState) {
-              return const CircularProgressIndicator();
-            } else if (state is BankitemSuccessState) {
-              return Container(
-                padding: EdgeInsets.all(12),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      onTap:(){
-                        Navigator.push(context, MaterialPageRoute(builder:(context) {
+      body: BlocBuilder<BankitemBloc, BankitemState>(
+        builder: (context, state) {
+          if (state is BankitemLoadingState) {
+            return const CircularProgressIndicator();
+          } else if (state is BankitemSuccessState) {
+            return Container(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: [
+                  TextFormField(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
                           return ListBankPage();
-                        },));
-                      } ,
-                      autofocus: true,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        hintText: state.bank.name,
-                        hintStyle: TextStyle(color: Colors.white),
-                        labelText: 'Chọn ngân hàng thụ hưởng',
-                        labelStyle:
-                            const TextStyle(fontSize: 12, color: Colors.white),
-                        suffixIcon: const Icon(
-                          Icons.navigate_next_sharp,
-                          color: Colors.white,
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
+                        },
+                      ));
+                    },
+                    autofocus: true,
+                    readOnly: true,
+                    decoration: InputDecoration(
+                      hintText: state.bank.name,
+                      hintStyle: const TextStyle(color: Colors.white),
+                      labelText: 'Chọn ngân hàng thụ hưởng',
+                      labelStyle:
+                          const TextStyle(fontSize: 12, color: Colors.white),
+                      suffixIcon: const Icon(
+                        Icons.navigate_next_sharp,
+                        color: Colors.white,
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
                       ),
                     ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Text('Sở giao dịch hà nội'),
-                    Text('Tiền nộp được duyệt nhanh 24/7'),
-                    Text('Vui lòng chuyển vào tài khoản sau'),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    buildRow(
-                        width: width,
-                        state: state,
-                        text: state.bank.stk.toString(),
-                        onTap: () {
-                          coppyCt = state.bank.stk.toString();
-                          showToast('Coppy Thành công');
-                          print(coppyCt);
-                        }),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    buildRow(
-                        width: width,
-                        state: state,
-                        text: state.bank.dvThuHuong.toString(),
-                        onTap: () {
-                          coppyCt = state.bank.dvThuHuong.toString();
-                          showToast('Coppy Thành công');
-                          print(coppyCt);
-                        }),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    buildRow(
-                      onTap: () {
-                        coppyCt = state.bank.nd.toString();
-                        showToast('Coppy Thành công');
-                        print(coppyCt);
-                      },
+                  ),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  const Text('Sở giao dịch hà nội'),
+                  const Text('Tiền nộp được duyệt nhanh 24/7'),
+                  const Text('Vui lòng chuyển vào tài khoản sau'),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  buildRow(
                       width: width,
                       state: state,
-                      text: state.bank.nd.toString(),
-                    ),
-                  ],
-                ),
-              );
-            } else {
-              return Center(
-                child: Text(state.toString()),
-              );
-            }
-          },
-        ),
+                      text: state.bank.stk.toString(),
+                      onTap: () {
+                        coppyCt = state.bank.stk.toString();
+                        showToast('Coppy Thành công');
+                      }),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  buildRow(
+                      width: width,
+                      state: state,
+                      text: state.bank.dvThuHuong.toString(),
+                      onTap: () {
+                        coppyCt = state.bank.dvThuHuong.toString();
+                        showToast('Coppy Thành công');
+                      }),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  buildRow(
+                    onTap: () {
+                      coppyCt = state.bank.nd.toString();
+                      showToast('Coppy Thành công');
+                    },
+                    width: width,
+                    state: state,
+                    text: state.bank.nd.toString(),
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child: Text(state.toString()),
+            );
+          }
+        },
       ),
     );
   }
@@ -124,7 +122,7 @@ class ActiveNowPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(left: width * 0.06),
                 child: Text(text)),
-            color: Color(0xff262626),
+            color: const Color(0xff262626),
             width: width * 0.7,
             height: width * 0.13),
         SizedBox(
@@ -134,7 +132,7 @@ class ActiveNowPage extends StatelessWidget {
           onTap: onTap,
           child: buildContainer(
             demo: const Icon(Icons.copy, size: 20),
-            color: Color(0xff262626),
+            color: const Color(0xff262626),
             width: width * 0.2,
             height: width * 0.13,
           ),

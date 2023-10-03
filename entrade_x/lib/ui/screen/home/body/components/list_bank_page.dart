@@ -1,9 +1,9 @@
 import 'package:entrade_x/blocs/bank/bankitem_bloc.dart';
 import 'package:entrade_x/repo/banks.dart';
-import 'package:entrade_x/ui/screen/home/body/components/active_now.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// ignore: must_be_immutable
 class ListBankPage extends StatelessWidget {
   ListBankPage({super.key});
 

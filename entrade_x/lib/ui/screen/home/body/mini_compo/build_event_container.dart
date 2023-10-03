@@ -8,7 +8,7 @@ Container buildEventContainer(
     required String txt3,
     String iconPath = 'assets/images/ready_stock.png'}) {
   return Container(
-    padding: const EdgeInsets.only(left: 10, top: 24, bottom: 24, right: 6),
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(20),
       color: const Color(0xff262626),
@@ -21,7 +21,7 @@ Container buildEventContainer(
           children: [
             Text(
               txt1,
-              style: const TextStyle(color: Colors.grey, fontSize: 16),
+              style: const TextStyle(color: Colors.grey),
             ),
             Text(
               txt2.toUpperCase(),
@@ -34,7 +34,7 @@ Container buildEventContainer(
               txt3,
               style: const TextStyle(
                 color: Colors.grey,
-                fontSize: 16,
+
               ),
             ),
           ],

@@ -17,6 +17,7 @@ class MarketTodayWidget extends StatefulWidget {
 
 class _MarketTodayWidgetState extends State<MarketTodayWidget> {
   int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -29,7 +30,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
           padding: EdgeInsets.only(left: 12, top: 8),
           child: Text(
             'Thị trường hôm nay?',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
         SizedBox(
@@ -74,11 +75,11 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                             LineChartBarData(
                               spots: state.list,
                               isCurved: true,
-                              color: Colors.redAccent,
+                              color: Colors.green,
                               dotData: const FlDotData(show: false),
                               belowBarData: BarAreaData(
                                 show: true, // Hiển thị bóng
-                                color: Colors.red.withOpacity(0.2),
+                                color: Colors.green.withOpacity(0.2),
                               ),
                             ),
                           ],
@@ -105,7 +106,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               BlocBuilder<IdeasBloc, IdeasState>(
                 builder: (context, state) {
@@ -155,31 +156,27 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
       },
       txt1: Text(
         '${state.stocks[index].name}-${state.stocks[index].producer}',
-        style: const TextStyle(color: Colors.grey, fontSize: 14),
+        style: const TextStyle(color: Colors.grey),
       ),
       txt2: state.stocks[index].currentPrice - state.stocks[index].price > 0
           ? Text(
               '${state.stocks[index].currentPrice}',
               style: const TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+                  color: Colors.green, fontWeight: FontWeight.bold),
             )
           : Text(
               '${state.stocks[index].currentPrice}',
               style: const TextStyle(
-                  color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
+                  color: Colors.red, fontWeight: FontWeight.bold),
             ),
       txt3: Text(
         '${state.stocks[index].profit}(${state.stocks[index].revenue})',
         style: state.stocks[index].profit > 0
             ? const TextStyle(
                 color: Colors.green,
-                fontSize: 14,
               )
             : const TextStyle(
                 color: Colors.red,
-                fontSize: 14,
               ),
       ),
       txt4: Text(
@@ -219,7 +216,6 @@ class _TimeWidgetState extends State<TimeWidget> {
             '1W',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 14,
               color: Colors.white,
             ),
           ),
@@ -239,7 +235,6 @@ class _TimeWidgetState extends State<TimeWidget> {
             '1M',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 14,
               color: Colors.white,
             ),
           ),
@@ -259,7 +254,6 @@ class _TimeWidgetState extends State<TimeWidget> {
             '6M',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 14,
               color: Colors.white,
             ),
           ),
@@ -279,7 +273,6 @@ class _TimeWidgetState extends State<TimeWidget> {
             '1Y',
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 14,
               color: Colors.white,
             ),
           ),

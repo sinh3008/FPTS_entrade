@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 Container buildTextDemo(
     {required double width, required String title, required String money}) {
   return Container(
@@ -9,16 +10,12 @@ Container buildTextDemo(
         Text(
           title,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+          style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
         ),
         Text(
           money,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.normal,
-              fontSize: 14),
+          style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
         ),
       ],
     ),

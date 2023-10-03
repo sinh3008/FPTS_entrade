@@ -47,11 +47,12 @@ AppBar buildAppBarHome(double width, double height, BuildContext context) {
                   ),
                   Expanded(
                     child: TextField(
+                      canRequestFocus: false,
                       autofocus: false,
                       decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: '   Tìm mã để đặt lệnh',
-                        hintStyle: TextStyle(color: Colors.grey),
+                        hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
                       ),
                       onTap: () {
                         PersistentNavBarNavigator
@@ -59,8 +60,7 @@ AppBar buildAppBarHome(double width, double height, BuildContext context) {
                           context,
                           settings: RouteSettings(name: Page2.routerName),
                           screen: const SearchPage(),
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
+                          pageTransitionAnimation: PageTransitionAnimation.fade,
                         );
                       },
                     ),

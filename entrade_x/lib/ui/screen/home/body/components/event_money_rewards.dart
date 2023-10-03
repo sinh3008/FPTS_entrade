@@ -22,7 +22,6 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
     double height = screenSize.height;
     return Container(
       color: const Color(0xff202123),
-      height: height * 0.3,
       width: width,
       child: Column(
         children: [
@@ -68,7 +67,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
             '+0đ',
             style: TextStyle(
               color: Colors.green,
-              fontSize: 22,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -109,7 +108,10 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
                 ),
               );
             },
-            text: 'Kích hoạt ngay',
+            text: 'Nạp tiền ngay',
+          ),
+          SizedBox(
+            height: height * 0.02,
           ),
         ],
       ),

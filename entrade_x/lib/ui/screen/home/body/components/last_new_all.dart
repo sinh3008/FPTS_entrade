@@ -6,7 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class LastNewAll extends StatefulWidget {
   LastNewAll({super.key});
 
-  static const _biggerFont = TextStyle(fontSize: 16.0, color: Colors.white);
+  static const _biggerFont = TextStyle(fontSize: 14.0, color: Colors.white);
   IDataInfoFake infoFake = IDataInfoFake();
 
   @override
@@ -86,6 +86,10 @@ class _LastNewAllState extends State<LastNewAll> {
                   ],
                 ),
               ),
+            );
+          } else {
+            return const Center(
+              child: Text('false'),
             );
           }
         },

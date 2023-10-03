@@ -42,7 +42,7 @@ class _BodyLoginState extends State<BodyLogin> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 10.h,
+                height: 20.h,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -50,17 +50,17 @@ class _BodyLoginState extends State<BodyLogin> {
                 children: [
                   Image(
                     image: const AssetImage('assets/images/ready_stock.png'),
-                    height: 100.h,
-                    width: 100.h,
+                    height: 60.h,
+                    width: 60.h,
                   ),
                   const Text(
                     'Entrade ',
-                    style: TextStyle(fontSize: 44, color: Colors.white),
+                    style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                   const Text(
                     'X',
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 16,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -68,7 +68,7 @@ class _BodyLoginState extends State<BodyLogin> {
                 ],
               ),
               SizedBox(
-                height: 20.h,
+                height: 30.h,
               ),
               TextFormField(
                 onChanged: (value) {
@@ -96,7 +96,7 @@ class _BodyLoginState extends State<BodyLogin> {
                 onPressed: () {},
                 child: const Text(
                   'Quên mật khẩu?',
-                  style: TextStyle(color: Colors.red, fontSize: 16),
+                  style: TextStyle(color: Colors.red, fontSize: 14),
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -153,7 +153,7 @@ class _BodyLoginState extends State<BodyLogin> {
                 ],
               ),
               SizedBox(
-                height: 20.h,
+                height: 25.h,
               ),
               SizedBox(
                 width: screenSize.width,
@@ -161,13 +161,13 @@ class _BodyLoginState extends State<BodyLogin> {
                   'Hoặc sử dụng',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     color: Colors.grey,
                   ),
                 ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 25.h,
               ),
               SizedBox(
                 child: Row(
@@ -210,7 +210,6 @@ class _BodyLoginState extends State<BodyLogin> {
                     'Mở tài khoản',
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,
@@ -225,7 +224,6 @@ class _BodyLoginState extends State<BodyLogin> {
                     'Điều khoản sử dụng',
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,
@@ -237,10 +235,9 @@ class _BodyLoginState extends State<BodyLogin> {
                   padding: const EdgeInsets.all(12),
                   width: screenSize.width,
                   child: const Text(
-                    'Điều khoản sử dụng',
+                    'Hỗ trợ trực tuyến',
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 16,
                       fontWeight: FontWeight.normal,
                     ),
                     textAlign: TextAlign.center,

@@ -8,7 +8,7 @@ import '../../../../../repo/i_data_info_fake.dart';
 class LatestNewsWidget extends StatelessWidget {
   IDataInfoFake infoFake = IDataInfoFake();
 
-  static const _biggerFont = TextStyle(fontSize: 16.0, color: Colors.white);
+  static const _biggerFont = TextStyle(fontSize: 14.0, color: Colors.white);
 
   LatestNewsWidget({super.key});
 
@@ -25,7 +25,7 @@ class LatestNewsWidget extends StatelessWidget {
             SizedBox(width: width * 0.03),
             const Text(
               'Tin vĩ mô',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle( fontWeight: FontWeight.bold),
             ),
             SizedBox(width: width * 0.03),
             InkWell(
@@ -33,9 +33,9 @@ class LatestNewsWidget extends StatelessWidget {
                 showToast('Tin tức được cập nhật mới nhất');
               },
               child: const SizedBox(
-                width: 28,
-                height: 28,
-                child: Icon(Icons.info_outline),
+                width: 18,
+                height: 18,
+                child: Icon(Icons.info_outline, size: 18,),
               ),
             ),
             Expanded(
@@ -50,7 +50,7 @@ class LatestNewsWidget extends StatelessWidget {
                 child: const Text(
                   'Xem tất cả',
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 14,
                     fontWeight: FontWeight.bold,
                     color: Colors.red,
                     decoration: TextDecoration.underline,

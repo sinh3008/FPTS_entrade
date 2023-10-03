@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../blocs/chart/chart_bloc.dart';
 import '../../../../components/circle_k.dart';
 import 'investment_ideas.dart';
+
+// ignore: non_constant_identifier_names
 Container IdeasWidget(double width, BuildContext context, double height) {
   return Container(
     padding: const EdgeInsets.all(12),
@@ -45,16 +47,16 @@ Container IdeasWidget(double width, BuildContext context, double height) {
                   Text(
                     'Có 3 ý tưởng đầu tư mới cho bạn',
                     style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Text(
                     'Xem ngay, đừng bỏ lỡ',
                     style: TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.normal,
-                        fontSize: 15),
+                      color: Colors.grey,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
                 ],
               ),
@@ -100,6 +102,7 @@ Container IdeasWidget(double width, BuildContext context, double height) {
     ),
   );
 }
+
 Container newMethod(double width) {
   return Container(
     padding: const EdgeInsets.all(8),

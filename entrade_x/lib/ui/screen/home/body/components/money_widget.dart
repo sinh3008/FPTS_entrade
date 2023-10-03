@@ -19,7 +19,7 @@ class MoneyWidget extends StatelessWidget {
             width: width,
             margin: const EdgeInsets.symmetric(horizontal: 10),
             padding:
-                const EdgeInsets.only(left: 10, right: 10, bottom: 20, top: 10),
+                const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: const Color(0xff262626),
@@ -28,50 +28,43 @@ class MoneyWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 50,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 6),
-                        child: state.isShow == true
-                            ? const Text(
-                                '0',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              )
-                            : const Text(
-                                '*** *** ***',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 26,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                      state.isShow == true
+                          ? const Text(
+                              '0',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
                               ),
-                      ),
+                            )
+                          : const Text(
+                              '*** *** ***',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                       SizedBox(
                         width: width * 0.02,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 6.0, top: width * 0.03),
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                              width: 20,
-                              height: 20,
-                              alignment: Alignment.center,
-                              decoration: const BoxDecoration(
-                                  color: Colors.red,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(4))),
-                              child: const Icon(
-                                Icons.add,
-                                size: 20,
-                              )),
-                        ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                            width: 18,
+                            height: 18,
+                            alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                                color: Colors.red,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(4))),
+                            child: const Icon(
+                              Icons.add,
+                              size: 18,
+                            )),
                       ),
                       Expanded(
                         child: Row(
@@ -79,6 +72,7 @@ class MoneyWidget extends StatelessWidget {
                           children: [
                             SizedBox(
                               height: 30,
+                              width: 20,
                               child: GestureDetector(
                                 onTap: () {
                                   BlocProvider.of<MoneyBloc>(context)
@@ -107,7 +101,7 @@ class MoneyWidget extends StatelessWidget {
                     const Text(
                       'Hôm nay, khoản đầu tư tăng',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -119,9 +113,12 @@ class MoneyWidget extends StatelessWidget {
                         showToast('Hôm nay, khoản đầu tư của bạn tăng 0đ');
                       },
                       child: const SizedBox(
-                        width: 28,
-                        height: 28,
-                        child: Icon(Icons.info_outline),
+                        width: 18,
+                        height: 18,
+                        child: Icon(
+                          Icons.info_outline,
+                          size: 18,
+                        ),
                       ),
                     )
                   ],
@@ -130,7 +127,7 @@ class MoneyWidget extends StatelessWidget {
                   '0',
                   style: TextStyle(
                     color: Colors.green,
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                 )
               ],
