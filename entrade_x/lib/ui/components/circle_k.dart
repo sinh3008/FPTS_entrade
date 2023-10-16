@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 GestureDetector buildCircleK({
   required Widget demo,
   required Color color,
   double width = 50,
+  Border? border,
   double height = 50,
+  BorderRadiusGeometry? borderRadius,
   BoxShape shape = BoxShape.circle,
   required VoidCallback onClicked,
   EdgeInsetsGeometry padding =
@@ -20,7 +21,9 @@ GestureDetector buildCircleK({
       height: height,
       decoration: BoxDecoration(
         color: color,
+        border: border,
         shape: shape,
+        borderRadius: borderRadius,
       ),
       child: demo,
     ),
@@ -39,9 +42,9 @@ GestureDetector buildRecBorder({
   return GestureDetector(
     onTap: func,
     child: Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-      width: width.w,
-      height: height.h,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      width: width,
+      height: height,
       decoration: BoxDecoration(
           color: color, shape: shape, borderRadius: BorderRadius.circular(26)),
       child: demo,

@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 class ButtonLoginWidget extends StatelessWidget {
   const ButtonLoginWidget(
       {super.key,
-      required this.screenSize,
       required this.onTap,
-      this.text = ''});
+      this.text = '',
+      this.radius = 12,
+      required this.width,
+      required this.height});
 
   final void Function()? onTap;
-  final Size screenSize;
+  final double width;
+  final double height;
+  final double radius;
   final String text;
 
   @override
@@ -17,12 +21,12 @@ class ButtonLoginWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         alignment: Alignment.center,
-        width: screenSize.width * 0.4,
-        height: 40,
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        width: width,
+        height: height,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
           color: Colors.red,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(radius),
         ),
         child: Text(
           text,

@@ -1,7 +1,7 @@
+import 'package:entrade_x/size_config.dart';
 import 'package:entrade_x/ui/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -41,23 +41,23 @@ class _BodyLoginState extends State<BodyLogin> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 20.h,
+              const SizedBox(
+                height: 20,
               ),
-              Row(
+              const Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image(
-                    image: const AssetImage('assets/images/ready_stock.png'),
-                    height: 60.h,
-                    width: 60.h,
+                    image: AssetImage('assets/images/ready_stock.png'),
+                    height: 60,
+                    width: 60,
                   ),
-                  const Text(
+                  Text(
                     'Entrade ',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
-                  const Text(
+                  Text(
                     'X',
                     style: TextStyle(
                       fontSize: 16,
@@ -67,8 +67,8 @@ class _BodyLoginState extends State<BodyLogin> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 30.h,
+              const SizedBox(
+                height: 30,
               ),
               TextFormField(
                 onChanged: (value) {
@@ -89,8 +89,8 @@ class _BodyLoginState extends State<BodyLogin> {
                   hintText: 'Mật khẩu',
                 ),
               ),
-              SizedBox(
-                height: 10.h,
+              const SizedBox(
+                height: 10,
               ),
               TextButton(
                 onPressed: () {},
@@ -100,25 +100,26 @@ class _BodyLoginState extends State<BodyLogin> {
                   textAlign: TextAlign.start,
                 ),
               ),
-              SizedBox(
-                height: 10.h,
+              const SizedBox(
+                height: 10,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
                     child: ButtonLoginWidget(
-                      screenSize: screenSize,
+                      width: SizeConfig.screenWidth * 0.4,
+                      height: getProportionateScreenHeight(50),
                       onTap: () {
                         if (email == null || pass == null) {
                           Fluttertoast.showToast(
                             msg: "Trường email và mật khẩu không được để trống",
                             toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
+                            gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 26.sp,
+                            backgroundColor: Colors.white,
+                            textColor: Colors.black,
+                            fontSize: 14,
                           );
                         } else {
                           context
@@ -129,8 +130,8 @@ class _BodyLoginState extends State<BodyLogin> {
                       text: 'Đăng nhập',
                     ),
                   ),
-                  SizedBox(
-                    width: 20.w,
+                  const SizedBox(
+                    width: 20,
                   ),
                   buildCircleK(
                     onClicked: () async {
@@ -152,8 +153,8 @@ class _BodyLoginState extends State<BodyLogin> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 25.h,
+              const SizedBox(
+                height: 25,
               ),
               SizedBox(
                 width: screenSize.width,
@@ -166,8 +167,8 @@ class _BodyLoginState extends State<BodyLogin> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 25.h,
+              const SizedBox(
+                height: 25,
               ),
               SizedBox(
                 child: Row(
@@ -181,8 +182,8 @@ class _BodyLoginState extends State<BodyLogin> {
                         ),
                         color: Colors.white,
                         onClicked: () {}),
-                    SizedBox(
-                      width: 20.w,
+                    const SizedBox(
+                      width: 20,
                     ),
                     buildCircleK(
                         onClicked: () {},
@@ -195,8 +196,8 @@ class _BodyLoginState extends State<BodyLogin> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 70.h,
+              const SizedBox(
+                height: 70,
               ),
               SizedBox(
                 child: Container(

@@ -1,9 +1,9 @@
-import 'package:entrade_x/ui/screen/home/body/body_home.dart';
+import 'package:entrade_x/ui/screen/home/body_home.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../pages_test/order_page.dart';
-import '../../pages_test/follow_page.dart';
+import '../../pages_test/follows/follow_page.dart';
 import '../../pages_test/wallet_page.dart';
 import '../../pages_test/message_page.dart';
 import '../../pages_test/menu_page.dart';
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
     List<Widget> _buildScreens() {
       return [
         const BodyHomeScreen(),
-        const FollowsScreen(),
+         FollowsScreen(),
         const OrdersScreen(),
         const WalletScreen(),
         const MessageScreen(),

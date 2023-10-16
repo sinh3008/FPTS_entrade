@@ -9,4 +9,6 @@ class Stocks {
     Stock('IDX', 'VIETNAM INDEX', 'INDEX', 29676.415, 1160.60, 1280.99, 21.59,
         6.66, 0.99),
   ];
+  Stock stock = Stock('VNM', 'VINAMILK', 'HOUSE', 13960.334, 1154.15, 1170.09,
+      18.9, 5.56, 1.77);
 }
