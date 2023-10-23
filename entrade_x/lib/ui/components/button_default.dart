@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constrants.dart';
+
 class ButtonLoginWidget extends StatelessWidget {
   const ButtonLoginWidget(
       {super.key,
@@ -25,15 +27,12 @@ class ButtonLoginWidget extends StatelessWidget {
         height: height,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
-          color: Colors.red,
+          color: kRedButtonBG,
           borderRadius: BorderRadius.circular(radius),
         ),
         child: Text(
           text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-          ),
+          style: kTextWhite16Normal,
         ),
       ),
     );

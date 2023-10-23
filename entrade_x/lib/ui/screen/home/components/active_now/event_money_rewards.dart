@@ -1,7 +1,9 @@
+import 'package:entrade_x/constrants.dart';
 import 'package:entrade_x/size_config.dart';
 import 'package:entrade_x/toast.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../strings.dart';
 import '../../../../components/button_default.dart';
 import '../../mini_compo/build_dot.dart';
 import '../../mini_compo/build_text_demo.dart';
@@ -22,18 +24,15 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
   late AnimationController _animationController;
 
   var listRadius = [6.0, 15.0, 20.0];
+
   @override
   void initState() {
     super.initState();
-
     _animationController = AnimationController(
         vsync: this, duration: const Duration(seconds: 4), lowerBound: 0.4);
     _animationController.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
-
     // Add a status listener to restart the animation when it completes.
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -42,11 +41,9 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
         _animationController.forward();
       }
     });
-
     // Start the animation.
     _animationController.forward();
   }
-
 
   @override
   void dispose() {
@@ -56,59 +53,42 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    double width = screenSize.width;
-    double height = screenSize.height;
     return Container(
       color: const Color(0xff202123),
-      width: width,
+      width: SizeConfig.screenWidth,
       child: Column(
         children: [
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: width * 0.06,
-              ),
-              const Text(
-                'Chào Sinh, hãy hoàn thành để nhận 200,000đ',
-                style: TextStyle(color: Colors.white, fontSize: 14),
-              ),
-              SizedBox(
-                width: width * 0.02,
-              ),
-              Expanded(
-                child: InkWell(
+          sbh(20),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(16)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  sEvent,
+                  style: kTextWhite15Normal,
+                ),
+                InkWell(
                   onTap: () {
-                    showToast('Hãy hoàn thành để nhận 200,000 đ');
+                    showToast(s200k);
                   },
-                  child: const SizedBox(
-                    width: 30,
-                    height: 30,
-                    child: Image(
-                      image: AssetImage('assets/images/help.png'),
+                  child:  SizedBox(
+                    width: getProportionateScreenWidth(25),
+                    height: getProportionateScreenHeight(25),
+                    child: const Image(
+                      image: AssetImage(sHelp),
                       color: Colors.white,
                       fit: BoxFit.scaleDown,
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: width * 0.02,
-              ),
-            ],
+              ],
+            ),
           ),
+          sbh(6),
           const Text(
             '+0đ',
-            style: TextStyle(
-              color: Colors.green,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: kTextGreen16Normal,
           ),
           const SizedBox(
             height: 10,
@@ -118,11 +98,11 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
             children: List.generate(3, (index) {
               return buildDot(
                 index: index,
-                width: width * 0.3,
+                width: SizeConfig.screenWidth * 0.3,
                 height: 8,
                 color: index == 0
-                    ? Colors.lightGreenAccent
-                    : Colors.lightGreen.withOpacity(0.5),
+                    ? const Color(0xff35c85e)
+                    : const Color(0xff35c85e).withOpacity(0.5),
               );
             }),
           ),
@@ -146,13 +126,13 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
                       const Icon(
                         Icons.check,
                         size: 16,
-                        color: Colors.lightGreenAccent,
+                        color: Color(0xff35c85e),
                       ),
                       buildTextDemo(
-                          width: width,
+                          width: SizeConfig.screenWidth,
                           title: 'Kích hoạt',
                           money: '+50,000đ',
-                          colors: Colors.lightGreenAccent),
+                          colors: const Color(0xff35c85e)),
                     ],
                   ),
                 ),
@@ -161,8 +141,8 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 30,
+                      SizedBox(
+                        width: 20,
                         child: Stack(
                           alignment: Alignment.center,
                           children: [
@@ -174,11 +154,13 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
                         ),
                       ),
                       buildTextDemo(
-                          width: width, title: 'Nộp tiền', money: '+50,000đ'),
+                          width: SizeConfig.screenWidth,
+                          title: 'Nộp tiền',
+                          money: '+50,000đ'),
                     ],
                   ),
                 ),
-                 Expanded(
+                Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,36 +173,19 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
                         ],
                       ),
                       buildTextDemo(
-                          width: width, title: 'Đầu tư', money: '+100,000đ'),
+                          width: SizeConfig.screenWidth,
+                          title: 'Đầu tư',
+                          money: '+100,000đ'),
                     ],
                   ),
                 ),
-                // Expanded(
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.start,
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Stack(
-                //         children: [
-                //           buildMycontainer2(
-                //               listRadius[0], Colors.grey.withOpacity(1)),
-                //         ],
-                //       ),
-                //       buildTextDemo(
-                //           width: width,
-                //           title: 'Đầu tư (5 triệu)',
-                //           money: '+100,000đ'),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),
-          SizedBox(
-            height: height * 0.01,
-          ),
+          sbh(10),
           ButtonLoginWidget(
-            width: SizeConfig.screenWidth * 0.3,
+            radius: 30,
+            width: SizeConfig.screenWidth * 0.4,
             height: getProportionateScreenHeight(40),
             onTap: () {
               Navigator.push(
@@ -230,11 +195,9 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
                 ),
               );
             },
-            text: 'Nạp tiền ngay',
+            text: 'Nộp tiền ngay',
           ),
-          SizedBox(
-            height: height * 0.02,
-          ),
+          sbh(20),
         ],
       ),
     );

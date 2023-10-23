@@ -1,28 +1,28 @@
+import 'package:entrade_x/size_config.dart';
+import 'package:entrade_x/strings.dart';
 import 'package:entrade_x/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../blocs/money/money_bloc.dart';
+import '../../../../../constrants.dart';
 
 class MoneyWidget extends StatelessWidget {
   const MoneyWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    double width = screenSize.width;
-    // double height = screenSize.height;
     return BlocBuilder<MoneyBloc, MoneyState>(
       builder: (context, state) {
         if (state is ShowHideMoneyState) {
           return Container(
-            width: width,
-            // margin: const EdgeInsets.symmetric(horizontal: 10),
-            padding:
-                const EdgeInsets.all(16),
+            width: SizeConfig.screenWidth,
+            margin: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(8)),
+            padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              // borderRadius: BorderRadius.circular(20),
-              color: const Color(0xff262626),
+              borderRadius: BorderRadius.circular(10),
+              color: kBgHomeContainer,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,31 +34,22 @@ class MoneyWidget extends StatelessWidget {
                       state.isShow == true
                           ? const Text(
                               '0',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: kTextWhite20Bold,
                             )
                           : const Text(
                               '*** *** ***',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: kTextWhite20Bold,
                             ),
-                      SizedBox(
-                        width: width * 0.02,
-                      ),
+                      sbw(10),
                       GestureDetector(
                         onTap: () {},
                         child: Container(
-                            width: 18,
-                            height: 18,
+                            padding: EdgeInsets.zero,
+                            width: getProportionateScreenWidth(18),
+                            height: getProportionateScreenHeight(18),
                             alignment: Alignment.center,
                             decoration: const BoxDecoration(
-                                color: Colors.red,
+                                color: kRedButtonBG,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
                             child: const Icon(
@@ -71,23 +62,19 @@ class MoneyWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             SizedBox(
-                              height: 30,
-                              width: 20,
+                              height: getProportionateScreenHeight(30),
+                              width: getProportionateScreenWidth(20),
                               child: GestureDetector(
                                 onTap: () {
                                   BlocProvider.of<MoneyBloc>(context)
                                       .add(ShowHideMoneyEvent());
                                 },
                                 child: state.isShow
-                                    ? buildIconShowHide(
-                                        imgPath: 'assets/images/hide.png')
-                                    : buildIconShowHide(
-                                        imgPath: 'assets/images/show.png'),
+                                    ? buildIconShowHide(imgPath: sHide)
+                                    : buildIconShowHide(imgPath: sShow),
                               ),
                             ),
-                            SizedBox(
-                              width: width * 0.01,
-                            ),
+                            sbw(10),
                           ],
                         ),
                       ),
@@ -99,23 +86,18 @@ class MoneyWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const Text(
-                      'Hôm nay, khoản đầu tư tăng',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
+                      sInfoCheck,
+                      style: kTextGrey15Normal,
                     ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
+                    sbw(10),
                     InkWell(
                       onTap: () {
                         showToast('Hôm nay, khoản đầu tư của bạn tăng 0đ');
                       },
-                      child: const SizedBox(
-                        width: 18,
-                        height: 18,
-                        child: Icon(
+                      child: SizedBox(
+                        width: getProportionateScreenWidth(18),
+                        height: getProportionateScreenHeight(18),
+                        child: const Icon(
                           Icons.info_outline,
                           size: 18,
                         ),
@@ -123,12 +105,10 @@ class MoneyWidget extends StatelessWidget {
                     )
                   ],
                 ),
+                sbh(4),
                 const Text(
                   '0',
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontSize: 16,
-                  ),
+                  style: kTextGreen16Normal,
                 )
               ],
             ),
@@ -145,7 +125,7 @@ class MoneyWidget extends StatelessWidget {
   Image buildIconShowHide({required String imgPath}) {
     return Image.asset(
       imgPath,
-      color: Colors.white,
+      color: kWhite,
     );
   }
 }

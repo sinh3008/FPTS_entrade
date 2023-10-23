@@ -1,124 +1,126 @@
+import 'package:entrade_x/constrants.dart';
+import 'package:entrade_x/size_config.dart';
 import 'package:entrade_x/toast.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../repo/informations.dart';
 import 'last_new_all.dart';
 
-// ignore: must_be_immutable
 class LatestNewsWidget extends StatelessWidget {
   IDataInfoFake infoFake = IDataInfoFake();
-
-  static const _biggerFont = TextStyle(fontSize: 14.0, color: Colors.white);
 
   LatestNewsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    double width = screenSize.width;
-    double height = screenSize.height;
     return Column(
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(width: width * 0.03),
-            const Text(
-              'Tin vĩ mô',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(width: width * 0.03),
-            InkWell(
-              onTap: () {
-                showToast('Tin tức được cập nhật mới nhất');
-              },
-              child: const SizedBox(
-                width: 18,
-                height: 18,
-                child: Icon(
-                  Icons.info_outline,
-                  size: 18,
-                ),
+        Padding(
+          padding:
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8)),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Tin vĩ mô',
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            ),
-            Expanded(
-              child: GestureDetector(
+              sbw(30),
+              InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return LastNewAll();
-                    },
-                  ));
+                  showToast('Tin tức được cập nhật mới nhất');
                 },
-                child: const Text(
-                  'Xem tất cả',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green,
-                    decoration: TextDecoration.underline,
+                child: SizedBox(
+                  width: getProportionateScreenWidth(18),
+                  height: getProportionateScreenHeight(18),
+                  child: const Icon(
+                    Icons.info_outline,
+                    size: 18,
                   ),
-                  textAlign: TextAlign.end,
                 ),
               ),
-            ),
-            SizedBox(
-              width: width * 0.03,
-            ),
-          ],
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return LastNewAll();
+                      },
+                    ));
+                  },
+                  child: Text(
+                    'Xem tất cả',
+                    style: kTextWhite14Bold.copyWith(
+                        color: kRedButtonBG,
+                        decoration: TextDecoration.underline),
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
+        sbh(10),
         SizedBox(
-          height: height * 0.01,
-        ),
-        SizedBox(
-          width: width,
+          width: SizeConfig.screenWidth,
           height: 120,
           child: PageView.builder(
             itemBuilder: (context, index) => Container(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-              width: width,
-              color: const Color(0xff202123),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: width * 0.6,
-                            child: Text(
-                              infoFake.list[index].title,
-                              style: _biggerFont,
-                              maxLines: 2,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Text(infoFake.list[index].time),
-                              const SizedBox(
-                                width: 30,
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(10),
+                  horizontal: getProportionateScreenWidth(8)),
+              width: SizeConfig.screenWidth,
+              color: kBgHomeContainer,
+              child: Container(
+                height: 120,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: SizeConfig.screenWidth * 0.6,
+                              child: Text(
+                                infoFake.list[index].title,
+                                style:
+                                    kTextWhite14Bold.copyWith(fontWeight: w500),
+                                maxLines: 2,
                               ),
-                              Text(infoFake.list[index].author),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: width * 0.3,
-                        child: Image(
-                          image: AssetImage(infoFake.list[index].imagePath),
+                            ),
+                            sbh(6),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(infoFake.list[index].time),
+                                sbw(30),
+                                Text(infoFake.list[index].author),
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: Text(
-                      '${index + 1}/${infoFake.list.length}',
-                      textAlign: TextAlign.end,
+                        SizedBox(
+                          width: SizeConfig.screenWidth * 0.3,
+                          child: Image(
+                            image: AssetImage(infoFake.list[index].imagePath),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+
+                    Expanded(
+                      child: Text(
+                        '${index + 1}/${infoFake.list.length}',
+                        textAlign: TextAlign.end,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             scrollDirection: Axis.horizontal,

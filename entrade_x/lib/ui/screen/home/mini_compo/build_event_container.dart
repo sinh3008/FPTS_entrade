@@ -1,21 +1,25 @@
+import 'package:entrade_x/constrants.dart';
+import 'package:entrade_x/size_config.dart';
+import 'package:entrade_x/strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../components/circle_k.dart';
-
 
 GestureDetector buildEventContainer(
     {required String txt1,
     required String txt2,
     required void Function()? onTap,
     required String txt3,
-    String iconPath = 'assets/images/ready_stock.png'}) {
+    String iconPath = sReadyStock}) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+      padding: EdgeInsets.symmetric(
+          horizontal: getProportionateScreenWidth(12),
+          vertical: getProportionateScreenHeight(20)),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: const Color(0xff262626),
+        borderRadius: BorderRadius.circular(10),
+        color: kBgHomeContainer,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,32 +29,23 @@ GestureDetector buildEventContainer(
             children: [
               Text(
                 txt1,
-                style: const TextStyle(color: Colors.grey),
+                style: kTextGrey15Normal,
               ),
-              Text(
-                txt2.toUpperCase(),
-                style: const TextStyle(
-                    color: Colors.green,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
-              ),
+              Text(txt2.toUpperCase(),
+                  style: kTextGreen16Normal.copyWith(fontWeight: w500)),
               Text(
                 txt3,
-                style: const TextStyle(
-                  color: Colors.grey,
-                ),
+                style: kTextGrey15Normal,
               ),
             ],
           ),
-          const SizedBox(
-            width: 10,
-          ),
+          sbw(10),
           buildCircleK(
             onClicked: onTap!,
             demo: Image(
               image: AssetImage(iconPath),
             ),
-            color: Colors.white,
+            color: kWhite,
           ),
         ],
       ),

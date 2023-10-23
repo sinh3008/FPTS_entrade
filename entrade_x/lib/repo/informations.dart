@@ -3,7 +3,7 @@ import '../models/information.dart';
 class IDataInfoFake {
   List<Information> list = [
     Information(
-      title: 'Giá dầu neo cao đến hết năm 2023',
+      title: 'Giá dầu neo cao đến năm 2023, lạm phát tăng trưởng',
       time: '8 phút trước',
       author: 'vn economy',
       imagePath: 'assets/images/gia-dau.jpg',

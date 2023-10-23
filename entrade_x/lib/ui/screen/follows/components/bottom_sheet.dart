@@ -7,9 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
-import '../../../blocs/conditional/conditional_bloc.dart';
-import '../../../constrants.dart';
-import '../../../size_config.dart';
+import '../../../../blocs/conditional/conditional_bloc.dart';
+import '../../../../constrants.dart';
+import '../../../../size_config.dart';
 
 // ignore: must_be_immutable
 class CustomerBottomSheet extends StatefulWidget {
@@ -29,13 +29,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
   int money = 1;
   double price = 42.45;
 
-  String formatCurrency(int amount) {
-    final formatter = NumberFormat.currency(
-      locale: 'vi_VN',
-      symbol: '', // Để loại bỏ ký hiệu tiền tệ (VD: VNĐ)
-    );
-    return formatter.format(amount).replaceAll('.', ',');
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +41,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         builder: (BuildContext context, ScrollController scrollController) {
           return SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.only(bottom: 10),
+              padding: EdgeInsets.only(bottom: getProportionateScreenHeight(8)),
               decoration: const BoxDecoration(
-                color: Color(0xff202123),
+                color: kBgBottomSheet,
                 borderRadius: BorderRadius.only(),
               ),
               child: BlocBuilder<ConditionalBloc, ConditionalState>(
@@ -61,18 +55,17 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                     } else {}
                     return Column(
                       children: [
-                        Container(
-                          width: SizeConfig.screenWidth,
-                          height: 0.5,
-                          color: Colors.white.withOpacity(0.2),
-                        ),
+                        lineBreak(),
                         Padding(
-                          padding: const EdgeInsets.only(left: 16, right: 16),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: getProportionateScreenWidth(8),
+                              vertical: getProportionateScreenHeight(0)),
                           child: Column(
                             children: [
                               Container(
-                                padding:
-                                    const EdgeInsets.only(bottom: 8, top: 10),
+                                padding: EdgeInsets.only(
+                                    bottom: getProportionateScreenHeight(8),
+                                    top: getProportionateScreenHeight(8)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -81,34 +74,29 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       children: [
                                         const Text(
                                           'Sức mua:',
-                                          style: TextStyle(),
+                                          style: kTextGrey16Normal,
                                         ),
-                                        SizedBox(
-                                          width: getProportionateScreenWidth(4),
-                                        ),
+                                        sbw(4),
                                         AutoSizeText(
                                           formatCurrency(money),
                                           maxLines: 2,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                          ),
+                                          style: kTextWhite14Bold,
                                         ),
-                                        SizedBox(
-                                          width: getProportionateScreenWidth(6),
-                                        ),
+                                        sbw(6),
                                         buildCircleK(
                                           shape: BoxShape.rectangle,
-                                          width: 20,
-                                          borderRadius: BorderRadius.circular(2),
-                                          height: 20,
+                                          width:
+                                              getProportionateScreenWidth(18),
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                          height:
+                                              getProportionateScreenHeight(18),
                                           padding: EdgeInsets.zero,
                                           demo: const Icon(
                                             Icons.add,
                                             size: 18,
                                           ),
-                                          color: const Color(0xffd34343),
+                                          color: kRedButtonBG,
                                           onClicked: () {
                                             setState(() {
                                               money += 1000000000;
@@ -124,25 +112,23 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 10),
                                             decoration: BoxDecoration(
-                                                color: const Color(0xffd34343),
+                                                color: kRedButtonBG,
                                                 borderRadius:
                                                     BorderRadius.circular(20)),
                                             height: 26,
                                             child: const Center(
                                               child: Text(
                                                 'Lệnh điều kiện',
-                                                style: TextStyle(color: kWhite),
+                                                style: kTextWhite15Normal,
                                               ),
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: getProportionateScreenWidth(10),
-                                        ),
+                                        sbw(10),
                                         const Center(
                                           child: Icon(
                                             Icons.settings_outlined,
-                                            color: Color(0xffd34343),
+                                            color: kRedButtonBG,
                                           ),
                                         ),
                                       ],
@@ -151,7 +137,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                 ),
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric(vertical: 3),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: getProportionateScreenHeight(3)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -163,23 +150,24 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                         children: [
                                           const Text(
                                             'Khi giá',
-                                            style: TextStyle(color: kWhite),
+                                            style: kTextWhite15Normal,
                                           ),
-                                          moeCaiNut(),
+                                          moeCaiNut(
+                                              isSelectedS: isSelected,
+                                              text1: '≥',
+                                              text2: '≤'),
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: getProportionateScreenWidth(20),
-                                    ),
+                                    sbw(20),
                                     Expanded(
                                       child: SizedBox(
-                                        height: 40,
+                                        height:
+                                            getProportionateScreenHeight(30),
                                         child: TextField(
                                           textAlign: TextAlign.center,
                                           controller: _controller1,
-                                          style: const TextStyle(
-                                              color: Colors.orange),
+                                          style: kTextWhite15Normal,
                                           keyboardType: TextInputType.number,
                                           decoration: InputDecoration(
                                             hintText: 'Giá STOP',
@@ -237,24 +225,18 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             ),
                                             prefixIconConstraints:
                                                 const BoxConstraints(
-                                              minWidth: 26, // Độ rộng tối thiểu
-                                              minHeight:
-                                                  30, // Chiều cao tối thiểu
+                                              minWidth: 26,
+                                              minHeight: 30,
                                             ),
-
-                                            // Thiết lập kích thước cho suffixIcon
                                             suffixIconConstraints:
                                                 const BoxConstraints(
-                                              minWidth: 26, // Độ rộng tối thiểu
-                                              minHeight:
-                                                  30, // Chiều cao tối thiểu
+                                              minWidth: 26,
+                                              minHeight: 30,
                                             ),
                                             border: const UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: kGrey,
-                                                // Màu của border bottom
-                                                width:
-                                                    0.5, // Độ rộng của border bottom
+                                                width: 0.5,
                                               ),
                                             ),
                                           ),
@@ -264,14 +246,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                height: getProportionateScreenHeight(4),
-                              ),
+                              sbh(4),
                               Column(
                                 children: [
                                   Container(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 3),
+                                    padding: EdgeInsets.symmetric(
+                                        vertical:
+                                            getProportionateScreenHeight(3)),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -283,11 +264,17 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             children: [
                                               const Text(
                                                 'Kích hoạt',
-                                                style: TextStyle(color: kWhite),
+                                                style: kTextWhite15Normal,
                                               ),
                                               Row(
                                                 children: [
-                                                  moeCaiNut2(),
+                                                  moeCaiNut(
+                                                    isSelectedS: isSelected2,
+                                                    text1: 'LO',
+                                                    text2: 'MP',
+                                                    inputSizeBox: 10,
+                                                    fontSize: 16,
+                                                  ),
                                                 ],
                                               )
                                             ],
@@ -298,15 +285,15 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             margin:
                                                 const EdgeInsets.only(left: 50),
                                             padding: EdgeInsets.zero,
-                                            height: 26,
-                                            width: 70,
+                                            height: getProportionateScreenHeight(26),
+                                            width: getProportionateScreenWidth(70),
                                             shape: BoxShape.rectangle,
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                             demo: const Center(
                                               child: Text(
                                                 'Ký quỹ 100%',
-                                                style: TextStyle(color: kWhite),
+                                                style: kTextWhite15Normal,
                                               ),
                                             ),
                                             color: const Color.fromARGB(
@@ -329,10 +316,6 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 child: SizedBox(
                                                   height: 40,
                                                   child: TextField(
-                                                    // onTapOutside: ((event) {
-                                                    //   FocusScope.of(context)
-                                                    //       .unfocus();
-                                                    // }),
                                                     textAlign: TextAlign.center,
                                                     controller: _controller2,
                                                     style: const TextStyle(
@@ -340,10 +323,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                     keyboardType:
                                                         TextInputType.number,
                                                     decoration: InputDecoration(
-                                                      hintStyle: const TextStyle(
-                                                          color: Colors.white),
+                                                      hintStyle:
+                                                          const TextStyle(
+                                                              color:
+                                                                  Colors.white),
                                                       hintText: 'Giá đặt',
-                                                      prefixIcon: GestureDetector(
+                                                      prefixIcon:
+                                                          GestureDetector(
                                                         onTap: () {
                                                           if (_controller2
                                                               .text.isEmpty) {
@@ -351,7 +337,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                                 price;
                                                             currentMass -= 1;
                                                             _controller2.text =
-                                                                (currentMass + 1)
+                                                                (currentMass +
+                                                                        1)
                                                                     .toString();
                                                           } else {
                                                             double currentMass =
@@ -365,8 +352,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                           }
                                                         },
                                                         child: Container(
-                                                          color:
-                                                              Colors.transparent,
+                                                          color: Colors
+                                                              .transparent,
                                                           child: const Icon(
                                                             Icons.minimize,
                                                             size: 18,
@@ -374,7 +361,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                           ),
                                                         ),
                                                       ),
-                                                      suffixIcon: GestureDetector(
+                                                      suffixIcon:
+                                                          GestureDetector(
                                                         onTap: () {
                                                           if (_controller2
                                                               .text.isEmpty) {
@@ -382,7 +370,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                                 price;
                                                             currentMass += 1;
                                                             _controller2.text =
-                                                                (currentMass - 1)
+                                                                (currentMass -
+                                                                        1)
                                                                     .toString();
                                                           } else {
                                                             double currentMass =
@@ -396,8 +385,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                           }
                                                         },
                                                         child: Container(
-                                                          color:
-                                                              Colors.transparent,
+                                                          color: Colors
+                                                              .transparent,
                                                           child: const Icon(
                                                             Icons.add,
                                                             size: 18,
@@ -447,7 +436,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                     decoration: InputDecoration(
                                                       hintText: 'Giá đặt',
                                                       prefixIcon: Container(
-                                                        color: Colors.transparent,
+                                                        color:
+                                                            Colors.transparent,
                                                         child: const Icon(
                                                           Icons.minimize,
                                                           size: 18,
@@ -455,7 +445,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                         ),
                                                       ),
                                                       suffixIcon: Container(
-                                                        color: Colors.transparent,
+                                                        color:
+                                                            Colors.transparent,
                                                         child: const Icon(
                                                           Icons.add,
                                                           size: 18,
@@ -492,7 +483,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 ),
                                               ),
                                         SizedBox(
-                                          width: getProportionateScreenWidth(20),
+                                          width:
+                                              getProportionateScreenWidth(20),
                                         ),
                                         Expanded(
                                           child: SizedBox(
@@ -502,7 +494,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               controller: massController,
                                               style: const TextStyle(
                                                   color: Colors.white),
-                                              keyboardType: TextInputType.number,
+                                              keyboardType:
+                                                  TextInputType.number,
                                               decoration: InputDecoration(
                                                 hintText: 'Khối lượng',
                                                 prefixIconConstraints:
@@ -587,19 +580,21 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                 height: getProportionateScreenHeight(4),
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric(vertical: 3),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 3),
                                 child: Row(
                                   children: [
                                     Expanded(
                                         child: Row(
                                       children: [
                                         SizedBox(
-                                            width:
-                                                getProportionateScreenWidth(60),
-                                            child: const Text(
-                                              'Hết hạn',
-                                              style: TextStyle(color: kWhite),
-                                            )),
+                                          width:
+                                              getProportionateScreenWidth(60),
+                                          child: const Text(
+                                            'Hết hạn',
+                                            style: TextStyle(color: kWhite),
+                                          ),
+                                        ),
                                         Expanded(
                                           child: Column(
                                             children: [
@@ -625,8 +620,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 ),
                                               ),
                                               Container(
-                                                width:
-                                                    SizeConfig.screenWidth * 0.4,
+                                                width: SizeConfig.screenWidth *
+                                                    0.4,
                                                 height: 0.5,
                                                 color: kGrey,
                                               )
@@ -682,8 +677,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       (massController.text ?? '') != ''
                                   ? Container(
                                       width: SizeConfig.screenWidth,
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 3),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 3),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
@@ -693,8 +688,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -705,13 +701,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'MUA',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -728,8 +724,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -740,13 +737,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'BÁN',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -759,8 +756,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     )
                                   : Container(
                                       width: SizeConfig.screenWidth,
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 3),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 3),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
@@ -770,8 +767,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -782,13 +780,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'MUA',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -806,8 +804,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -818,13 +817,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'BÁN',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -893,7 +892,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
   void _selectedTime() async {
     final currentTime = TimeOfDay.now();
     final defaultTime = currentTime.replacing(
-      hour: currentTime.hour + 1,
+      hour: currentTime.hour,
       minute: (currentTime.minute + 30) % 60, // Đảm bảo phút không vượt quá 60
     );
     final selectedTime = await showTimePicker(
@@ -908,7 +907,12 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
     }
   }
 
-  Container moeCaiNut() {
+  Container moeCaiNut(
+      {required List<bool> isSelectedS,
+      required String text1,
+      required String text2,
+      double inputSizeBox = 0,
+      double fontSize = 20}) {
     return Container(
       height: 40,
       padding: EdgeInsets.zero,
@@ -924,8 +928,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
           GestureDetector(
             onTap: () {
               setState(() {
-                isSelected[0] = true;
-                isSelected[1] = false;
+                isSelectedS[0] = true;
+                isSelectedS[1] = false;
               });
             },
             child: Container(
@@ -933,14 +937,14 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: isSelected[0]
+                color: isSelectedS[0]
                     ? const Color(0xffd34343)
                     : const Color.fromARGB(255, 39, 41, 44),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  '≥',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  text1,
+                  style: TextStyle(color: Colors.white, fontSize: fontSize),
                 ),
               ),
             ),
@@ -951,8 +955,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
           GestureDetector(
             onTap: () {
               setState(() {
-                isSelected[0] = false;
-                isSelected[1] = true;
+                isSelectedS[0] = false;
+                isSelectedS[1] = true;
               });
             },
             child: Container(
@@ -960,93 +964,23 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: isSelected[1]
+                color: isSelectedS[1]
                     ? const Color(0xffd34343)
                     : const Color.fromARGB(255, 39, 41, 44),
               ),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  '≤',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container moeCaiNut2() {
-    return Container(
-      height: 40,
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: const Color(0xff202123),
-      ),
-      child: Row(
-        children: [
-          SizedBox(
-            width: getProportionateScreenWidth(10),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                isSelected2[0] = true;
-                isSelected2[1] = false;
-              });
-            },
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: isSelected2[0]
-                    ? const Color(0xffd34343)
-                    : const Color.fromARGB(255, 39, 41, 44),
-              ),
-              child: const Center(
-                child: Text(
-                  'LO',
-                  style: TextStyle(color: Colors.white),
+                  text2,
+                  style: TextStyle(color: Colors.white, fontSize: fontSize),
                 ),
               ),
             ),
           ),
           SizedBox(
-            width: getProportionateScreenWidth(6),
-          ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                isSelected2[0] = false;
-                isSelected2[1] = true;
-              });
-            },
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: isSelected2[1]
-                    ? const Color(0xffd34343)
-                    : const Color.fromARGB(255, 39, 41, 44),
-              ),
-              child: const Center(
-                child: Text(
-                  'MP',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: getProportionateScreenWidth(10),
+            width: getProportionateScreenWidth(inputSizeBox),
           ),
         ],
       ),
     );
   }
 }
-// state.priceFit.toString()

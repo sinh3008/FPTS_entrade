@@ -1,9 +1,9 @@
+import 'package:entrade_x/ui/screen/follows/follow_page.dart';
 import 'package:entrade_x/ui/screen/home/body_home.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../pages_test/order_page.dart';
-import '../../pages_test/follows/follow_page.dart';
 import '../../pages_test/wallet_page.dart';
 import '../../pages_test/message_page.dart';
 import '../../pages_test/menu_page.dart';
@@ -18,11 +18,10 @@ class HomeScreen extends StatelessWidget {
     PersistentTabController controller;
     controller = PersistentTabController(initialIndex: 0);
 
-    // ignore: no_leading_underscores_for_local_identifiers
     List<Widget> _buildScreens() {
       return [
         const BodyHomeScreen(),
-         FollowsScreen(),
+        FollowsScreen(),
         const OrdersScreen(),
         const WalletScreen(),
         const MessageScreen(),
@@ -84,7 +83,7 @@ class HomeScreen extends StatelessWidget {
       stateManagement: true,
       hideNavigationBarWhenKeyboardShows: true,
       decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(0.0),
         colorBehindNavBar: Colors.white,
       ),
       popAllScreensOnTapOfSelectedTab: true,

@@ -13,6 +13,7 @@ class ConditionalBloc extends Bloc<ConditionalEvent, ConditionalState> {
       ClickFitPriceEvent event, Emitter<ConditionalState> emit) {
     emit(ConditionalFitLoadingState());
     emit(ConditionalFitSuccessState(event.priceFit));
+    // ignore: avoid_print
     print(event.priceFit);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../constrants.dart';
 import '../../../size_config.dart';
 import 'body/body_login.dart';
 
@@ -11,6 +12,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return const BodyLogin();
+    return const Scaffold(body: BodyLogin(), backgroundColor: kBlackBackgroundCustom,);
   }
 }

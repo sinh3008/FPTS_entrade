@@ -1,12 +1,13 @@
+import 'package:entrade_x/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import '../../../constrants.dart';
-import '../../../size_config.dart';
-import '../../components/circle_k.dart';
-import '../../screen/home/components/ideas/investment_ideas.dart';
-import '../order_page.dart';
-import '../search_page.dart';
+import '../../../../constrants.dart';
+import '../../../../size_config.dart';
+import '../../../components/circle_k.dart';
+import '../../../pages_test/order_page.dart';
+import '../../../pages_test/search_page.dart';
+import '../../home/components/ideas/investment_ideas.dart';
 
 AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
   return AppBar(
@@ -21,39 +22,35 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
             bottomRight: Radius.circular(12),
             bottomLeft: Radius.circular(12),
           ),
-          color: Color(0xff1d1d1d),
+          color: kBgAppbarGrey,
           // color: Color(0xff262626),
         ),
         child: Column(
           children: [
-            SizedBox(
-              height: getProportionateScreenHeight(6),
-            ),
+            sbh(6),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(16)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(Icons.arrow_back, color: Color(0xffd34343)),
-
+                  const Icon(Icons.arrow_back, color: kRedButtonBG),
                   Container(
                     width: SizeConfig.screenWidth * 0.7,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: const Color(0xff272729),
+                      color: kBgBoxSearch,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        SizedBox(
-                          width: getProportionateScreenWidth(10),
-                        ),
-                        const Image(
-                          image: AssetImage('assets/images/ready_stock.png'),
+                        sbw(10),
+                        Image(
+                          image: const AssetImage(sReadyStock),
                           fit: BoxFit.cover,
-                          width: 26,
-                          height: 26,
-                          color: Color(0xffd34343),
+                          width: getProportionateScreenWidth(26),
+                          height: getProportionateScreenHeight(26),
+                          color: kRedButtonBG,
                         ),
                         Expanded(
                           child: TextField(
@@ -61,9 +58,8 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                             autofocus: false,
                             decoration: const InputDecoration(
                               border: InputBorder.none,
-                              hintText: '   Tìm mã để đặt lệnh',
-                              hintStyle:
-                                  TextStyle(color: Colors.grey, fontSize: 15),
+                              hintText: sSearchCoin,
+                              hintStyle: kTextGrey15Normal,
                             ),
                             onTap: () {
                               pushNewScreenWithRouteSettings(
@@ -84,10 +80,9 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                       ],
                     ),
                   ),
-
                   buildCircleK(
-                      width: 46,
-                      height: 46,
+                      width: getProportionateScreenWidth(45),
+                      height: getProportionateScreenHeight(45),
                       onClicked: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
@@ -95,19 +90,19 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                           },
                         ));
                       },
-                      demo: const Image(
-                        image: AssetImage('assets/images/lightbulb.png'),
+                      demo: Image(
+                        image: const AssetImage(sLightBulb),
                         fit: BoxFit.cover,
+                        color: Colors.yellow.shade400,
                       ),
-                      color: const Color(0xff2c2d2f)),
+                      color: kBgBoxSearch),
                 ],
               ),
             ),
-            SizedBox(
-              height: getProportionateScreenHeight(10),
-            ),
+            sbh(10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(
+                  horizontal: getProportionateScreenWidth(16)),
               child: Column(
                 children: [
                   Row(
@@ -117,19 +112,14 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                         children: [
                           const Text(
                             'BVH ',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: kWhite),
+                            style: kTextWhite20Bold,
                           ),
                           const Text(
                             'HOUSE ',
-                            style: TextStyle(color: kGrey, fontSize: 13),
+                            style: kTextGrey13Normal,
                             textAlign: TextAlign.justify,
                           ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(6),
-                          ),
+                          sbw(6),
                           buildCircleK(
                             padding: EdgeInsets.zero,
                             demo: const Icon(
@@ -142,9 +132,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                             height: getProportionateScreenHeight(30),
                             onClicked: () {},
                           ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(6),
-                          ),
+                          sbw(6),
                           buildCircleK(
                             padding: EdgeInsets.zero,
                             demo: const Icon(
@@ -163,14 +151,11 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                         children: [
                           Text(
                             '42.45 ',
-                            style: TextStyle(
-                                color: Colors.green,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600),
+                            style: kTextGreen20Bold,
                           ),
                           Text(
                             '(0.20 0.48%)',
-                            style: TextStyle(color: Colors.green),
+                            style: kTextGreen15Normal,
                           ),
                         ],
                       ),
@@ -180,27 +165,28 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: getProportionateScreenHeight(6)),
+                        padding: EdgeInsets.only(
+                            top: getProportionateScreenHeight(6)),
                         child: const Text(
                           'Tập đoàn Bảo Việt',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w400),
+                          style: kTextGrey14Normal,
                         ),
                       ),
                       const Row(
                         children: [
                           Text(
                             '378.30 ',
-                            style: TextStyle(
-                                color: kWhite, fontWeight: FontWeight.w400),
+                            style: kTextWhite15Normal,
                           ),
-                          Text('CP  '),
+                          Text(
+                            'CP  ',
+                            style: kTextGrey14Normal,
+                          ),
                           Text(
                             '15.890 ',
-                            style: TextStyle(
-                                color: kWhite, fontWeight: FontWeight.w400),
+                            style: kTextWhite15Normal,
                           ),
-                          Text('Tỷ'),
+                          Text('Tỷ', style: kTextGrey14Normal,),
                         ],
                       )
                     ],

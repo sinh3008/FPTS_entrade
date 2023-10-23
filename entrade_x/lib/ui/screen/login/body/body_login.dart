@@ -7,6 +7,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../api/local_auth_api.dart';
 import '../../../../blocs/login/login_bloc.dart';
+import '../../../../constrants.dart';
+import '../../../../strings.dart';
 import '../../../components/button_default.dart';
 import '../../../components/circle_k.dart';
 
@@ -25,11 +27,15 @@ class _BodyLoginState extends State<BodyLogin> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
+      backgroundColor: kBlackBackgroundCustom,
       appBar: AppBar(
-        title: const Text('Entrade X'),
+        title: const Text(
+          sVersionApp,
+          style: kTextGrey11Normal,
+        ),
+        centerTitle: true,
+        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -41,42 +47,33 @@ class _BodyLoginState extends State<BodyLogin> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const Row(
+              sbh(20),
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image(
-                    image: AssetImage('assets/images/ready_stock.png'),
-                    height: 60,
-                    width: 60,
+                    image: const AssetImage(sReadyStock),
+                    height: getProportionateScreenHeight(60),
+                    width: getProportionateScreenWidth(60),
                   ),
-                  Text(
-                    'Entrade ',
-                    style: TextStyle(fontSize: 30, color: Colors.white),
+                  const Text(
+                    sAppTitle,
+                    style: kTextWhite30Bold,
                   ),
-                  Text(
+                  const Text(
                     'X',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: kTextWhite16Bold,
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              sbh(30),
               TextFormField(
                 onChanged: (value) {
                   email = value;
                 },
-                // onTap: onTap,
                 decoration: const InputDecoration(
-                  hintText: 'Email hoặc số điện thoại',
+                  hintText: sHintEmailLogin,
                 ),
               ),
               TextFormField(
@@ -86,34 +83,31 @@ class _BodyLoginState extends State<BodyLogin> {
                 },
                 // onTap: onTap,
                 decoration: const InputDecoration(
-                  hintText: 'Mật khẩu',
+                  hintText: sHintPassLogin,
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              sbh(10),
               TextButton(
                 onPressed: () {},
                 child: const Text(
-                  'Quên mật khẩu?',
-                  style: TextStyle(color: Colors.red, fontSize: 14),
+                  sForgotPassLogin,
+                  style: kTextRed16Normal,
                   textAlign: TextAlign.start,
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              sbh(10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
                     child: ButtonLoginWidget(
+                      radius: 30,
                       width: SizeConfig.screenWidth * 0.4,
                       height: getProportionateScreenHeight(50),
                       onTap: () {
                         if (email == null || pass == null) {
                           Fluttertoast.showToast(
-                            msg: "Trường email và mật khẩu không được để trống",
+                            msg: sEmailAndPassIsEmpty,
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
@@ -127,16 +121,13 @@ class _BodyLoginState extends State<BodyLogin> {
                               .add(LoginAccountEvent(email!, pass!, context));
                         }
                       },
-                      text: 'Đăng nhập',
+                      text: sLogin,
                     ),
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
+                  sbw(10),
                   buildCircleK(
                     onClicked: () async {
                       final isAuthenticated = await LocalAuthApi.authenticate();
-
                       if (isAuthenticated) {
                         // ignore: use_build_context_synchronously
                         Navigator.of(context).pushReplacement(
@@ -146,107 +137,77 @@ class _BodyLoginState extends State<BodyLogin> {
                       }
                     },
                     demo: const Image(
-                      image: AssetImage('assets/images/fingerprint_scan.png'),
+                      image: AssetImage(sFingerprintScan),
                       fit: BoxFit.cover,
                     ),
-                    color: Colors.red,
+                    color: kRedButtonBG,
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 25,
-              ),
+              sbh(25),
               SizedBox(
-                width: screenSize.width,
+                width: SizeConfig.screenWidth,
                 child: const Text(
-                  'Hoặc sử dụng',
+                  sOrUse,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
+                  style: kTextGrey16Normal,
                 ),
               ),
-              const SizedBox(
-                height: 25,
-              ),
+              sbh(25),
               SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     buildCircleK(
                         demo: SvgPicture.asset(
-                          'assets/icons/facebook-2.svg',
+                          sFb,
                           alignment: Alignment.center,
                           // fit: BoxFit.cover,
                         ),
                         color: Colors.white,
                         onClicked: () {}),
-                    const SizedBox(
-                      width: 20,
-                    ),
+                    sbw(20),
                     buildCircleK(
-                        onClicked: () {},
-                        demo: SvgPicture.asset(
-                          'assets/icons/google-icon.svg',
-                          alignment: Alignment.center,
-                          // fit: BoxFit.cover,
-                        ),
-                        color: Colors.white),
+                      onClicked: () {},
+                      demo: SvgPicture.asset(sGg, alignment: Alignment.center),
+                      color: Colors.white,
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 70,
-              ),
-              SizedBox(
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  width: screenSize.width,
-                  child: const Text(
-                    'Mở tài khoản',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              SizedBox(
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  width: screenSize.width,
-                  child: const Text(
-                    'Điều khoản sử dụng',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              SizedBox(
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  width: screenSize.width,
-                  child: const Text(
-                    'Hỗ trợ trực tuyến',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
+              sbh(120),
+              buttonBottomLogin(
+                  text: sCreateAccount, color: kBgCreateAccount, margin: 40),
+              buttonBottomLogin(text: sTermOfUse, margin: 40),
+              buttonBottomLogin(text: sSupOnline, margin: 40),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox buttonBottomLogin({
+    double margin = 0,
+    double padding = 12,
+    double radius = 30,
+    required String text,
+    Color color = Colors.transparent,
+  }) {
+    return SizedBox(
+      child: Container(
+        margin: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(margin)),
+        padding: EdgeInsets.all(padding),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(radius),
+        ),
+        width: SizeConfig.screenWidth,
+        child: Text(
+          text,
+          style: kTextRed16Normal,
+          textAlign: TextAlign.center,
         ),
       ),
     );

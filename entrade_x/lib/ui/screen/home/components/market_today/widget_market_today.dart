@@ -1,9 +1,12 @@
 import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
+import 'package:entrade_x/constrants.dart';
+import 'package:entrade_x/size_config.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../blocs/chart/chart_bloc.dart';
+import '../../../../../strings.dart';
 import '../../../../components/circle_k.dart';
 import '../../mini_compo/build_dot.dart';
 import '../../mini_compo/build_unx.dart';
@@ -20,34 +23,27 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    double width = screenSize.width;
-    double height = screenSize.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 12, top: 8),
+        Padding(
+          padding: EdgeInsets.only(left: getProportionateScreenWidth(12)),
           child: Text(
-            'Thị trường hôm nay?',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            sCheckNow,
+            style: kTextGrey16Normal.copyWith(fontWeight: w500),
           ),
         ),
-        SizedBox(
-          height: height * 0.01,
-        ),
+        sbh(10),
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-          // color: const Color(0xff202123),
-          color: const Color(0xff202123),
-          // height: height * 0.3,
-          width: width,
+          padding: EdgeInsets.symmetric(
+              vertical: getProportionateScreenHeight(12),
+              horizontal: getProportionateScreenWidth(8)),
+          color: kBgHomeContainer,
+          width: SizeConfig.screenWidth,
           child: Column(
             children: [
               const TimeWidget(),
-              const SizedBox(
-                height: 10,
-              ),
+              sbh(10),
               BlocBuilder<ChartBloc, ChartState>(
                 buildWhen: (previous, current) => previous != current,
                 builder: (context, state) {
@@ -55,7 +51,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                     return const CircularProgressIndicator();
                   } else if (state is ChartSuccessState) {
                     return SizedBox(
-                      height: height * 0.2,
+                      height: SizeConfig.screenHeight * 0.2,
                       child: LineChart(
                         LineChartData(
                           gridData: const FlGridData(show: false),
@@ -75,11 +71,11 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                             LineChartBarData(
                               spots: state.list,
                               isCurved: true,
-                              color: Colors.green,
+                              color: kGreen,
                               dotData: const FlDotData(show: false),
                               belowBarData: BarAreaData(
                                 show: true, // Hiển thị bóng
-                                color: Colors.green.withOpacity(0.2),
+                                color: kGreen.withOpacity(0.2),
                               ),
                             ),
                           ],
@@ -93,21 +89,32 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                   }
                 },
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              sbh(5),
               Row(
                 children: [
-                  buildDot(width: width * 0.2, height: 2),
-                  buildDot(
-                      width: width * 0.3, height: 2, color: Colors.yellow),
-                  buildDot(
-                      width: width * 0.4, height: 2, color: Colors.red),
+                  Expanded(
+                    flex: 3,
+                    child: buildDot(
+                        width: SizeConfig.screenWidth * 0.2,
+                        height: getProportionateScreenHeight(4)),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: buildDot(
+                        width: SizeConfig.screenWidth * 0.3,
+                        height: getProportionateScreenHeight(4),
+                        color: Colors.yellow),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: buildDot(
+                        width: SizeConfig.screenWidth * 0.4,
+                        height: getProportionateScreenHeight(4),
+                        color: kRedButtonBG),
+                  ),
                 ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              sbh(5),
               BlocBuilder<IdeasBloc, IdeasState>(
                 builder: (context, state) {
                   if (state is IdeasLoadingState) {
@@ -115,18 +122,12 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                   } else if (state is IdeasSuccessState) {
                     return Row(
                       children: [
-                        selectedMethod(state, width, 0),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        selectedMethod(state, width, 1),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        selectedMethod(state, width, 2),
-                        const SizedBox(
-                          width: 4,
-                        ),
+                        selectedMethod(state, SizeConfig.screenWidth, 0),
+                        sbw(4),
+                        selectedMethod(state, SizeConfig.screenWidth, 1),
+                        sbw(4),
+                        selectedMethod(state, SizeConfig.screenWidth, 2),
+                        sbw(4),
                       ],
                     );
                   } else {
@@ -146,9 +147,9 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
   InkWell selectedMethod(IdeasSuccessState state, double width, int index) {
     return buildUnx(
       color2: selectedIndex == index
-          ? const Color(0xff54534c)
-          : const Color(0xff202123),
-      color: selectedIndex == index ? Colors.red : const Color(0xff202123),
+          ? const Color(0xff54534c).withOpacity(0.4)
+          : kBgHomeContainer,
+      color: selectedIndex == index ? kRedButtonBG : Colors.transparent,
       onTap: () {
         setState(() {
           selectedIndex = index;
@@ -156,32 +157,26 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
       },
       txt1: Text(
         '${state.stocks[index].name}-${state.stocks[index].producer}',
-        style: const TextStyle(color: Colors.grey),
+        style: kTextWhite15Normal,
       ),
       txt2: state.stocks[index].currentPrice - state.stocks[index].price > 0
           ? Text(
               '${state.stocks[index].currentPrice}',
-              style: const TextStyle(
-                  color: Colors.green, fontWeight: FontWeight.bold),
+              style: kTextGreen16Normal.copyWith(fontWeight: w500),
             )
           : Text(
               '${state.stocks[index].currentPrice}',
-              style: const TextStyle(
-                  color: Colors.red, fontWeight: FontWeight.bold),
+              style: kTextRed16Normal.copyWith(fontWeight: w500),
             ),
       txt3: Text(
         '${state.stocks[index].profit}(${state.stocks[index].revenue})',
         style: state.stocks[index].profit > 0
-            ? const TextStyle(
-                color: Colors.green,
-              )
-            : const TextStyle(
-                color: Colors.red,
-              ),
+            ? kTextGreen16Normal
+            : kTextRed16Normal,
       ),
       txt4: Text(
         '${state.stocks[index].totalPrice} tỷ',
-        style: const TextStyle(color: Colors.grey),
+        style: kTextGrey15Normal,
       ),
       width: width,
       isActive: false,
@@ -212,18 +207,11 @@ class _TimeWidgetState extends State<TimeWidget> {
               selectIndex = 0;
             });
           },
-          demo: const Text(
-            '1W',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          color: selectIndex == 0 ? Colors.red : Colors.black,
+          demo: const Text('1W',
+              textAlign: TextAlign.center, style: kTextWhite16Normal),
+          color: selectIndex == 0 ? kRedButtonBG : Colors.black,
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        sbw(10),
         buildRecBorder(
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 1));
@@ -231,18 +219,11 @@ class _TimeWidgetState extends State<TimeWidget> {
               selectIndex = 1;
             });
           },
-          demo: const Text(
-            '1M',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          color: selectIndex == 1 ? Colors.red : Colors.black,
+          demo: const Text('1M',
+              textAlign: TextAlign.center, style: kTextWhite16Normal),
+          color: selectIndex == 1 ? kRedButtonBG : Colors.black,
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        sbw(10),
         buildRecBorder(
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 2));
@@ -253,15 +234,11 @@ class _TimeWidgetState extends State<TimeWidget> {
           demo: const Text(
             '6M',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-            ),
+            style: kTextWhite16Normal,
           ),
-          color: selectIndex == 2 ? Colors.red : Colors.black,
+          color: selectIndex == 2 ? kRedButtonBG : Colors.black,
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        sbw(10),
         buildRecBorder(
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 3));
@@ -269,14 +246,9 @@ class _TimeWidgetState extends State<TimeWidget> {
               selectIndex = 3;
             });
           },
-          demo: const Text(
-            '1Y',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-          color: selectIndex == 3 ? Colors.red : Colors.black,
+          demo: const Text('1Y',
+              textAlign: TextAlign.center, style: kTextWhite16Normal),
+          color: selectIndex == 3 ? kRedButtonBG : Colors.black,
         ),
       ],
     );
