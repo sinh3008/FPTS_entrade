@@ -17,11 +17,11 @@ class MoneyWidget extends StatelessWidget {
         if (state is ShowHideMoneyState) {
           return Container(
             width: width,
-            margin: const EdgeInsets.symmetric(horizontal: 10),
+            // margin: const EdgeInsets.symmetric(horizontal: 10),
             padding:
                 const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              // borderRadius: BorderRadius.circular(20),
               color: const Color(0xff262626),
             ),
             child: Column(

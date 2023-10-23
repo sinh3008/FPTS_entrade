@@ -29,7 +29,9 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
     _animationController = AnimationController(
         vsync: this, duration: const Duration(seconds: 4), lowerBound: 0.4);
     _animationController.addListener(() {
-      setState(() {});
+      setState(() {
+
+      });
     });
 
     // Add a status listener to restart the animation when it completes.
@@ -43,6 +45,13 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
 
     // Start the animation.
     _animationController.forward();
+  }
+
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -121,6 +130,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
             height: 10,
           ),
           Container(
+            color: Colors.transparent,
             height: getProportionateScreenHeight(50),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -151,14 +161,17 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          buildMycontainer2(
-                              listRadius[0], Colors.green.withOpacity(1)),
-                          buildMycontainer(listRadius[1]),
-                          buildMycontainer(listRadius[2]),
-                        ],
+                      Container(
+                        width: 30,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            buildMycontainer2(
+                                listRadius[0], Colors.green.withOpacity(1)),
+                            buildMycontainer(listRadius[1]),
+                            buildMycontainer(listRadius[2]),
+                          ],
+                        ),
                       ),
                       buildTextDemo(
                           width: width, title: 'Nộp tiền', money: '+50,000đ'),
@@ -178,7 +191,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
                         ],
                       ),
                       buildTextDemo(
-                          width: width, title: 'Đầu tư (5 triệu)', money: '+100,000đ'),
+                          width: width, title: 'Đầu tư', money: '+100,000đ'),
                     ],
                   ),
                 ),
@@ -204,7 +217,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
             ),
           ),
           SizedBox(
-            height: height * 0.03,
+            height: height * 0.01,
           ),
           ButtonLoginWidget(
             width: SizeConfig.screenWidth * 0.3,
