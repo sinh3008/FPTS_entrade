@@ -29,7 +29,7 @@ class _BodyLoginState extends State<BodyLogin> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Entrade X'),
+        title:  Text('Entrade X', style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
       ),
       body: SingleChildScrollView(
         child: Container(

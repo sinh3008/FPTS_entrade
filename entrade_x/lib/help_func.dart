@@ -11,9 +11,10 @@ List<bool> isSelected = [true, false];
 List<bool> isSelected2 = [true, false];
 DateTime departureDate = DateTime.now().add(const Duration(days: 1));
 TimeOfDay timesss = TimeOfDay.now().replacing(
-  hour: TimeOfDay.now().hour + 1,
+  hour: TimeOfDay.now().hour,
   minute: (TimeOfDay.now().minute + 30) % 60, // Đảm bảo phút không vượt quá 60
 );
+
 List<double> calculatePercentages(List<DataKa> dataList) {
   List<double> percentages = [];
 

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import '../../../constrants.dart';
-import '../../../size_config.dart';
-import '../../components/circle_k.dart';
-import '../../screen/home/components/ideas/investment_ideas.dart';
-import '../order_page.dart';
-import '../search_page.dart';
+import '../../../../constrants.dart';
+import '../../../../size_config.dart';
+import '../../../components/circle_k.dart';
+import '../../../pages_test/order_page.dart';
+import '../../../pages_test/search_page.dart';
+import '../../home/components/ideas/investment_ideas.dart';
+
+
 
 AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
   return AppBar(
@@ -117,10 +119,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                         children: [
                           const Text(
                             'BVH ',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: kWhite),
+                            style: kTextWhite20Bold,
                           ),
                           const Text(
                             'HOUSE ',

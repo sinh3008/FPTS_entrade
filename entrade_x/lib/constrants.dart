@@ -23,3 +23,17 @@ Container lineBreak() {
   );
 }
 
+const kTextWhite15Normal =
+TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400);
+
+const kTextWhite16Normal =
+    TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400);
+
+const kTextGreen16Normal =
+    TextStyle(color: Colors.green, fontSize: 16, fontWeight: FontWeight.w400);
+
+const kTextWhite16Bold =
+    TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold);
+
+const kTextWhite20Bold =
+    TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold);

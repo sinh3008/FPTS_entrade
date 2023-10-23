@@ -7,9 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
-import '../../../blocs/conditional/conditional_bloc.dart';
-import '../../../constrants.dart';
-import '../../../size_config.dart';
+import '../../../../blocs/conditional/conditional_bloc.dart';
+import '../../../../constrants.dart';
+import '../../../../size_config.dart';
 
 // ignore: must_be_immutable
 class CustomerBottomSheet extends StatefulWidget {
@@ -101,7 +101,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                         buildCircleK(
                                           shape: BoxShape.rectangle,
                                           width: 20,
-                                          borderRadius: BorderRadius.circular(2),
+                                          borderRadius:
+                                              BorderRadius.circular(2),
                                           height: 20,
                                           padding: EdgeInsets.zero,
                                           demo: const Icon(
@@ -137,7 +138,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: getProportionateScreenWidth(10),
+                                          width:
+                                              getProportionateScreenWidth(10),
                                         ),
                                         const Center(
                                           child: Icon(
@@ -151,7 +153,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                 ),
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric(vertical: 3),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 3),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -340,10 +343,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                     keyboardType:
                                                         TextInputType.number,
                                                     decoration: InputDecoration(
-                                                      hintStyle: const TextStyle(
-                                                          color: Colors.white),
+                                                      hintStyle:
+                                                          const TextStyle(
+                                                              color:
+                                                                  Colors.white),
                                                       hintText: 'Giá đặt',
-                                                      prefixIcon: GestureDetector(
+                                                      prefixIcon:
+                                                          GestureDetector(
                                                         onTap: () {
                                                           if (_controller2
                                                               .text.isEmpty) {
@@ -351,7 +357,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                                 price;
                                                             currentMass -= 1;
                                                             _controller2.text =
-                                                                (currentMass + 1)
+                                                                (currentMass +
+                                                                        1)
                                                                     .toString();
                                                           } else {
                                                             double currentMass =
@@ -365,8 +372,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                           }
                                                         },
                                                         child: Container(
-                                                          color:
-                                                              Colors.transparent,
+                                                          color: Colors
+                                                              .transparent,
                                                           child: const Icon(
                                                             Icons.minimize,
                                                             size: 18,
@@ -374,7 +381,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                           ),
                                                         ),
                                                       ),
-                                                      suffixIcon: GestureDetector(
+                                                      suffixIcon:
+                                                          GestureDetector(
                                                         onTap: () {
                                                           if (_controller2
                                                               .text.isEmpty) {
@@ -382,7 +390,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                                 price;
                                                             currentMass += 1;
                                                             _controller2.text =
-                                                                (currentMass - 1)
+                                                                (currentMass -
+                                                                        1)
                                                                     .toString();
                                                           } else {
                                                             double currentMass =
@@ -396,8 +405,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                           }
                                                         },
                                                         child: Container(
-                                                          color:
-                                                              Colors.transparent,
+                                                          color: Colors
+                                                              .transparent,
                                                           child: const Icon(
                                                             Icons.add,
                                                             size: 18,
@@ -447,7 +456,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                     decoration: InputDecoration(
                                                       hintText: 'Giá đặt',
                                                       prefixIcon: Container(
-                                                        color: Colors.transparent,
+                                                        color:
+                                                            Colors.transparent,
                                                         child: const Icon(
                                                           Icons.minimize,
                                                           size: 18,
@@ -455,7 +465,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                         ),
                                                       ),
                                                       suffixIcon: Container(
-                                                        color: Colors.transparent,
+                                                        color:
+                                                            Colors.transparent,
                                                         child: const Icon(
                                                           Icons.add,
                                                           size: 18,
@@ -492,7 +503,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 ),
                                               ),
                                         SizedBox(
-                                          width: getProportionateScreenWidth(20),
+                                          width:
+                                              getProportionateScreenWidth(20),
                                         ),
                                         Expanded(
                                           child: SizedBox(
@@ -502,7 +514,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               controller: massController,
                                               style: const TextStyle(
                                                   color: Colors.white),
-                                              keyboardType: TextInputType.number,
+                                              keyboardType:
+                                                  TextInputType.number,
                                               decoration: InputDecoration(
                                                 hintText: 'Khối lượng',
                                                 prefixIconConstraints:
@@ -587,19 +600,21 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                 height: getProportionateScreenHeight(4),
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric(vertical: 3),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 3),
                                 child: Row(
                                   children: [
                                     Expanded(
                                         child: Row(
                                       children: [
                                         SizedBox(
-                                            width:
-                                                getProportionateScreenWidth(60),
-                                            child: const Text(
-                                              'Hết hạn',
-                                              style: TextStyle(color: kWhite),
-                                            )),
+                                          width:
+                                              getProportionateScreenWidth(60),
+                                          child: const Text(
+                                            'Hết hạn',
+                                            style: TextStyle(color: kWhite),
+                                          ),
+                                        ),
                                         Expanded(
                                           child: Column(
                                             children: [
@@ -625,8 +640,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 ),
                                               ),
                                               Container(
-                                                width:
-                                                    SizeConfig.screenWidth * 0.4,
+                                                width: SizeConfig.screenWidth *
+                                                    0.4,
                                                 height: 0.5,
                                                 color: kGrey,
                                               )
@@ -682,8 +697,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       (massController.text ?? '') != ''
                                   ? Container(
                                       width: SizeConfig.screenWidth,
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 3),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 3),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
@@ -693,8 +708,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -705,13 +721,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'MUA',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -728,8 +744,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -740,13 +757,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'BÁN',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -759,8 +776,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     )
                                   : Container(
                                       width: SizeConfig.screenWidth,
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 3),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 3),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,
@@ -770,8 +787,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -782,13 +800,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'MUA',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -806,8 +824,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                               shape: BoxShape.rectangle,
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 6),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 6),
                                               width:
                                                   SizeConfig.screenWidth * 0.46,
                                               demo: const Column(
@@ -818,13 +837,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                                 children: [
                                                   Text(
                                                     'BÁN',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                   Text(
                                                     '0',
-                                                    style:
-                                                        TextStyle(color: kWhite),
+                                                    style: TextStyle(
+                                                        color: kWhite),
                                                   ),
                                                 ],
                                               ),
@@ -893,7 +912,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
   void _selectedTime() async {
     final currentTime = TimeOfDay.now();
     final defaultTime = currentTime.replacing(
-      hour: currentTime.hour + 1,
+      hour: currentTime.hour,
       minute: (currentTime.minute + 30) % 60, // Đảm bảo phút không vượt quá 60
     );
     final selectedTime = await showTimePicker(

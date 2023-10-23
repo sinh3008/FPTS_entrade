@@ -2,8 +2,8 @@ import 'package:entrade_x/blocs/conditional/conditional_bloc.dart';
 import 'package:entrade_x/constrants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../models/dataka.dart';
-import '../../../size_config.dart';
+import '../../../../models/dataka.dart';
+import '../../../../size_config.dart';
 
 class PageContainer extends StatelessWidget {
   const PageContainer({
@@ -66,9 +66,7 @@ class PageContainer extends StatelessWidget {
                         children: [
                           Text(
                             dataList1[index].price.toString(),
-                            style: const TextStyle(
-                              color: Colors.white,
-                            ),
+                            style: kTextWhite16Normal,
                           ),
                           GestureDetector(
                             onTap: () => context.read<ConditionalBloc>().add(
@@ -77,10 +75,7 @@ class PageContainer extends StatelessWidget {
                               padding: const EdgeInsets.only(right: 16.0),
                               child: Text(
                                 dataList1[index].number.toString(),
-                                style: const TextStyle(
-                                  color: Colors.green,
-                                  fontWeight: FontWeight.w500
-                                ),
+                                style: kTextGreen16Normal,
                               ),
                             ),
                           ),
@@ -124,22 +119,15 @@ class PageContainer extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 16.0),
                                 child: Text(
                                   dataList2[index].number.toString(),
-                                  style: const TextStyle(
-                                    color: Colors.green,
-                                      fontWeight: FontWeight.w500
-                                  ),
+                                  style: kTextGreen16Normal,
                                 ),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 0.0),
                               // padding: const EdgeInsets.only(left: 16.0),
-                              child: Text(
-                                dataList2[index].price.toString(),
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
+                              child: Text(dataList2[index].price.toString(),
+                                  style: kTextWhite16Normal),
                             ),
                           ],
                         ),
@@ -203,7 +191,7 @@ class PageContainer extends StatelessWidget {
                       Text('Dư mua '),
                       Text(
                         '9.6k',
-                        style: TextStyle(color: Colors.white),
+                        style: kTextWhite15Normal,
                       ),
                     ],
                   ),
