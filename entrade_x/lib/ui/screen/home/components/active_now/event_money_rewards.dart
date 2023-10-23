@@ -15,7 +15,36 @@ class EventMoneyRewardsWidget extends StatefulWidget {
       _EventMoneyRewardsWidgetState();
 }
 
-class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
+class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
+    with SingleTickerProviderStateMixin {
+  // ignore: unused_field
+  late Animation _animation;
+  late AnimationController _animationController;
+
+  var listRadius = [6.0, 15.0, 20.0];
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(seconds: 4), lowerBound: 0.4);
+    _animationController.addListener(() {
+      setState(() {});
+    });
+
+    // Add a status listener to restart the animation when it completes.
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        _animationController.reverse();
+      } else if (status == AnimationStatus.dismissed) {
+        _animationController.forward();
+      }
+    });
+
+    // Start the animation.
+    _animationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -77,24 +106,102 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              3,
-              (index) =>
-                  buildDot(index: index, width: width * 0.3, height: 2),
-            ),
+            children: List.generate(3, (index) {
+              return buildDot(
+                index: index,
+                width: width * 0.3,
+                height: 8,
+                color: index == 0
+                    ? Colors.lightGreenAccent
+                    : Colors.lightGreen.withOpacity(0.5),
+              );
+            }),
           ),
           const SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              buildTextDemo(
-                  width: width, title: 'Kích hoạt', money: '+50,000đ'),
-              buildTextDemo(width: width, title: 'Nộp tiền', money: '+50,000đ'),
-              buildTextDemo(
-                  width: width, title: 'Đầu tư (5 triệu)', money: '+100,000đ'),
-            ],
+          Container(
+            height: getProportionateScreenHeight(50),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: getProportionateScreenWidth(10),
+                      ),
+                      const Icon(
+                        Icons.check,
+                        size: 16,
+                        color: Colors.lightGreenAccent,
+                      ),
+                      buildTextDemo(
+                          width: width,
+                          title: 'Kích hoạt',
+                          money: '+50,000đ',
+                          colors: Colors.lightGreenAccent),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          buildMycontainer2(
+                              listRadius[0], Colors.green.withOpacity(1)),
+                          buildMycontainer(listRadius[1]),
+                          buildMycontainer(listRadius[2]),
+                        ],
+                      ),
+                      buildTextDemo(
+                          width: width, title: 'Nộp tiền', money: '+50,000đ'),
+                    ],
+                  ),
+                ),
+                 Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          buildMycontainer2(
+                              listRadius[0], Colors.grey.withOpacity(1)),
+                        ],
+                      ),
+                      buildTextDemo(
+                          width: width, title: 'Đầu tư (5 triệu)', money: '+100,000đ'),
+                    ],
+                  ),
+                ),
+                // Expanded(
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Stack(
+                //         children: [
+                //           buildMycontainer2(
+                //               listRadius[0], Colors.grey.withOpacity(1)),
+                //         ],
+                //       ),
+                //       buildTextDemo(
+                //           width: width,
+                //           title: 'Đầu tư (5 triệu)',
+                //           money: '+100,000đ'),
+                //     ],
+                //   ),
+                // ),
+              ],
+            ),
           ),
           SizedBox(
             height: height * 0.03,
@@ -117,6 +224,24 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildMycontainer(radius) {
+    return Container(
+      width: radius * _animationController.value,
+      height: radius * _animationController.value,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.green.withOpacity(1.0 - _animationController.value)),
+    );
+  }
+
+  Widget buildMycontainer2(radius, color) {
+    return Container(
+      width: radius,
+      height: radius,
+      decoration: BoxDecoration(shape: BoxShape.circle, color: color),
     );
   }
 }

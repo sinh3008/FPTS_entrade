@@ -1,8 +1,10 @@
 import 'dart:core';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entrade_x/help_func.dart';
 import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../blocs/conditional/conditional_bloc.dart';
 import '../../../constrants.dart';
@@ -21,527 +23,821 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
   final TextEditingController _controller2 = TextEditingController();
   TextEditingController massController = TextEditingController();
   TextEditingController controllerDemo = TextEditingController(text: "Giá đặt");
-  double price1 = 0;
 
-  double price = 0;
-  double priceStop = 0;
   int mass = 0;
+  int money = 1;
+  double price = 42.45;
+
+  String formatCurrency(int amount) {
+    final formatter = NumberFormat.currency(
+      locale: 'vi_VN',
+      symbol: '', // Để loại bỏ ký hiệu tiền tệ (VD: VNĐ)
+    );
+    return formatter.format(amount).replaceAll('.', ',');
+  }
 
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
-      initialChildSize: 0.48,
-      minChildSize: 0.48,
-      maxChildSize: 0.58,
+      initialChildSize: 0.45,
+      minChildSize: 0.42,
+      maxChildSize: 0.8,
       builder: (BuildContext context, ScrollController scrollController) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: Color(0xff1c1c1c),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8),
-              topRight: Radius.circular(8),
+        return SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(bottom: 10),
+            decoration: const BoxDecoration(
+              color: Color(0xff202123),
+              borderRadius: BorderRadius.only(),
             ),
-          ),
-          child: BlocBuilder<ConditionalBloc, ConditionalState>(
-            builder: (context, state) {
-              if (state is ConditionalFitSuccessState) {
-                price1 = state.priceFit;
-                price = state.priceFit;
-                return Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              const Text(
-                                'Sức mua',
-                              ),
-                              SizedBox(
-                                width: getProportionateScreenWidth(10),
-                              ),
-                              const Text(
-                                '0',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              SizedBox(
-                                width: getProportionateScreenWidth(6),
-                              ),
-                              buildCircleK(
-                                shape: BoxShape.rectangle,
-                                width: 20,
-                                borderRadius: BorderRadius.circular(2),
-                                height: 20,
-                                padding: EdgeInsets.zero,
-                                demo: const Icon(
-                                  Icons.add,
-                                  size: 18,
-                                ),
-                                color: Colors.red,
-                                onClicked: () {},
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              GestureDetector(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.red,
-                                      borderRadius: BorderRadius.circular(12)),
-                                  height: 20,
-                                  width: 150,
-                                  child: const Center(
-                                    child: Text(
-                                      'Lệnh điều kiện',
-                                      style: TextStyle(color: kWhite),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: getProportionateScreenWidth(10),
-                              ),
-                              const Center(
-                                child: Icon(
-                                  Icons.settings,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+            child: BlocBuilder<ConditionalBloc, ConditionalState>(
+              builder: (context, state) {
+                if (state is ConditionalFitSuccessState) {
+                  if (state.priceFit != 0.0) {
+                    _controller1.text = state.priceFit.toString();
+                    _controller2.text = state.priceFit.toString();
+                  } else {}
+                  return Column(
+                    children: [
+                      Container(
+                        width: SizeConfig.screenWidth,
+                        height: 0.5,
+                        color: Colors.white.withOpacity(0.2),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'Khi giá',
-                                  style: TextStyle(fontSize: 14, color: kWhite),
-                                ),
-                                moeCaiNut(),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      width: getProportionateScreenWidth(30),
-                                      height: getProportionateScreenHeight(30),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              price1--;
-                                            });
-                                          },
-                                          child: const Icon(
-                                            Icons.minimize,
-                                            size: 18,
-                                            color: kWhite,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, right: 16),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding:
+                                  const EdgeInsets.only(bottom: 8, top: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Text(
+                                        'Sức mua:',
+                                        style: TextStyle(),
+                                      ),
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(4),
+                                      ),
+                                      AutoSizeText(
+                                        formatCurrency(money),
+                                        maxLines: 2,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(6),
+                                      ),
+                                      buildCircleK(
+                                        shape: BoxShape.rectangle,
+                                        width: 20,
+                                        borderRadius: BorderRadius.circular(2),
+                                        height: 20,
+                                        padding: EdgeInsets.zero,
+                                        demo: const Icon(
+                                          Icons.add,
+                                          size: 18,
+                                        ),
+                                        color: const Color(0xffd34343),
+                                        onClicked: () {
+                                          setState(() {
+                                            money += 1000000000;
+                                          });
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          decoration: BoxDecoration(
+                                              color: const Color(0xffd34343),
+                                              borderRadius:
+                                                  BorderRadius.circular(20)),
+                                          height: 26,
+                                          child: const Center(
+                                            child: Text(
+                                              'Lệnh điều kiện',
+                                              style: TextStyle(color: kWhite),
+                                            ),
                                           ),
                                         ),
                                       ),
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(10),
+                                      ),
+                                      const Center(
+                                        child: Icon(
+                                          Icons.settings_outlined,
+                                          color: Color(0xffd34343),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 3),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text(
+                                          'Khi giá',
+                                          style: TextStyle(color: kWhite),
+                                        ),
+                                        moeCaiNut(),
+                                      ],
                                     ),
-                                    Container(
-                                      color: Colors.orange,
-                                      width: 120,
+                                  ),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(20),
+                                  ),
+                                  Expanded(
+                                    child: SizedBox(
                                       height: 40,
                                       child: TextField(
                                         textAlign: TextAlign.center,
                                         controller: _controller1,
-                                        enabled: false,
-                                        // Không cho phép chỉnh sửa.
-                                        decoration: const InputDecoration(
-                                            // hintText: _controller1.text.isEmpty
-                                            //     ? 'Giá Stop'
-                                            //     : _controller1.text,
-                                            hintText: "Giá STOP",
-                                            hintStyle:
-                                                TextStyle(color: kWhite)),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: getProportionateScreenWidth(30),
-                                      height: getProportionateScreenHeight(30),
-                                      child: Center(
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              _controller1.text;
-                                            });
-                                          },
-                                          child: const Icon(
-                                            Icons.add,
-                                            size: 18,
-                                            color: kWhite,
+                                        style: const TextStyle(
+                                            color: Colors.orange),
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          hintText: 'Giá STOP',
+                                          prefixIcon: GestureDetector(
+                                            onTap: () {
+                                              if (_controller1.text.isEmpty) {
+                                                double currentMass = 42.45;
+                                                currentMass -= 1;
+                                                _controller1.text =
+                                                    (currentMass + 1)
+                                                        .toString();
+                                              } else {
+                                                double currentMass =
+                                                    double.parse(
+                                                        _controller1.text);
+                                                currentMass -= 1;
+                                                _controller1.text =
+                                                    currentMass.toString();
+                                              }
+                                            },
+                                            child: Container(
+                                              color: Colors.transparent,
+                                              child: const Icon(
+                                                Icons.minimize,
+                                                size: 20,
+                                                color: kWhite,
+                                              ),
+                                            ),
+                                          ),
+                                          suffixIcon: GestureDetector(
+                                            onTap: () {
+                                              if (_controller1.text.isEmpty) {
+                                                double currentMass = 42.45;
+                                                currentMass += 1;
+                                                _controller1.text =
+                                                    (currentMass - 1)
+                                                        .toString();
+                                              } else {
+                                                double currentMass =
+                                                    double.parse(
+                                                        _controller1.text);
+                                                currentMass += 1;
+                                                _controller1.text =
+                                                    currentMass.toString();
+                                              }
+                                            },
+                                            child: Container(
+                                              color: Colors.transparent,
+                                              child: const Icon(
+                                                Icons.add,
+                                                size: 18,
+                                                color: kWhite,
+                                              ),
+                                            ),
+                                          ),
+                                          prefixIconConstraints:
+                                              const BoxConstraints(
+                                            minWidth: 26, // Độ rộng tối thiểu
+                                            minHeight:
+                                                30, // Chiều cao tối thiểu
+                                          ),
+
+                                          // Thiết lập kích thước cho suffixIcon
+                                          suffixIconConstraints:
+                                              const BoxConstraints(
+                                            minWidth: 26, // Độ rộng tối thiểu
+                                            minHeight:
+                                                30, // Chiều cao tối thiểu
+                                          ),
+                                          border: const UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: kGrey,
+                                              // Màu của border bottom
+                                              width:
+                                                  0.5, // Độ rộng của border bottom
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(4),
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 3),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            const Text(
+                                              'Kích hoạt',
+                                              style: TextStyle(color: kWhite),
+                                            ),
+                                            Row(
+                                              children: [
+                                                moeCaiNut2(),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: buildCircleK(
+                                          margin:
+                                              const EdgeInsets.only(left: 50),
+                                          padding: EdgeInsets.zero,
+                                          height: 26,
+                                          width: 70,
+                                          shape: BoxShape.rectangle,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          demo: const Center(
+                                            child: Text(
+                                              'Ký quỹ 100%',
+                                              style: TextStyle(color: kWhite),
+                                            ),
+                                          ),
+                                          color: const Color.fromARGB(
+                                              255, 39, 41, 44),
+                                          onClicked: () {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 Container(
-                                  width: SizeConfig.screenWidth,
-                                  height: 0.5,
-                                  color: kGrey,
-                                )
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 3),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      isSelected2[0]
+                                          ? Expanded(
+                                              child: SizedBox(
+                                                height: 40,
+                                                child: TextField(
+                                                  textAlign: TextAlign.center,
+                                                  controller: _controller2,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Giá đặt',
+                                                    prefixIcon: GestureDetector(
+                                                      onTap: () {
+                                                        if (_controller2
+                                                            .text.isEmpty) {
+                                                          double currentMass =
+                                                              price;
+                                                          currentMass -= 1;
+                                                          _controller2.text =
+                                                              (currentMass + 1)
+                                                                  .toString();
+                                                        } else {
+                                                          double currentMass =
+                                                              double.parse(
+                                                                  _controller2
+                                                                      .text);
+                                                          currentMass -= 1;
+                                                          _controller2.text =
+                                                              currentMass
+                                                                  .toString();
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: const Icon(
+                                                          Icons.minimize,
+                                                          size: 18,
+                                                          color: kWhite,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    suffixIcon: GestureDetector(
+                                                      onTap: () {
+                                                        if (_controller2
+                                                            .text.isEmpty) {
+                                                          double currentMass =
+                                                              price;
+                                                          currentMass += 1;
+                                                          _controller2.text =
+                                                              (currentMass - 1)
+                                                                  .toString();
+                                                        } else {
+                                                          double currentMass =
+                                                              double.parse(
+                                                                  _controller2
+                                                                      .text);
+                                                          currentMass += 1;
+                                                          _controller2.text =
+                                                              currentMass
+                                                                  .toString();
+                                                        }
+                                                      },
+                                                      child: Container(
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: const Icon(
+                                                          Icons.add,
+                                                          size: 18,
+                                                          color: kWhite,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    prefixIconConstraints:
+                                                        const BoxConstraints(
+                                                      minWidth: 26,
+                                                      // Độ rộng tối thiểu
+                                                      minHeight:
+                                                          30, // Chiều cao tối thiểu
+                                                    ),
+
+                                                    // Thiết lập kích thước cho suffixIcon
+                                                    suffixIconConstraints:
+                                                        const BoxConstraints(
+                                                      minWidth: 26,
+                                                      // Độ rộng tối thiểu
+                                                      minHeight:
+                                                          30, // Chiều cao tối thiểu
+                                                    ),
+                                                    border:
+                                                        const UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: kGrey,
+                                                        // Màu của border bottom
+                                                        width:
+                                                            0.5, // Độ rộng của border bottom
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : Expanded(
+                                              child: SizedBox(
+                                                height: 40,
+                                                child: TextField(
+                                                  textAlign: TextAlign.center,
+                                                  controller: _controller2,
+                                                  style: const TextStyle(
+                                                      color: Colors.white),
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Giá đặt',
+                                                    prefixIcon: Container(
+                                                      color: Colors.transparent,
+                                                      child: const Icon(
+                                                        Icons.minimize,
+                                                        size: 18,
+                                                        color: kGrey,
+                                                      ),
+                                                    ),
+                                                    suffixIcon: Container(
+                                                      color: Colors.transparent,
+                                                      child: const Icon(
+                                                        Icons.add,
+                                                        size: 18,
+                                                        color: kGrey,
+                                                      ),
+                                                    ),
+                                                    prefixIconConstraints:
+                                                        const BoxConstraints(
+                                                      minWidth: 26,
+                                                      // Độ rộng tối thiểu
+                                                      minHeight:
+                                                          30, // Chiều cao tối thiểu
+                                                    ),
+
+                                                    // Thiết lập kích thước cho suffixIcon
+                                                    suffixIconConstraints:
+                                                        const BoxConstraints(
+                                                      minWidth: 26,
+                                                      // Độ rộng tối thiểu
+                                                      minHeight:
+                                                          30, // Chiều cao tối thiểu
+                                                    ),
+                                                    border:
+                                                        const UnderlineInputBorder(
+                                                      borderSide: BorderSide(
+                                                        color: kGrey,
+                                                        // Màu của border bottom
+                                                        width:
+                                                            0.5, // Độ rộng của border bottom
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(20),
+                                      ),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 40,
+                                          child: TextField(
+                                            textAlign: TextAlign.center,
+                                            controller: massController,
+                                            style: const TextStyle(
+                                                color: Colors.white),
+                                            keyboardType: TextInputType.number,
+                                            decoration: InputDecoration(
+                                              hintText: 'Khối lượng',
+                                              prefixIconConstraints:
+                                                  const BoxConstraints(
+                                                minWidth: 26,
+                                                // Độ rộng tối thiểu
+                                                minHeight:
+                                                    30, // Chiều cao tối thiểu
+                                              ),
+
+                                              // Thiết lập kích thước cho suffixIcon
+                                              suffixIconConstraints:
+                                                  const BoxConstraints(
+                                                minWidth: 26,
+                                                // Độ rộng tối thiểu
+                                                minHeight:
+                                                    30, // Chiều cao tối thiểu
+                                              ),
+                                              prefixIcon: GestureDetector(
+                                                onTap: () {
+                                                  int currentMass =
+                                                      int.tryParse(
+                                                              massController
+                                                                  .text) ??
+                                                          0;
+                                                  if (currentMass > 100) {
+                                                    currentMass -= 100;
+                                                  } else {
+                                                    currentMass -= 1;
+                                                  }
+                                                  massController.text =
+                                                      currentMass.toString();
+                                                },
+                                                child: Container(
+                                                  color: Colors.transparent,
+                                                  child: const Icon(
+                                                    Icons.minimize,
+                                                    size: 18,
+                                                    color: kWhite,
+                                                  ),
+                                                ),
+                                              ),
+                                              suffixIcon: GestureDetector(
+                                                onTap: () {
+                                                  int currentMass =
+                                                      int.tryParse(
+                                                              massController
+                                                                  .text) ??
+                                                          0;
+                                                  currentMass += 100;
+                                                  massController.text =
+                                                      currentMass.toString();
+                                                },
+                                                child: Container(
+                                                  color: Colors.transparent,
+                                                  child: const Icon(
+                                                    Icons.add,
+                                                    size: 18,
+                                                    color: kWhite,
+                                                  ),
+                                                ),
+                                              ),
+                                              border:
+                                                  const UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: kGrey,
+                                                  // Màu của border bottom
+                                                  width:
+                                                      0.5, // Độ rộng của border bottom
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 3),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      'Kích hoạt',
-                                      style: TextStyle(
-                                          fontSize: 14, color: kWhite),
-                                    ),
-                                    Row(
+                            SizedBox(
+                              height: getProportionateScreenHeight(4),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.symmetric(vertical: 3),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      child: Row(
+                                    children: [
+                                      SizedBox(
+                                          width:
+                                              getProportionateScreenWidth(60),
+                                          child: const Text(
+                                            'Hết hạn',
+                                            style: TextStyle(color: kWhite),
+                                          )),
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: _selectedTime,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    timesss.format(context),
+                                                    style: const TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        getProportionateScreenWidth(
+                                                            10),
+                                                  ),
+                                                  const Icon(Icons
+                                                      .access_time_outlined),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width:
+                                                  SizeConfig.screenWidth * 0.4,
+                                              height: 0.5,
+                                              color: kGrey,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                                  SizedBox(
+                                    width: getProportionateScreenWidth(20),
+                                  ),
+                                  Expanded(
+                                    child: Column(
                                       children: [
-                                        moeCaiNut2(),
+                                        GestureDetector(
+                                          onTap: _selectedDate,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                  getFormattedDate(
+                                                      departureDate,
+                                                      pattern: 'dd/MM/yyyy'),
+                                                  style: const TextStyle(
+                                                      color: Colors.white)),
+                                              SizedBox(
+                                                width:
+                                                    getProportionateScreenWidth(
+                                                        10),
+                                              ),
+                                              const Icon(Icons
+                                                  .calendar_month_outlined),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          width: SizeConfig.screenWidth * 0.5,
+                                          height: 0.5,
+                                          color: kGrey,
+                                        )
                                       ],
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const Expanded(
-                                  child: Center(
-                                child: Text(
-                                  'Ký quỹ 100%',
-                                  style: TextStyle(color: kWhite),
-                                ),
-                              )),
-                            ],
-                          ),
+                            ),
+                            SizedBox(
+                              height: getProportionateScreenHeight(4),
+                            ),
+                            (_controller1.text ?? '') != '' && (_controller2.text ?? '') != '' && (massController.text ?? '') != ''
+                                ? Container(
+                                    width: SizeConfig.screenWidth,
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 3),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          child: buildCircleK(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            shape: BoxShape.rectangle,
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 6),
+                                            width:
+                                                SizeConfig.screenWidth * 0.46,
+                                            demo: const Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'MUA',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                                Text(
+                                                  '0',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                              ],
+                                            ),
+                                            color: Colors.green,
+                                            onClicked: () {},
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width:
+                                              getProportionateScreenWidth(16),
+                                        ),
+                                        Expanded(
+                                          child: buildCircleK(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            shape: BoxShape.rectangle,
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 6),
+                                            width:
+                                                SizeConfig.screenWidth * 0.46,
+                                            demo: const Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'BÁN',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                                Text(
+                                                  '0',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                              ],
+                                            ),
+                                            color: const Color(0xffd34343),
+                                            onClicked: () {},
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Container(
+                                    width: SizeConfig.screenWidth,
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 3),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Expanded(
+                                          child: buildCircleK(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            shape: BoxShape.rectangle,
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 6),
+                                            width:
+                                                SizeConfig.screenWidth * 0.46,
+                                            demo: const Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'MUA',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                                Text(
+                                                  '0',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                              ],
+                                            ),
+                                            color:
+                                                Colors.green.withOpacity(0.5),
+                                            onClicked: () {},
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width:
+                                              getProportionateScreenWidth(16),
+                                        ),
+                                        Expanded(
+                                          child: buildCircleK(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            shape: BoxShape.rectangle,
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 6),
+                                            width:
+                                                SizeConfig.screenWidth * 0.46,
+                                            demo: const Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'BÁN',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                                Text(
+                                                  '0',
+                                                  style:
+                                                      TextStyle(color: kWhite),
+                                                ),
+                                              ],
+                                            ),
+                                            color: const Color(0xffd34343)
+                                                .withOpacity(0.5),
+                                            onClicked: () {},
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                          ],
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 3),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              isSelected2[0]
-                                  ? Expanded(
-                                child: SizedBox(
-                                  height: 40,
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    readOnly: true,
-                                    controller: _controller1,
-                                    style: const TextStyle(
-                                        color: Colors.white),
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      prefixIcon: GestureDetector(
-                                        onTap: () {
-                                          int currentMass = int.tryParse(
-                                              _controller1.text) ??
-                                              0;
-                                          currentMass -= 1;
-                                          _controller1.text =
-                                              currentMass.toString();
-                                        },
-                                        child: const Icon(
-                                          Icons.minimize,
-                                          size: 18,
-                                          color: kWhite,
-                                        ),
-                                      ),
-                                      suffixIcon: GestureDetector(
-                                        onTap: () {
-                                          int currentMass = int.tryParse(
-                                              _controller1.text) ??
-                                              0;
-                                          currentMass += 1;
-                                          _controller1.text =
-                                              currentMass.toString();
-                                        },
-                                        child: const Icon(
-                                          Icons.add,
-                                          size: 18,
-                                          color: kWhite,
-                                        ),
-                                      ),
-                                      border: const UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                          kGrey, // Màu của border bottom
-                                          width:
-                                          0.5, // Độ rộng của border bottom
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                                  : Expanded(
-                                child: SizedBox(
-                                  height: 40,
-                                  child: TextField(
-                                    controller: controllerDemo,
-                                    textAlign: TextAlign.center,
-                                    readOnly: true,
-                                    style: const TextStyle(
-                                        color: Colors.grey),
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      prefixIcon: GestureDetector(
-                                        onTap: () {},
-                                        child: const Icon(
-                                          Icons.minimize,
-                                          size: 18,
-                                          color: kGrey,
-                                        ),
-                                      ),
-                                      suffixIcon: GestureDetector(
-                                        onTap: () {},
-                                        child: const Icon(
-                                          Icons.add,
-                                          size: 18,
-                                          color: kGrey,
-                                        ),
-                                      ),
-                                      border: const UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                          kGrey, // Màu của border bottom
-                                          width:
-                                          0.5, // Độ rộng của border bottom
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: SizedBox(
-                                  height: 40,
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    readOnly: true,
-                                    controller: massController,
-                                    style: const TextStyle(color: Colors.white),
-                                    keyboardType: TextInputType.number,
-                                    decoration: InputDecoration(
-                                      prefixIcon: GestureDetector(
-                                        onTap: () {
-                                          int currentMass = int.tryParse(
-                                                  massController.text) ??
-                                              0;
-                                          if (currentMass > 100) {
-                                            currentMass -= 100;
-                                          } else {
-                                            currentMass -= 1;
-                                          }
-                                          massController.text =
-                                              currentMass.toString();
-                                        },
-                                        child: const Icon(
-                                          Icons.minimize,
-                                          size: 18,
-                                          color: kWhite,
-                                        ),
-                                      ),
-                                      suffixIcon: GestureDetector(
-                                        onTap: () {
-                                          int currentMass = int.tryParse(
-                                                  massController.text) ??
-                                              0;
-                                          currentMass += 100;
-                                          massController.text =
-                                              currentMass.toString();
-                                        },
-                                        child: const Icon(
-                                          Icons.add,
-                                          size: 18,
-                                          color: kWhite,
-                                        ),
-                                      ),
-                                      border: const UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: kGrey,
-                                          // Màu của border bottom
-                                          width:
-                                              0.5, // Độ rộng của border bottom
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                              width: getProportionateScreenWidth(60),
-                              child: const Text(
-                                'Hết hạn',
-                                style: TextStyle(color: kWhite),
-                              )),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: _selectedTime,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        timesss.format(context),
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        width: getProportionateScreenWidth(10),
-                                      ),
-                                      const Icon(Icons.access_time_outlined),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal:
-                                          getProportionateScreenWidth(6)),
-                                  height: 0.5,
-                                  color: kGrey,
-                                )
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: _selectedDate,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                          getFormattedDate(departureDate,
-                                              pattern: 'dd/MM/yyyy'),
-                                          style: const TextStyle(
-                                              color: Colors.white)),
-                                      SizedBox(
-                                        width: getProportionateScreenWidth(10),
-                                      ),
-                                      const Icon(Icons.calendar_month_outlined),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal:
-                                          getProportionateScreenWidth(6)),
-                                  height: 0.5,
-                                  color: kGrey,
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          buildCircleK(
-                            borderRadius: BorderRadius.circular(10),
-                            shape: BoxShape.rectangle,
-                            padding: const EdgeInsets.all(6),
-                            width: SizeConfig.screenWidth * 0.4,
-                            demo: const Column(
-                              children: [
-                                Text(
-                                  'MUA',
-                                  style: TextStyle(color: kWhite, fontSize: 12),
-                                ),
-                                Text(
-                                  '0',
-                                  style: TextStyle(color: kWhite, fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            color: Colors.green,
-                            onClicked: () {},
-                          ),
-                          SizedBox(
-                            width: getProportionateScreenWidth(20),
-                          ),
-                          buildCircleK(
-                            borderRadius: BorderRadius.circular(10),
-                            shape: BoxShape.rectangle,
-                            padding: const EdgeInsets.all(6),
-                            width: SizeConfig.screenWidth * 0.4,
-                            demo: const Column(
-                              children: [
-                                Text(
-                                  'BÁN',
-                                  style: TextStyle(color: kWhite, fontSize: 12),
-                                ),
-                                Text(
-                                  '0',
-                                  style: TextStyle(color: kWhite, fontSize: 12),
-                                ),
-                              ],
-                            ),
-                            color: Colors.red,
-                            onClicked: () {},
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                );
-              } else {
-                return const Center(
-                  child: Text('Demo'),
-                );
-              }
-            },
+                      )
+                    ],
+                  );
+                } else {
+                  return const Center(
+                    child: Text('Demo'),
+                  );
+                }
+              },
+            ),
           ),
         );
       },
@@ -607,56 +903,69 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: const Color(0xff1c1c1c),
+        color: const Color(0xff202123),
       ),
-      child: ToggleButtons(
-        fillColor: kGreyColorCustom,
-        selectedBorderColor: const Color(0xff1c1c1c),
-        disabledBorderColor: kGreyColorCustom,
-        borderColor: const Color(0xff1c1c1c),
-        splashColor: kGreyColorCustom,
-        borderRadius: BorderRadius.circular(8),
-        onPressed: (int index) {
-          setState(() {
-            for (var i = 0; i < isSelected.length; i++) {
-              isSelected[i] = (i == index);
-            }
-          });
-        },
-        isSelected: isSelected,
+      child: Row(
         children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: isSelected[0] ? Colors.red : kGreyColorCustom,
-            ),
-            child: const Center(
-                child: Text(
-              '>',
-              style: TextStyle(color: Colors.white),
-            )),
+          SizedBox(
+            width: getProportionateScreenWidth(10),
           ),
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: isSelected[1] ? Colors.red : kGreyColorCustom,
-            ),
-            child: const Center(
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isSelected[0] = true;
+                isSelected[1] = false;
+              });
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: isSelected[0]
+                    ? const Color(0xffd34343)
+                    : const Color.fromARGB(255, 39, 41, 44),
+              ),
+              child: const Center(
                 child: Text(
-              '<',
-              style: TextStyle(color: Colors.white),
-            )),
+                  '≥',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: getProportionateScreenWidth(6),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isSelected[0] = false;
+                isSelected[1] = true;
+              });
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: isSelected[1]
+                    ? const Color(0xffd34343)
+                    : const Color.fromARGB(255, 39, 41, 44),
+              ),
+              child: const Center(
+                child: Text(
+                  '≤',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
+
 
   Container moeCaiNut2() {
     return Container(
@@ -664,51 +973,66 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: const Color(0xff1c1c1c),
+        color: const Color(0xff202123),
       ),
-      child: ToggleButtons(
-        fillColor: kGreyColorCustom,
-        selectedBorderColor: const Color(0xff1c1c1c),
-        disabledBorderColor: kGreyColorCustom,
-        borderColor: const Color(0xff1c1c1c),
-        splashColor: kGreyColorCustom,
-        borderRadius: BorderRadius.circular(8),
-        onPressed: (int index) {
-          setState(() {
-            for (var i = 0; i < isSelected2.length; i++) {
-              isSelected2[i] = (i == index);
-            }
-          });
-        },
-        isSelected: isSelected2,
+      child: Row(
         children: [
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: isSelected2[0] ? Colors.red : kGreyColorCustom,
-            ),
-            child: const Center(
-                child: Text(
-              'LO',
-              style: TextStyle(color: Colors.white),
-            )),
+          SizedBox(
+            width: getProportionateScreenWidth(10),
           ),
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: isSelected2[1] ? Colors.red : kGreyColorCustom,
-            ),
-            child: const Center(
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isSelected2[0] = true;
+                isSelected2[1] = false;
+              });
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: isSelected2[0]
+                    ? const Color(0xffd34343)
+                    : const Color.fromARGB(255, 39, 41, 44),
+              ),
+              child: const Center(
                 child: Text(
-              'MP',
-              style: TextStyle(color: Colors.white),
-            )),
+                  'LO',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: getProportionateScreenWidth(6),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isSelected2[0] = false;
+                isSelected2[1] = true;
+              });
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: isSelected2[1]
+                    ? const Color(0xffd34343)
+                    : const Color.fromARGB(255, 39, 41, 44),
+              ),
+              child: const Center(
+                child: Text(
+                  'MP',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: getProportionateScreenWidth(10),
           ),
         ],
       ),

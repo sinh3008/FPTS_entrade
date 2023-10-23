@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 import '../../../components/circle_k.dart';
 import '../../../pages_test/order_page.dart';
@@ -55,8 +55,7 @@ AppBar buildAppBarHome(double width, double height, BuildContext context) {
                         hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
                       ),
                       onTap: () {
-                        PersistentNavBarNavigator
-                            .pushNewScreenWithRouteSettings(
+                        pushNewScreenWithRouteSettings(
                           context,
                           settings: RouteSettings(name: Page2.routerName),
                           screen: const SearchPage(),

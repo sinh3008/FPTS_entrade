@@ -6,6 +6,7 @@ GestureDetector buildCircleK({
   double width = 50,
   Border? border,
   double height = 50,
+  EdgeInsetsGeometry margin = const EdgeInsets.all(0),
   BorderRadiusGeometry? borderRadius,
   BoxShape shape = BoxShape.circle,
   required VoidCallback onClicked,
@@ -15,6 +16,7 @@ GestureDetector buildCircleK({
   return GestureDetector(
     onTap: onClicked,
     child: Container(
+      margin: margin,
       // padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       padding: padding,
       width: width,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});
@@ -11,7 +11,7 @@ class OrdersScreen extends StatelessWidget {
         child: TextButton(
           child: const Text('Order Page, Click go to page 2'),
           onPressed: () {
-            PersistentNavBarNavigator.pushNewScreenWithRouteSettings(
+            pushNewScreenWithRouteSettings(
               context,
               settings: RouteSettings(name: Page2.routerName),
               screen: const Page2(),

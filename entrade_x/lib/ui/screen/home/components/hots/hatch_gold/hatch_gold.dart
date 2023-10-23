@@ -21,7 +21,6 @@ class _HatchGoldPageState extends State<HatchGoldPage> {
     double height = screenSize.height;
     Eggs eggss = Eggs();
     List<Egg> _lists = eggss.list;
-
     return Scaffold(
       backgroundColor: const Color(0xff131313),
       appBar: AppBar(
@@ -110,81 +109,86 @@ class _HatchGoldPageState extends State<HatchGoldPage> {
             child: ListView.builder(
               itemCount: _lists.length,
               itemBuilder: (context, index) {
-                return Container(
-                  margin: EdgeInsets.only(bottom: height * 0.01),
-                  width: width,
-                  height: height * 0.14,
-                  padding: const EdgeInsets.all(12),
-                  color: const Color(0xff222222),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                return GestureDetector(
+                  onTap: () {
+                    print('object $index');
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: height * 0.01),
+                    width: width,
+                    height: height * 0.14,
+                    padding: const EdgeInsets.all(12),
+                    color: const Color(0xff222222),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Image(
+                            image: AssetImage(_lists[index].imgPath),
+                            width: 40,
+                            height: height * 0.12,
+                          ),
                         ),
-                        child: Image(
-                          image: AssetImage(_lists[index].imgPath),
-                          width: 40,
-                          height: height * 0.12,
+                        SizedBox(
+                          width: width * 0.04,
                         ),
-                      ),
-                      SizedBox(
-                        width: width * 0.04,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            _lists[index].name,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 16),
-                          ),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          Row(
-                            children: [
-                              const AutoSizeText(
-                                'Thời gian ấp',
-                                style: TextStyle(fontSize: 14),
-                                maxLines: 2,
-                              ),
-                              SizedBox(
-                                width: width * 0.04,
-                              ),
-                              AutoSizeText(
-                                _lists[index].time,
-                                style: const TextStyle(
-                                    fontSize: 14, color: Colors.white),
-                                maxLines: 2,
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: height * 0.01,
-                          ),
-                          Row(
-                            children: [
-                              const Text('Lợi xuất cơ bản'),
-                              SizedBox(
-                                width: width * 0.04,
-                              ),
-                              Text(
-                                '${_lists[index].loi_xuat}%/ năm',
-                                style: const TextStyle(color: Colors.green),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: height * 0.01,
-                      ),
-                    ],
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _lists[index].name,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 16),
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                const AutoSizeText(
+                                  'Thời gian ấp',
+                                  style: TextStyle(fontSize: 14),
+                                  maxLines: 2,
+                                ),
+                                SizedBox(
+                                  width: width * 0.04,
+                                ),
+                                AutoSizeText(
+                                  _lists[index].time,
+                                  style: const TextStyle(
+                                      fontSize: 14, color: Colors.white),
+                                  maxLines: 2,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Row(
+                              children: [
+                                const Text('Lợi xuất cơ bản'),
+                                SizedBox(
+                                  width: width * 0.04,
+                                ),
+                                Text(
+                                  '${_lists[index].loi_xuat}%/ năm',
+                                  style: const TextStyle(color: Colors.green),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: height * 0.01,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
