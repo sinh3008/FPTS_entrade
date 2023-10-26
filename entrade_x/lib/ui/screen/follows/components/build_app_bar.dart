@@ -8,6 +8,11 @@ import '../../../components/circle_k.dart';
 import '../../../pages_test/order_page.dart';
 import '../../../pages_test/search_page.dart';
 import '../../home/components/ideas/investment_ideas.dart';
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/main
 
 AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
   return AppBar(

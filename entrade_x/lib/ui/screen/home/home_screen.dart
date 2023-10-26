@@ -29,7 +29,6 @@ class HomeScreen extends StatelessWidget {
       ];
     }
 
-    // ignore: no_leading_underscores_for_local_identifiers
     List<PersistentBottomNavBarItem> _navBarsItems() {
       return [
         PersistentBottomNavBarItem(

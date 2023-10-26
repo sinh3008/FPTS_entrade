@@ -85,12 +85,19 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                         sbw(6),
                                         buildCircleK(
                                           shape: BoxShape.rectangle,
+<<<<<<< HEAD
                                           width:
                                               getProportionateScreenWidth(18),
                                           borderRadius:
                                               BorderRadius.circular(2),
                                           height:
                                               getProportionateScreenHeight(18),
+=======
+                                          width: 20,
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                          height: 20,
+>>>>>>> origin/main
                                           padding: EdgeInsets.zero,
                                           demo: const Icon(
                                             Icons.add,
@@ -124,7 +131,14 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             ),
                                           ),
                                         ),
+<<<<<<< HEAD
                                         sbw(10),
+=======
+                                        SizedBox(
+                                          width:
+                                              getProportionateScreenWidth(10),
+                                        ),
+>>>>>>> origin/main
                                         const Center(
                                           child: Icon(
                                             Icons.settings_outlined,
@@ -137,8 +151,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                 ),
                               ),
                               Container(
+<<<<<<< HEAD
                                 padding: EdgeInsets.symmetric(
                                     vertical: getProportionateScreenHeight(3)),
+=======
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 3),
+>>>>>>> origin/main
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

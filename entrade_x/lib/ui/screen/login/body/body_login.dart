@@ -30,12 +30,16 @@ class _BodyLoginState extends State<BodyLogin> {
     return Scaffold(
       backgroundColor: kBlackBackgroundCustom,
       appBar: AppBar(
+<<<<<<< HEAD
         title: const Text(
           sVersionApp,
           style: kTextGrey11Normal,
         ),
         centerTitle: true,
         elevation: 0,
+=======
+        title:  Text('Entrade X', style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
+>>>>>>> origin/main
       ),
       body: SingleChildScrollView(
         child: Container(

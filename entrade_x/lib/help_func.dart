@@ -46,6 +46,7 @@ List<double> calculatePercentages2(List<DataKa> dataList2) {
 
 final List<double> percentages = calculatePercentages(dataList1);
 final List<double> percentages2 = calculatePercentages(dataList2);
+<<<<<<< HEAD
 
 
 String formatCurrency(int amount) {
@@ -70,3 +71,5 @@ class OrderTime {
         required this.price,
         required this.percent});
 }
+=======
+>>>>>>> origin/main

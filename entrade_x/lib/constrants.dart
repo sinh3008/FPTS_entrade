@@ -10,6 +10,7 @@ Container lineBreak() {
   );
 }
 
+<<<<<<< HEAD
 const kAnimationDuration = Duration(milliseconds: 200);
 
 //color
@@ -87,3 +88,19 @@ const kTextGrey20Bold =
 // logo
 const kTextWhite30Bold =
     TextStyle(fontSize: 30, color: kWhite, fontWeight: w500);
+=======
+const kTextWhite15Normal =
+TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w400);
+
+const kTextWhite16Normal =
+    TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400);
+
+const kTextGreen16Normal =
+    TextStyle(color: Colors.green, fontSize: 16, fontWeight: FontWeight.w400);
+
+const kTextWhite16Bold =
+    TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold);
+
+const kTextWhite20Bold =
+    TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold);
+>>>>>>> origin/main
