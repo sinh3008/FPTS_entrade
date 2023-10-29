@@ -15,3 +15,7 @@ class ConditionalFitSuccessState extends ConditionalState {
   double priceFit;
   ConditionalFitSuccessState(this.priceFit);
 }
+
+class UpdateBuyLoadingState extends ConditionalState{
+
+}

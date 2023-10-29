@@ -1,5 +1,6 @@
 import 'dart:core';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:entrade_x/blocs/conditional/conditional_bloc.dart';
 import 'package:entrade_x/help_func.dart';
 import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
-import '../../../../blocs/conditional/conditional_bloc.dart';
 import '../../../../constrants.dart';
 import '../../../../size_config.dart';
 
@@ -20,132 +20,155 @@ class CustomerBottomSheet extends StatefulWidget {
 }
 
 class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
-  final TextEditingController _controller1 = TextEditingController();
-  final TextEditingController _controller2 = TextEditingController();
-  final TextEditingController _massController = TextEditingController();
-  TextEditingController controllerDemo = TextEditingController(text: "Giá đặt");
+  TextEditingController controllerGiaStop = TextEditingController();
+  TextEditingController controllerGiaDat = TextEditingController();
+  TextEditingController controllerKL = TextEditingController();
 
   int mass = 0;
   static double money = 999999999;
-  double price = 42.45;
+  double price = 42.25;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
-    _controller1.dispose();
-    _controller2.dispose();
-    _massController.dispose();
-    controllerDemo.dispose();
+    controllerGiaStop.dispose();
+    controllerGiaDat.dispose();
+    controllerKL.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(
       child: DraggableScrollableSheet(
-        initialChildSize: 0.45,
+        initialChildSize: 0.46,
         minChildSize: 0.42,
         maxChildSize: 0.8,
         builder: (BuildContext context, ScrollController scrollController) {
           return SingleChildScrollView(
             child: Container(
-              padding: EdgeInsets.only(bottom: getProportionateScreenHeight(8)),
-              decoration: const BoxDecoration(
-                color: kBgBottomSheet,
-                borderRadius: BorderRadius.only(),
-              ),
-              child: BlocBuilder<ConditionalBloc, ConditionalState>(
-                builder: (context, state) {
-                  if (state is ConditionalFitSuccessState) {
-                    if (state.priceFit != 0.0) {
-                      _controller1.text = state.priceFit.toString();
-                      _controller2.text = state.priceFit.toString();
-                    } else {}
-                    return Column(
-                      children: [
-                        lineBreak(),
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: getProportionateScreenWidth(8),
-                              vertical: getProportionateScreenHeight(0)),
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.only(
-                                    bottom: getProportionateScreenHeight(8),
-                                    top: getProportionateScreenHeight(8)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                padding:
+                    EdgeInsets.only(bottom: getProportionateScreenHeight(8)),
+                decoration: const BoxDecoration(
+                  color: kBgBottomSheet,
+                  borderRadius: BorderRadius.only(),
+                ),
+                child: Column(
+                  children: [
+                    lineBreak(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(8),
+                          vertical: getProportionateScreenHeight(0)),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(
+                                bottom: getProportionateScreenHeight(8),
+                                top: getProportionateScreenHeight(8)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
                                   children: [
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          'Sức mua:',
-                                          style: kTextGrey16Normal,
-                                        ),
-                                        sizeBoxWidth(4),
-                                        AutoSizeText(
-                                          formatCurrency(money),
-                                          maxLines: 2,
-                                          style: kTextWhite14Bold,
-                                        ),
-                                        sizeBoxWidth(6),
-                                        buildCircleK(
-                                          shape: BoxShape.rectangle,
-                                          width:
-                                              getProportionateScreenWidth(18),
-                                          borderRadius:
-                                              BorderRadius.circular(2),
-                                          height:
-                                              getProportionateScreenHeight(18),
-                                          padding: EdgeInsets.zero,
-                                          demo: const Icon(
-                                            Icons.add,
-                                            size: 18,
-                                          ),
-                                          color: kRedButtonBG,
-                                          onClicked: () {
-                                            setState(() {
-                                              money += 1000000000;
-                                            });
-                                          },
-                                        )
-                                      ],
+                                    const Text(
+                                      'Sức mua:',
+                                      style: kTextGrey16Normal,
                                     ),
-                                    Row(
-                                      children: [
-                                        GestureDetector(
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 10),
-                                            decoration: BoxDecoration(
-                                                color: kRedButtonBG,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            height: 26,
-                                            child: const Center(
-                                              child: Text(
-                                                'Lệnh điều kiện',
-                                                style: kTextWhite15Normal,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        sizeBoxWidth(10),
-                                        SizedBox(
-                                          width:
-                                              getProportionateScreenWidth(10),
-                                        ),
-                                        const Center(
-                                          child: Icon(
-                                            Icons.settings_outlined,
+                                    sizeBoxWidth(4),
+                                    AutoSizeText(
+                                      formatCurrency(money),
+                                      maxLines: 2,
+                                      style: kTextWhite14Bold,
+                                    ),
+                                    sizeBoxWidth(6),
+                                    buildCircleK(
+                                      shape: BoxShape.rectangle,
+                                      width: getProportionateScreenWidth(18),
+                                      borderRadius: BorderRadius.circular(2),
+                                      height: getProportionateScreenHeight(18),
+                                      padding: EdgeInsets.zero,
+                                      demo: const Icon(
+                                        Icons.add,
+                                        size: 18,
+                                      ),
+                                      color: kRedButtonBG,
+                                      onClicked: () {
+                                        setState(() {
+                                          money += 1000000000;
+                                        });
+                                      },
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    GestureDetector(
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        decoration: BoxDecoration(
                                             color: kRedButtonBG,
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        height: 26,
+                                        child: const Center(
+                                          child: Text(
+                                            'Lệnh điều kiện',
+                                            style: kTextWhite15Normal,
                                           ),
                                         ),
-                                      ],
+                                      ),
+                                    ),
+                                    sizeBoxWidth(10),
+                                    SizedBox(
+                                      width: getProportionateScreenWidth(10),
+                                    ),
+                                    const Center(
+                                      child: Icon(
+                                        Icons.settings_outlined,
+                                        color: kRedButtonBG,
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: getProportionateScreenHeight(3)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        'Khi giá',
+                                        style: kTextWhite15Normal,
+                                      ),
+                                      moeCaiNut(
+                                          isSelectedS: isSelected,
+                                          text1: '≥',
+                                          text2: '≤'),
+                                    ],
+                                  ),
+                                ),
+                                sizeBoxWidth(20),
+                                btnGiaSTOP()
+                              ],
+                            ),
+                          ),
+                          sizeBoxHeight(4),
+                          Column(
+                            children: [
                               Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical: getProportionateScreenHeight(3)),
@@ -159,292 +182,170 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           const Text(
-                                            'Khi giá',
+                                            'Kích hoạt',
                                             style: kTextWhite15Normal,
                                           ),
-                                          moeCaiNut(
-                                              isSelectedS: isSelected,
-                                              text1: '≥',
-                                              text2: '≤'),
+                                          Row(
+                                            children: [
+                                              moeCaiNut(
+                                                isSelectedS: isSelected2,
+                                                text1: 'LO',
+                                                text2: 'MP',
+                                                inputSizeBox: 10,
+                                                fontSize: 16,
+                                              ),
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ),
-                                    sizeBoxWidth(20),
-                                    btnGiaSTOP()
+                                    Expanded(
+                                      child: buildCircleK(
+                                        margin: const EdgeInsets.only(left: 50),
+                                        padding: EdgeInsets.zero,
+                                        height:
+                                            getProportionateScreenHeight(26),
+                                        width: getProportionateScreenWidth(70),
+                                        shape: BoxShape.rectangle,
+                                        borderRadius: BorderRadius.circular(20),
+                                        demo: const Center(
+                                          child: Text(
+                                            'Ký quỹ 100%',
+                                            style: kTextWhite15Normal,
+                                          ),
+                                        ),
+                                        color: const Color.fromARGB(
+                                            255, 39, 41, 44),
+                                        onClicked: () {},
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
-                              sizeBoxHeight(4),
-                              Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical:
-                                            getProportionateScreenHeight(3)),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              const Text(
-                                                'Kích hoạt',
-                                                style: kTextWhite15Normal,
-                                              ),
-                                              Row(
-                                                children: [
-                                                  moeCaiNut(
-                                                    isSelectedS: isSelected2,
-                                                    text1: 'LO',
-                                                    text2: 'MP',
-                                                    inputSizeBox: 10,
-                                                    fontSize: 16,
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: buildCircleK(
-                                            margin:
-                                                const EdgeInsets.only(left: 50),
-                                            padding: EdgeInsets.zero,
-                                            height:
-                                                getProportionateScreenHeight(
-                                                    26),
-                                            width:
-                                                getProportionateScreenWidth(70),
-                                            shape: BoxShape.rectangle,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            demo: const Center(
-                                              child: Text(
-                                                'Ký quỹ 100%',
-                                                style: kTextWhite15Normal,
-                                              ),
-                                            ),
-                                            color: const Color.fromARGB(
-                                                255, 39, 41, 44),
-                                            onClicked: () {},
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  sizeBoxHeight(6),
-                                  Container(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 3),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        if (isSelected2[0])
-                                          btnGiaDat()
-                                        else
-                                          btnGiaKhongDuocDat(),
-                                        SizedBox(
-                                          width:
-                                              getProportionateScreenWidth(20),
-                                        ),
-                                        btnKhoiLuong(),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              sizeBoxHeight(8),
+                              sizeBoxHeight(6),
                               Container(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 3),
                                 child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(
-                                        child: Row(
-                                      children: [
-                                        SizedBox(
-                                          width:
-                                              getProportionateScreenWidth(60),
-                                          child: const Text(
-                                            'Hết hạn',
-                                            style: TextStyle(color: kWhite),
-                                          ),
-                                        ),
-                                        btnTime(context),
-                                      ],
-                                    )),
+                                    if (isSelected2[0])
+                                      btnGiaDat()
+                                    else
+                                      btnGiaKhongDuocDat(),
                                     SizedBox(
                                       width: getProportionateScreenWidth(20),
                                     ),
-                                    btnDate(),
+                                    btnKhoiLuong(),
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                height: getProportionateScreenHeight(4),
-                              ),
-                              if ((_controller1.text ?? '') != '' &&
-                                  (_controller2.text ?? '') != '' &&
-                                  (_massController.text ?? '') != '')
-                                Container(
-                                  width: SizeConfig.screenWidth,
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 3),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Expanded(
-                                        child: buildCircleK(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          shape: BoxShape.rectangle,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6),
-                                          width: SizeConfig.screenWidth * 0.46,
-                                          demo: const Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'MUA',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                              Text(
-                                                '0',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                            ],
-                                          ),
-                                          color: Colors.green,
-                                          onClicked: () {},
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: getProportionateScreenWidth(16),
-                                      ),
-                                      Expanded(
-                                        child: buildCircleK(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          shape: BoxShape.rectangle,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6),
-                                          width: SizeConfig.screenWidth * 0.46,
-                                          demo: const Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'BÁN',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                              Text(
-                                                '0',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                            ],
-                                          ),
-                                          color: const Color(0xffd34343),
-                                          onClicked: () {},
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              else
-                                Container(
-                                  width: SizeConfig.screenWidth,
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 3),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Expanded(
-                                        child: buildCircleK(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          shape: BoxShape.rectangle,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6),
-                                          width: SizeConfig.screenWidth * 0.46,
-                                          demo: const Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'MUA',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                              Text(
-                                                '0',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                            ],
-                                          ),
-                                          color: Colors.green.withOpacity(0.5),
-                                          onClicked: () {},
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: getProportionateScreenWidth(16),
-                                      ),
-                                      Expanded(
-                                        child: buildCircleK(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          shape: BoxShape.rectangle,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6),
-                                          width: SizeConfig.screenWidth * 0.46,
-                                          demo: const Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'BÁN',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                              Text(
-                                                '0',
-                                                style: TextStyle(color: kWhite),
-                                              ),
-                                            ],
-                                          ),
-                                          color: const Color(0xffd34343)
-                                              .withOpacity(0.5),
-                                          onClicked: () {},
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
                             ],
                           ),
-                        )
-                      ],
-                    );
-                  } else {
-                    return const Center(
-                      child: Text('Demo'),
-                    );
-                  }
-                },
-              ),
-            ),
+                          sizeBoxHeight(8),
+                          Container(
+                            padding: const EdgeInsets.symmetric(vertical: 3),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: getProportionateScreenWidth(60),
+                                      child: const Text(
+                                        'Hết hạn',
+                                        style: TextStyle(color: kWhite),
+                                      ),
+                                    ),
+                                    btnTime(context),
+                                  ],
+                                )),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(20),
+                                ),
+                                btnDate(),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(4),
+                          ),
+                          Container(
+                            width: SizeConfig.screenWidth,
+                            padding: EdgeInsets.only(
+                                top: getProportionateScreenHeight(6)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Expanded(
+                                  child: buildCircleK(
+                                    borderRadius: BorderRadius.circular(4),
+                                    shape: BoxShape.rectangle,
+                                    padding: const EdgeInsets.only(top: 6),
+                                    width: SizeConfig.screenWidth * 0.46,
+                                    demo: const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'MUA',
+                                          style: TextStyle(color: kWhite),
+                                        ),
+                                        Text(
+                                          '0',
+                                          style: TextStyle(color: kWhite),
+                                        ),
+                                      ],
+                                    ),
+                                    color: Colors.green,
+                                    onClicked: () {
+                                      // context
+                                      //     .read<ConditionalBloc>()
+                                      //     .add(UpdateBuyEvent(1));
+                                    },
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(16),
+                                ),
+                                Expanded(
+                                  child: buildCircleK(
+                                    borderRadius: BorderRadius.circular(4),
+                                    shape: BoxShape.rectangle,
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 6),
+                                    width: SizeConfig.screenWidth * 0.46,
+                                    demo: const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'BÁN',
+                                          style: TextStyle(color: kWhite),
+                                        ),
+                                        Text(
+                                          '0',
+                                          style: TextStyle(color: kWhite),
+                                        ),
+                                      ],
+                                    ),
+                                    color: kRedButtonBG,
+                                    onClicked: () {},
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )),
           );
         },
       ),
@@ -515,36 +416,36 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         height: getProportionateScreenHeight(40),
         child: TextField(
           textAlign: TextAlign.center,
-          controller: _controller1,
+          controller: controllerGiaStop,
           style: kTextWhite15Normal,
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             hintText: 'Giá STOP',
             prefixIcon: GestureDetector(
               onTap: () {
-                if (_controller1.text.isEmpty) {
-                  double currentMass = 42.45;
+                if (controllerGiaStop.text.isEmpty) {
+                  double currentMass = 42.25;
                   currentMass -= 1;
-                  _controller1.text = (currentMass + 1).toStringAsFixed(2);
+                  controllerGiaStop.text = (currentMass + 1).toStringAsFixed(2);
                 } else {
-                  double currentMass = double.parse(_controller1.text);
+                  double currentMass = double.parse(controllerGiaStop.text);
                   currentMass -= 1;
-                  _controller1.text = currentMass.toStringAsFixed(2);
+                  controllerGiaStop.text = currentMass.toStringAsFixed(2);
                 }
               },
               child: nutBam(Alignment.centerLeft, Icons.remove),
             ),
-            contentPadding: EdgeInsets.all(10),
+            contentPadding: const EdgeInsets.all(10),
             suffixIcon: GestureDetector(
               onTap: () {
-                if (_controller1.text.isEmpty) {
-                  double currentMass = 42.45;
+                if (controllerGiaStop.text.isEmpty) {
+                  double currentMass = 42.25;
                   currentMass += 1;
-                  _controller1.text = (currentMass - 1).toStringAsFixed(2);
+                  controllerGiaStop.text = (currentMass - 1).toStringAsFixed(2);
                 } else {
-                  double currentMass = double.parse(_controller1.text);
+                  double currentMass = double.parse(controllerGiaStop.text);
                   currentMass += 1;
-                  _controller1.text = currentMass.toStringAsFixed(2);
+                  controllerGiaStop.text = currentMass.toStringAsFixed(2);
                 }
               },
               child: nutBam(Alignment.centerRight, Icons.add),
@@ -561,19 +462,14 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
     );
   }
 
-  Expanded btnKhoiLuong() {
+  Expanded btnKhoiLuong({TextStyle style = kTextWhite16Normal}) {
     return Expanded(
       child: SizedBox(
         height: getProportionateScreenHeight(40),
         child: TextField(
           textAlign: TextAlign.center,
-          controller: _massController,
-          style: kTextWhite16Normal,
-          // money <
-          //     (double.parse(_controller1.text)) *
-          //         (double.parse(_controller2.text))
-          //     ? kTextRed16Normal
-          //     :kTextWhite16Normal
+          controller: controllerKL,
+          style: style,
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
@@ -582,11 +478,11 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
             hintText: 'KL',
             prefixIcon: GestureDetector(
               onTap: () {
-                if (_massController.text.isEmpty) {
+                if (controllerKL.text.isEmpty) {
                   double currentMass = 0;
-                  _massController.text = (currentMass).toStringAsFixed(0);
+                  controllerKL.text = (currentMass).toStringAsFixed(0);
                 } else {
-                  double currentMass = double.parse(_massController.text);
+                  double currentMass = double.parse(controllerKL.text);
                   if (currentMass == 0) {
                     currentMass = currentMass;
                   } else if (currentMass >= 200 && currentMass > 0) {
@@ -594,24 +490,24 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   } else if (currentMass < 200 && currentMass > 0) {
                     currentMass -= 1;
                   }
-                  _massController.text = currentMass.toStringAsFixed(0);
+                  controllerKL.text = currentMass.toStringAsFixed(0);
                 }
               },
               child: nutBam(Alignment.centerLeft, Icons.remove),
             ),
             suffixIcon: GestureDetector(
               onTap: () {
-                if (_massController.text.isEmpty) {
+                if (controllerKL.text.isEmpty) {
                   double currentMass = 100;
-                  _massController.text = (currentMass).toStringAsFixed(0);
+                  controllerKL.text = (currentMass).toStringAsFixed(0);
                 } else {
-                  double currentMass = double.parse(_massController.text);
+                  double currentMass = double.parse(controllerKL.text);
                   if (currentMass < 100) {
                     currentMass += 1;
                   } else if (currentMass >= 100) {
                     currentMass += 100;
                   }
-                  _massController.text = currentMass.toStringAsFixed(0);
+                  controllerKL.text = currentMass.toStringAsFixed(0);
                 }
               },
               child: nutBam(Alignment.centerRight, Icons.add),
@@ -635,7 +531,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         height: getProportionateScreenHeight(40),
         child: TextField(
           textAlign: TextAlign.center,
-          controller: _controller2,
+          controller: controllerGiaDat,
           style: const TextStyle(color: Colors.white),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
@@ -662,7 +558,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         height: getProportionateScreenHeight(40),
         child: TextField(
           textAlign: TextAlign.center,
-          controller: _controller2,
+          controller: controllerGiaDat,
           style: const TextStyle(color: Colors.white),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
@@ -670,27 +566,29 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
             hintText: 'Giá đặt',
             prefixIcon: GestureDetector(
                 onTap: () {
-                  if (_controller2.text.isEmpty) {
+                  if (controllerGiaDat.text.isEmpty) {
                     double currentMass = price;
                     currentMass -= 1;
-                    _controller2.text = (currentMass + 1).toStringAsFixed(2);
+                    controllerGiaDat.text =
+                        (currentMass + 1).toStringAsFixed(2);
                   } else {
-                    double currentMass = double.parse(_controller2.text);
+                    double currentMass = double.parse(controllerGiaDat.text);
                     currentMass -= 1;
-                    _controller2.text = currentMass.toStringAsFixed(2);
+                    controllerGiaDat.text = currentMass.toStringAsFixed(2);
                   }
                 },
                 child: nutBam(Alignment.centerLeft, Icons.remove)),
             suffixIcon: GestureDetector(
                 onTap: () {
-                  if (_controller2.text.isEmpty) {
+                  if (controllerGiaDat.text.isEmpty) {
                     double currentMass = price;
                     currentMass += 1;
-                    _controller2.text = (currentMass - 1).toStringAsFixed(2);
+                    controllerGiaDat.text =
+                        (currentMass - 1).toStringAsFixed(2);
                   } else {
-                    double currentMass = double.parse(_controller2.text);
+                    double currentMass = double.parse(controllerGiaDat.text);
                     currentMass += 1;
-                    _controller2.text = currentMass.toStringAsFixed(2);
+                    controllerGiaDat.text = currentMass.toStringAsFixed(2);
                   }
                 },
                 child: nutBam(Alignment.centerRight, Icons.add)),

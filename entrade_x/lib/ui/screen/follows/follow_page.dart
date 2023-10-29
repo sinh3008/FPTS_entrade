@@ -12,7 +12,6 @@ import 'components/buoc_gia_container.dart';
 import 'components/khop_lenh_container.dart';
 import 'components/senses_container.dart';
 
-// ignore: must_be_immutable
 class FollowsScreen extends StatefulWidget {
   double price = 0;
 
