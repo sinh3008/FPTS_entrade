@@ -9,7 +9,8 @@ class ClickFitPriceEvent extends ConditionalEvent {
 }
 
 class UpdateBuyEvent extends ConditionalEvent {
-  int number;
+  double? quantity;
+  double? setPrice;
 
-  UpdateBuyEvent(this.number);
+  UpdateBuyEvent(this.quantity, this.setPrice);
 }
