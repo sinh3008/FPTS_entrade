@@ -3,8 +3,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:entrade_x/help_func.dart';
 import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 import '../../../../blocs/conditional/conditional_bloc.dart';
@@ -22,15 +22,21 @@ class CustomerBottomSheet extends StatefulWidget {
 class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
   final TextEditingController _controller1 = TextEditingController();
   final TextEditingController _controller2 = TextEditingController();
-  TextEditingController massController = TextEditingController();
+  final TextEditingController _massController = TextEditingController();
   TextEditingController controllerDemo = TextEditingController(text: "Giá đặt");
 
   int mass = 0;
-  int money = 1;
+  static double money = 999999999;
   double price = 42.45;
 
-
-
+  @override
+  void dispose() {
+    _controller1.dispose();
+    _controller2.dispose();
+    _massController.dispose();
+    controllerDemo.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return KeyboardDismisser(
@@ -76,28 +82,21 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                           'Sức mua:',
                                           style: kTextGrey16Normal,
                                         ),
-                                        sbw(4),
+                                        sizeBoxWidth(4),
                                         AutoSizeText(
                                           formatCurrency(money),
                                           maxLines: 2,
                                           style: kTextWhite14Bold,
                                         ),
-                                        sbw(6),
+                                        sizeBoxWidth(6),
                                         buildCircleK(
                                           shape: BoxShape.rectangle,
-<<<<<<< HEAD
                                           width:
                                               getProportionateScreenWidth(18),
                                           borderRadius:
                                               BorderRadius.circular(2),
                                           height:
                                               getProportionateScreenHeight(18),
-=======
-                                          width: 20,
-                                          borderRadius:
-                                              BorderRadius.circular(2),
-                                          height: 20,
->>>>>>> origin/main
                                           padding: EdgeInsets.zero,
                                           demo: const Icon(
                                             Icons.add,
@@ -131,14 +130,11 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             ),
                                           ),
                                         ),
-<<<<<<< HEAD
-                                        sbw(10),
-=======
+                                        sizeBoxWidth(10),
                                         SizedBox(
                                           width:
                                               getProportionateScreenWidth(10),
                                         ),
->>>>>>> origin/main
                                         const Center(
                                           child: Icon(
                                             Icons.settings_outlined,
@@ -151,13 +147,8 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                 ),
                               ),
                               Container(
-<<<<<<< HEAD
                                 padding: EdgeInsets.symmetric(
                                     vertical: getProportionateScreenHeight(3)),
-=======
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 3),
->>>>>>> origin/main
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -178,94 +169,12 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                         ],
                                       ),
                                     ),
-                                    sbw(20),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height:
-                                            getProportionateScreenHeight(30),
-                                        child: TextField(
-                                          textAlign: TextAlign.center,
-                                          controller: _controller1,
-                                          style: kTextWhite15Normal,
-                                          keyboardType: TextInputType.number,
-                                          decoration: InputDecoration(
-                                            hintText: 'Giá STOP',
-                                            prefixIcon: GestureDetector(
-                                              onTap: () {
-                                                if (_controller1.text.isEmpty) {
-                                                  double currentMass = 42.45;
-                                                  currentMass -= 1;
-                                                  _controller1.text =
-                                                      (currentMass + 1)
-                                                          .toString();
-                                                } else {
-                                                  double currentMass =
-                                                      double.parse(
-                                                          _controller1.text);
-                                                  currentMass -= 1;
-                                                  _controller1.text =
-                                                      currentMass.toString();
-                                                }
-                                              },
-                                              child: Container(
-                                                color: Colors.transparent,
-                                                child: const Icon(
-                                                  Icons.minimize,
-                                                  size: 20,
-                                                  color: kWhite,
-                                                ),
-                                              ),
-                                            ),
-                                            suffixIcon: GestureDetector(
-                                              onTap: () {
-                                                if (_controller1.text.isEmpty) {
-                                                  double currentMass = 42.45;
-                                                  currentMass += 1;
-                                                  _controller1.text =
-                                                      (currentMass - 1)
-                                                          .toString();
-                                                } else {
-                                                  double currentMass =
-                                                      double.parse(
-                                                          _controller1.text);
-                                                  currentMass += 1;
-                                                  _controller1.text =
-                                                      currentMass.toString();
-                                                }
-                                              },
-                                              child: Container(
-                                                color: Colors.transparent,
-                                                child: const Icon(
-                                                  Icons.add,
-                                                  size: 18,
-                                                  color: kWhite,
-                                                ),
-                                              ),
-                                            ),
-                                            prefixIconConstraints:
-                                                const BoxConstraints(
-                                              minWidth: 26,
-                                              minHeight: 30,
-                                            ),
-                                            suffixIconConstraints:
-                                                const BoxConstraints(
-                                              minWidth: 26,
-                                              minHeight: 30,
-                                            ),
-                                            border: const UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                color: kGrey,
-                                                width: 0.5,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    )
+                                    sizeBoxWidth(20),
+                                    btnGiaSTOP()
                                   ],
                                 ),
                               ),
-                              sbh(4),
+                              sizeBoxHeight(4),
                               Column(
                                 children: [
                                   Container(
@@ -304,8 +213,11 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             margin:
                                                 const EdgeInsets.only(left: 50),
                                             padding: EdgeInsets.zero,
-                                            height: getProportionateScreenHeight(26),
-                                            width: getProportionateScreenWidth(70),
+                                            height:
+                                                getProportionateScreenHeight(
+                                                    26),
+                                            width:
+                                                getProportionateScreenWidth(70),
                                             shape: BoxShape.rectangle,
                                             borderRadius:
                                                 BorderRadius.circular(20),
@@ -323,6 +235,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       ],
                                     ),
                                   ),
+                                  sizeBoxHeight(6),
                                   Container(
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 3),
@@ -330,274 +243,21 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        isSelected2[0]
-                                            ? Expanded(
-                                                child: SizedBox(
-                                                  height: 40,
-                                                  child: TextField(
-                                                    textAlign: TextAlign.center,
-                                                    controller: _controller2,
-                                                    style: const TextStyle(
-                                                        color: Colors.white),
-                                                    keyboardType:
-                                                        TextInputType.number,
-                                                    decoration: InputDecoration(
-                                                      hintStyle:
-                                                          const TextStyle(
-                                                              color:
-                                                                  Colors.white),
-                                                      hintText: 'Giá đặt',
-                                                      prefixIcon:
-                                                          GestureDetector(
-                                                        onTap: () {
-                                                          if (_controller2
-                                                              .text.isEmpty) {
-                                                            double currentMass =
-                                                                price;
-                                                            currentMass -= 1;
-                                                            _controller2.text =
-                                                                (currentMass +
-                                                                        1)
-                                                                    .toString();
-                                                          } else {
-                                                            double currentMass =
-                                                                double.parse(
-                                                                    _controller2
-                                                                        .text);
-                                                            currentMass -= 1;
-                                                            _controller2.text =
-                                                                currentMass
-                                                                    .toString();
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                          color: Colors
-                                                              .transparent,
-                                                          child: const Icon(
-                                                            Icons.minimize,
-                                                            size: 18,
-                                                            color: kWhite,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      suffixIcon:
-                                                          GestureDetector(
-                                                        onTap: () {
-                                                          if (_controller2
-                                                              .text.isEmpty) {
-                                                            double currentMass =
-                                                                price;
-                                                            currentMass += 1;
-                                                            _controller2.text =
-                                                                (currentMass -
-                                                                        1)
-                                                                    .toString();
-                                                          } else {
-                                                            double currentMass =
-                                                                double.parse(
-                                                                    _controller2
-                                                                        .text);
-                                                            currentMass += 1;
-                                                            _controller2.text =
-                                                                currentMass
-                                                                    .toString();
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                          color: Colors
-                                                              .transparent,
-                                                          child: const Icon(
-                                                            Icons.add,
-                                                            size: 18,
-                                                            color: kWhite,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      prefixIconConstraints:
-                                                          const BoxConstraints(
-                                                        minWidth: 26,
-                                                        // Độ rộng tối thiểu
-                                                        minHeight:
-                                                            30, // Chiều cao tối thiểu
-                                                      ),
-
-                                                      // Thiết lập kích thước cho suffixIcon
-                                                      suffixIconConstraints:
-                                                          const BoxConstraints(
-                                                        minWidth: 26,
-                                                        // Độ rộng tối thiểu
-                                                        minHeight:
-                                                            30, // Chiều cao tối thiểu
-                                                      ),
-                                                      border:
-                                                          const UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: kGrey,
-                                                          // Màu của border bottom
-                                                          width:
-                                                              0.5, // Độ rộng của border bottom
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            : Expanded(
-                                                child: SizedBox(
-                                                  height: 40,
-                                                  child: TextField(
-                                                    textAlign: TextAlign.center,
-                                                    controller: _controller2,
-                                                    style: const TextStyle(
-                                                        color: Colors.white),
-                                                    keyboardType:
-                                                        TextInputType.number,
-                                                    decoration: InputDecoration(
-                                                      hintText: 'Giá đặt',
-                                                      prefixIcon: Container(
-                                                        color:
-                                                            Colors.transparent,
-                                                        child: const Icon(
-                                                          Icons.minimize,
-                                                          size: 18,
-                                                          color: kGrey,
-                                                        ),
-                                                      ),
-                                                      suffixIcon: Container(
-                                                        color:
-                                                            Colors.transparent,
-                                                        child: const Icon(
-                                                          Icons.add,
-                                                          size: 18,
-                                                          color: kGrey,
-                                                        ),
-                                                      ),
-                                                      prefixIconConstraints:
-                                                          const BoxConstraints(
-                                                        minWidth: 26,
-                                                        // Độ rộng tối thiểu
-                                                        minHeight:
-                                                            30, // Chiều cao tối thiểu
-                                                      ),
-
-                                                      // Thiết lập kích thước cho suffixIcon
-                                                      suffixIconConstraints:
-                                                          const BoxConstraints(
-                                                        minWidth: 26,
-                                                        // Độ rộng tối thiểu
-                                                        minHeight:
-                                                            30, // Chiều cao tối thiểu
-                                                      ),
-                                                      border:
-                                                          const UnderlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: kGrey,
-                                                          // Màu của border bottom
-                                                          width:
-                                                              0.5, // Độ rộng của border bottom
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
+                                        if (isSelected2[0])
+                                          btnGiaDat()
+                                        else
+                                          btnGiaKhongDuocDat(),
                                         SizedBox(
                                           width:
                                               getProportionateScreenWidth(20),
                                         ),
-                                        Expanded(
-                                          child: SizedBox(
-                                            height: 40,
-                                            child: TextField(
-                                              textAlign: TextAlign.center,
-                                              controller: massController,
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              decoration: InputDecoration(
-                                                hintText: 'Khối lượng',
-                                                prefixIconConstraints:
-                                                    const BoxConstraints(
-                                                  minWidth: 26,
-                                                  // Độ rộng tối thiểu
-                                                  minHeight:
-                                                      30, // Chiều cao tối thiểu
-                                                ),
-
-                                                // Thiết lập kích thước cho suffixIcon
-                                                suffixIconConstraints:
-                                                    const BoxConstraints(
-                                                  minWidth: 26,
-                                                  // Độ rộng tối thiểu
-                                                  minHeight:
-                                                      30, // Chiều cao tối thiểu
-                                                ),
-                                                prefixIcon: GestureDetector(
-                                                  onTap: () {
-                                                    int currentMass =
-                                                        int.tryParse(
-                                                                massController
-                                                                    .text) ??
-                                                            0;
-                                                    if (currentMass > 100) {
-                                                      currentMass -= 100;
-                                                    } else {
-                                                      currentMass -= 1;
-                                                    }
-                                                    massController.text =
-                                                        currentMass.toString();
-                                                  },
-                                                  child: Container(
-                                                    color: Colors.transparent,
-                                                    child: const Icon(
-                                                      Icons.minimize,
-                                                      size: 18,
-                                                      color: kWhite,
-                                                    ),
-                                                  ),
-                                                ),
-                                                suffixIcon: GestureDetector(
-                                                  onTap: () {
-                                                    int currentMass =
-                                                        int.tryParse(
-                                                                massController
-                                                                    .text) ??
-                                                            0;
-                                                    currentMass += 100;
-                                                    massController.text =
-                                                        currentMass.toString();
-                                                  },
-                                                  child: Container(
-                                                    color: Colors.transparent,
-                                                    child: const Icon(
-                                                      Icons.add,
-                                                      size: 18,
-                                                      color: kWhite,
-                                                    ),
-                                                  ),
-                                                ),
-                                                border:
-                                                    const UnderlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: kGrey,
-                                                    // Màu của border bottom
-                                                    width:
-                                                        0.5, // Độ rộng của border bottom
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                        btnKhoiLuong(),
                                       ],
                                     ),
                                   ),
                                 ],
                               ),
-                              SizedBox(
-                                height: getProportionateScreenHeight(4),
-                              ),
+                              sizeBoxHeight(8),
                               Container(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 3),
@@ -614,246 +274,164 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                             style: TextStyle(color: kWhite),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Column(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: _selectedTime,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      timesss.format(context),
-                                                      style: const TextStyle(
-                                                          color: Colors.white),
-                                                    ),
-                                                    SizedBox(
-                                                      width:
-                                                          getProportionateScreenWidth(
-                                                              10),
-                                                    ),
-                                                    const Icon(Icons
-                                                        .access_time_outlined),
-                                                  ],
-                                                ),
-                                              ),
-                                              Container(
-                                                width: SizeConfig.screenWidth *
-                                                    0.4,
-                                                height: 0.5,
-                                                color: kGrey,
-                                              )
-                                            ],
-                                          ),
-                                        ),
+                                        btnTime(context),
                                       ],
                                     )),
                                     SizedBox(
                                       width: getProportionateScreenWidth(20),
                                     ),
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: _selectedDate,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                    getFormattedDate(
-                                                        departureDate,
-                                                        pattern: 'dd/MM/yyyy'),
-                                                    style: const TextStyle(
-                                                        color: Colors.white)),
-                                                SizedBox(
-                                                  width:
-                                                      getProportionateScreenWidth(
-                                                          10),
-                                                ),
-                                                const Icon(Icons
-                                                    .calendar_month_outlined),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: SizeConfig.screenWidth * 0.5,
-                                            height: 0.5,
-                                            color: kGrey,
-                                          )
-                                        ],
-                                      ),
-                                    ),
+                                    btnDate(),
                                   ],
                                 ),
                               ),
                               SizedBox(
                                 height: getProportionateScreenHeight(4),
                               ),
-                              (_controller1.text ?? '') != '' &&
-                                      (_controller2.text ?? '') != '' &&
-                                      (massController.text ?? '') != ''
-                                  ? Container(
-                                      width: SizeConfig.screenWidth,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 3),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Expanded(
-                                            child: buildCircleK(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              shape: BoxShape.rectangle,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 6),
-                                              width:
-                                                  SizeConfig.screenWidth * 0.46,
-                                              demo: const Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'MUA',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                  Text(
-                                                    '0',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                ],
+                              if ((_controller1.text ?? '') != '' &&
+                                  (_controller2.text ?? '') != '' &&
+                                  (_massController.text ?? '') != '')
+                                Container(
+                                  width: SizeConfig.screenWidth,
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 3),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                        child: buildCircleK(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          shape: BoxShape.rectangle,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 6),
+                                          width: SizeConfig.screenWidth * 0.46,
+                                          demo: const Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'MUA',
+                                                style: TextStyle(color: kWhite),
                                               ),
-                                              color: Colors.green,
-                                              onClicked: () {},
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width:
-                                                getProportionateScreenWidth(16),
-                                          ),
-                                          Expanded(
-                                            child: buildCircleK(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              shape: BoxShape.rectangle,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 6),
-                                              width:
-                                                  SizeConfig.screenWidth * 0.46,
-                                              demo: const Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'BÁN',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                  Text(
-                                                    '0',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                ],
+                                              Text(
+                                                '0',
+                                                style: TextStyle(color: kWhite),
                                               ),
-                                              color: const Color(0xffd34343),
-                                              onClicked: () {},
-                                            ),
+                                            ],
                                           ),
-                                        ],
+                                          color: Colors.green,
+                                          onClicked: () {},
+                                        ),
                                       ),
-                                    )
-                                  : Container(
-                                      width: SizeConfig.screenWidth,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 3),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Expanded(
-                                            child: buildCircleK(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              shape: BoxShape.rectangle,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 6),
-                                              width:
-                                                  SizeConfig.screenWidth * 0.46,
-                                              demo: const Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'MUA',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                  Text(
-                                                    '0',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                ],
-                                              ),
-                                              color:
-                                                  Colors.green.withOpacity(0.5),
-                                              onClicked: () {},
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width:
-                                                getProportionateScreenWidth(16),
-                                          ),
-                                          Expanded(
-                                            child: buildCircleK(
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                              shape: BoxShape.rectangle,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 6),
-                                              width:
-                                                  SizeConfig.screenWidth * 0.46,
-                                              demo: const Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'BÁN',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                  Text(
-                                                    '0',
-                                                    style: TextStyle(
-                                                        color: kWhite),
-                                                  ),
-                                                ],
-                                              ),
-                                              color: const Color(0xffd34343)
-                                                  .withOpacity(0.5),
-                                              onClicked: () {},
-                                            ),
-                                          ),
-                                        ],
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(16),
                                       ),
-                                    )
+                                      Expanded(
+                                        child: buildCircleK(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          shape: BoxShape.rectangle,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 6),
+                                          width: SizeConfig.screenWidth * 0.46,
+                                          demo: const Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'BÁN',
+                                                style: TextStyle(color: kWhite),
+                                              ),
+                                              Text(
+                                                '0',
+                                                style: TextStyle(color: kWhite),
+                                              ),
+                                            ],
+                                          ),
+                                          color: const Color(0xffd34343),
+                                          onClicked: () {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              else
+                                Container(
+                                  width: SizeConfig.screenWidth,
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 3),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                        child: buildCircleK(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          shape: BoxShape.rectangle,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 6),
+                                          width: SizeConfig.screenWidth * 0.46,
+                                          demo: const Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'MUA',
+                                                style: TextStyle(color: kWhite),
+                                              ),
+                                              Text(
+                                                '0',
+                                                style: TextStyle(color: kWhite),
+                                              ),
+                                            ],
+                                          ),
+                                          color: Colors.green.withOpacity(0.5),
+                                          onClicked: () {},
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(16),
+                                      ),
+                                      Expanded(
+                                        child: buildCircleK(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          shape: BoxShape.rectangle,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 6),
+                                          width: SizeConfig.screenWidth * 0.46,
+                                          demo: const Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'BÁN',
+                                                style: TextStyle(color: kWhite),
+                                              ),
+                                              Text(
+                                                '0',
+                                                style: TextStyle(color: kWhite),
+                                              ),
+                                            ],
+                                          ),
+                                          color: const Color(0xffd34343)
+                                              .withOpacity(0.5),
+                                          onClicked: () {},
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
                             ],
                           ),
                         )
@@ -869,6 +447,276 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Expanded btnDate() {
+    return Expanded(
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: _selectedDate,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(getFormattedDate(departureDate, pattern: 'dd/MM/yyyy'),
+                    style: const TextStyle(color: Colors.white)),
+                SizedBox(
+                  width: getProportionateScreenWidth(10),
+                ),
+                const Icon(Icons.calendar_month_outlined),
+              ],
+            ),
+          ),
+          Container(
+            width: SizeConfig.screenWidth * 0.5,
+            height: 0.5,
+            color: kGrey,
+          )
+        ],
+      ),
+    );
+  }
+
+  Expanded btnTime(BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: _selectedTime,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  timesss.format(context),
+                  style: const TextStyle(color: Colors.white),
+                ),
+                SizedBox(
+                  width: getProportionateScreenWidth(10),
+                ),
+                const Icon(Icons.access_time_outlined),
+              ],
+            ),
+          ),
+          Container(
+            width: SizeConfig.screenWidth * 0.4,
+            height: 0.5,
+            color: kGrey,
+          )
+        ],
+      ),
+    );
+  }
+
+  Expanded btnGiaSTOP() {
+    return Expanded(
+      child: SizedBox(
+        height: getProportionateScreenHeight(40),
+        child: TextField(
+          textAlign: TextAlign.center,
+          controller: _controller1,
+          style: kTextWhite15Normal,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            hintText: 'Giá STOP',
+            prefixIcon: GestureDetector(
+              onTap: () {
+                if (_controller1.text.isEmpty) {
+                  double currentMass = 42.45;
+                  currentMass -= 1;
+                  _controller1.text = (currentMass + 1).toStringAsFixed(2);
+                } else {
+                  double currentMass = double.parse(_controller1.text);
+                  currentMass -= 1;
+                  _controller1.text = currentMass.toStringAsFixed(2);
+                }
+              },
+              child: nutBam(Alignment.centerLeft, Icons.remove),
+            ),
+            contentPadding: EdgeInsets.all(10),
+            suffixIcon: GestureDetector(
+              onTap: () {
+                if (_controller1.text.isEmpty) {
+                  double currentMass = 42.45;
+                  currentMass += 1;
+                  _controller1.text = (currentMass - 1).toStringAsFixed(2);
+                } else {
+                  double currentMass = double.parse(_controller1.text);
+                  currentMass += 1;
+                  _controller1.text = currentMass.toStringAsFixed(2);
+                }
+              },
+              child: nutBam(Alignment.centerRight, Icons.add),
+            ),
+            border: const UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: kGrey,
+                width: 0.5,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded btnKhoiLuong() {
+    return Expanded(
+      child: SizedBox(
+        height: getProportionateScreenHeight(40),
+        child: TextField(
+          textAlign: TextAlign.center,
+          controller: _massController,
+          style: kTextWhite16Normal,
+          // money <
+          //     (double.parse(_controller1.text)) *
+          //         (double.parse(_controller2.text))
+          //     ? kTextRed16Normal
+          //     :kTextWhite16Normal
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
+          ],
+          decoration: InputDecoration(
+            hintText: 'KL',
+            prefixIcon: GestureDetector(
+              onTap: () {
+                if (_massController.text.isEmpty) {
+                  double currentMass = 0;
+                  _massController.text = (currentMass).toStringAsFixed(0);
+                } else {
+                  double currentMass = double.parse(_massController.text);
+                  if (currentMass == 0) {
+                    currentMass = currentMass;
+                  } else if (currentMass >= 200 && currentMass > 0) {
+                    currentMass -= 100;
+                  } else if (currentMass < 200 && currentMass > 0) {
+                    currentMass -= 1;
+                  }
+                  _massController.text = currentMass.toStringAsFixed(0);
+                }
+              },
+              child: nutBam(Alignment.centerLeft, Icons.remove),
+            ),
+            suffixIcon: GestureDetector(
+              onTap: () {
+                if (_massController.text.isEmpty) {
+                  double currentMass = 100;
+                  _massController.text = (currentMass).toStringAsFixed(0);
+                } else {
+                  double currentMass = double.parse(_massController.text);
+                  if (currentMass < 100) {
+                    currentMass += 1;
+                  } else if (currentMass >= 100) {
+                    currentMass += 100;
+                  }
+                  _massController.text = currentMass.toStringAsFixed(0);
+                }
+              },
+              child: nutBam(Alignment.centerRight, Icons.add),
+            ),
+            border: const UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: kGrey,
+                // Màu của border bottom
+                width: 0.5, // Độ rộng của border bottom
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded btnGiaKhongDuocDat() {
+    return Expanded(
+      child: SizedBox(
+        height: getProportionateScreenHeight(40),
+        child: TextField(
+          textAlign: TextAlign.center,
+          controller: _controller2,
+          style: const TextStyle(color: Colors.white),
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            hintText: 'Giá đặt',
+            prefixIcon:
+                nutBam(Alignment.centerLeft, color: kGrey, Icons.remove),
+            suffixIcon: nutBam(color: kGrey, Alignment.centerRight, Icons.add),
+            border: const UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: kGrey,
+                // Màu của border bottom
+                width: 0.5, // Độ rộng của border bottom
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded btnGiaDat() {
+    return Expanded(
+      child: SizedBox(
+        height: getProportionateScreenHeight(40),
+        child: TextField(
+          textAlign: TextAlign.center,
+          controller: _controller2,
+          style: const TextStyle(color: Colors.white),
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            hintStyle: kTextGrey16Normal,
+            hintText: 'Giá đặt',
+            prefixIcon: GestureDetector(
+                onTap: () {
+                  if (_controller2.text.isEmpty) {
+                    double currentMass = price;
+                    currentMass -= 1;
+                    _controller2.text = (currentMass + 1).toStringAsFixed(2);
+                  } else {
+                    double currentMass = double.parse(_controller2.text);
+                    currentMass -= 1;
+                    _controller2.text = currentMass.toStringAsFixed(2);
+                  }
+                },
+                child: nutBam(Alignment.centerLeft, Icons.remove)),
+            suffixIcon: GestureDetector(
+                onTap: () {
+                  if (_controller2.text.isEmpty) {
+                    double currentMass = price;
+                    currentMass += 1;
+                    _controller2.text = (currentMass - 1).toStringAsFixed(2);
+                  } else {
+                    double currentMass = double.parse(_controller2.text);
+                    currentMass += 1;
+                    _controller2.text = currentMass.toStringAsFixed(2);
+                  }
+                },
+                child: nutBam(Alignment.centerRight, Icons.add)),
+            border: const UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: kGrey,
+                // Màu của border bottom
+                width: 0.5, // Độ rộng của border bottom
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container nutBam(AlignmentGeometry? alignment, IconData? icon,
+      {Color color = kWhite}) {
+    return Container(
+      width: getProportionateScreenWidth(60),
+      alignment: alignment,
+      color: Colors.transparent,
+      child: Icon(
+        icon,
+        size: kSizeIcons,
+        color: color,
       ),
     );
   }
@@ -933,7 +781,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
       double inputSizeBox = 0,
       double fontSize = 20}) {
     return Container(
-      height: 40,
+      height: 30,
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -952,10 +800,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               });
             },
             child: Container(
-              width: 40,
-              height: 40,
+              width: 30,
+              height: 30,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(4),
                 color: isSelectedS[0]
                     ? const Color(0xffd34343)
                     : const Color.fromARGB(255, 39, 41, 44),
@@ -979,10 +827,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               });
             },
             child: Container(
-              width: 40,
-              height: 40,
+              width: 30,
+              height: 30,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(4),
                 color: isSelectedS[1]
                     ? const Color(0xffd34343)
                     : const Color.fromARGB(255, 39, 41, 44),

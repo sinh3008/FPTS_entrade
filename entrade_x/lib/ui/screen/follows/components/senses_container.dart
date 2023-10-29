@@ -51,7 +51,7 @@ class _SensesContainerState extends State<SensesContainer> {
                     '5 ngày',
                     style: kTextWhite15Normal,
                   ),
-                  sbh(6),
+                  sizeBoxHeight(6),
                   Text(
                     '-3,39%',
                     style: kTextWhite15Normal.copyWith(
@@ -66,7 +66,7 @@ class _SensesContainerState extends State<SensesContainer> {
                     '1 năm',
                     style: kTextWhite15Normal,
                   ),
-                  sbh(6),
+                  sizeBoxHeight(6),
                   Text(
                     '24.35%',
                     style: kTextWhite15Normal.copyWith(
@@ -81,7 +81,7 @@ class _SensesContainerState extends State<SensesContainer> {
                     'Vốn hoá',
                     style: kTextWhite15Normal,
                   ),
-                  sbh(6),
+                  sizeBoxHeight(6),
                   Text(
                     '137,204,89 tỷ',
                     style: kTextWhite15Normal.copyWith(fontWeight: w500),
@@ -111,7 +111,7 @@ class _SensesContainerState extends State<SensesContainer> {
                     'P/S',
                     style: kTextWhite15Normal,
                   ),
-                  sbh(6),
+                  sizeBoxHeight(6),
                   Text(
                     '2.9x',
                     style: kTextWhite15Normal.copyWith(fontWeight: w500),
@@ -120,7 +120,7 @@ class _SensesContainerState extends State<SensesContainer> {
               ),
             ],
           ),
-          sbh(10),
+          sizeBoxHeight(10),
           lineBreak(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +154,7 @@ class _SensesContainerState extends State<SensesContainer> {
                 if (listNewsFl[index].imgPath.isEmpty) {
                   return Column(
                     children: [
-                      sbh(10),
+                      sizeBoxHeight(10),
                       AutoSizeText(
                         listNewsFl[index].title,
                         style: kTextWhite15Normal.copyWith(fontWeight: w400),
@@ -162,37 +162,37 @@ class _SensesContainerState extends State<SensesContainer> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      sbh(10),
+                      sizeBoxHeight(10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           container(
                               text: listNewsFl[index].content,
                               color: Colors.green),
-                          sbw(10),
+                          sizeBoxWidth(10),
                           container(
                               text: listNewsFl[index].content,
                               color: Colors.redAccent),
-                          sbw(10),
+                          sizeBoxWidth(10),
                           container(
                               text: listNewsFl[index].content,
                               color: Colors.redAccent),
-                          sbw(10),
+                          sizeBoxWidth(10),
                           container(text: '+1', color: Colors.redAccent),
                         ],
                       ),
-                      sbh(10),
+                      sizeBoxHeight(10),
                       Row(
                         children: [
                           const Icon(
                             Icons.access_time_sharp,
                             color: kGrey,
                           ),
-                          sbw(10),
+                          sizeBoxWidth(10),
                           Text(listNewsFl[index].time)
                         ],
                       ),
-                      sbh(10),
+                      sizeBoxHeight(10),
                       lineBreak(),
                     ],
                   );
@@ -215,18 +215,18 @@ class _SensesContainerState extends State<SensesContainer> {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                sbh(10),
+                                sizeBoxHeight(10),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     container(
                                         text: listNewsFl[index].content,
                                         color: Colors.green),
-                                    sbw(10),
+                                    sizeBoxWidth(10),
                                     container(
                                         text: listNewsFl[index].content,
                                         color: Colors.redAccent),
-                                    sbw(10),
+                                    sizeBoxWidth(10),
                                     container(
                                         text: '+1', color: Colors.redAccent),
                                   ],
@@ -237,6 +237,7 @@ class _SensesContainerState extends State<SensesContainer> {
                           Expanded(
                             flex: 1,
                             child: Container(
+                              margin:EdgeInsets.only(top: getProportionateScreenHeight(6)),
                               width: getProportionateScreenWidth(80),
                               height: getProportionateScreenHeight(80),
                               decoration: BoxDecoration(
@@ -256,11 +257,11 @@ class _SensesContainerState extends State<SensesContainer> {
                             Icons.access_time_sharp,
                             color: kGrey,
                           ),
-                          sbw(10),
+                          sizeBoxWidth(10),
                           Text(listNewsFl[index].time)
                         ],
                       ),
-                      sbh(10),
+                      sizeBoxHeight(10),
                       lineBreak(),
                     ],
                   );

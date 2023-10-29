@@ -26,7 +26,7 @@ class LatestNewsWidget extends StatelessWidget {
                 'Tin vĩ mô',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              sbw(30),
+              sizeBoxWidth(30),
               InkWell(
                 onTap: () {
                   showToast('Tin tức được cập nhật mới nhất');
@@ -61,7 +61,7 @@ class LatestNewsWidget extends StatelessWidget {
             ],
           ),
         ),
-        sbh(10),
+        sizeBoxHeight(10),
         SizedBox(
           width: SizeConfig.screenWidth,
           height: 120,
@@ -92,12 +92,12 @@ class LatestNewsWidget extends StatelessWidget {
                                 maxLines: 2,
                               ),
                             ),
-                            sbh(6),
+                            sizeBoxHeight(6),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(infoFake.list[index].time),
-                                sbw(30),
+                                sizeBoxWidth(30),
                                 Text(infoFake.list[index].author),
                               ],
                             ),

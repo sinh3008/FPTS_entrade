@@ -8,11 +8,7 @@ import '../../../components/circle_k.dart';
 import '../../../pages_test/order_page.dart';
 import '../../../pages_test/search_page.dart';
 import '../../home/components/ideas/investment_ideas.dart';
-<<<<<<< HEAD
-=======
 
-
->>>>>>> origin/main
 
 AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
   return AppBar(
@@ -32,7 +28,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
         ),
         child: Column(
           children: [
-            sbh(6),
+            sizeBoxHeight(6),
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(16)),
@@ -49,7 +45,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        sbw(10),
+                        sizeBoxWidth(10),
                         Image(
                           image: const AssetImage(sReadyStock),
                           fit: BoxFit.cover,
@@ -104,7 +100,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                 ],
               ),
             ),
-            sbh(10),
+            sizeBoxHeight(10),
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(16)),
@@ -124,7 +120,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                             style: kTextGrey13Normal,
                             textAlign: TextAlign.justify,
                           ),
-                          sbw(6),
+                          sizeBoxWidth(6),
                           buildCircleK(
                             padding: EdgeInsets.zero,
                             demo: const Icon(
@@ -137,7 +133,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                             height: getProportionateScreenHeight(30),
                             onClicked: () {},
                           ),
-                          sbw(6),
+                          sizeBoxWidth(6),
                           buildCircleK(
                             padding: EdgeInsets.zero,
                             demo: const Icon(

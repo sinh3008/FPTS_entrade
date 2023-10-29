@@ -30,16 +30,14 @@ class _BodyLoginState extends State<BodyLogin> {
     return Scaffold(
       backgroundColor: kBlackBackgroundCustom,
       appBar: AppBar(
-<<<<<<< HEAD
+
         title: const Text(
           sVersionApp,
           style: kTextGrey11Normal,
         ),
         centerTitle: true,
         elevation: 0,
-=======
-        title:  Text('Entrade X', style: TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color),),
->>>>>>> origin/main
+
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -51,7 +49,7 @@ class _BodyLoginState extends State<BodyLogin> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              sbh(20),
+              sizeBoxHeight(20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +69,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   ),
                 ],
               ),
-              sbh(30),
+              sizeBoxHeight(30),
               TextFormField(
                 onChanged: (value) {
                   email = value;
@@ -90,7 +88,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   hintText: sHintPassLogin,
                 ),
               ),
-              sbh(10),
+              sizeBoxHeight(10),
               TextButton(
                 onPressed: () {},
                 child: const Text(
@@ -99,7 +97,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   textAlign: TextAlign.start,
                 ),
               ),
-              sbh(10),
+              sizeBoxHeight(10),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -128,7 +126,7 @@ class _BodyLoginState extends State<BodyLogin> {
                       text: sLogin,
                     ),
                   ),
-                  sbw(10),
+                  sizeBoxWidth(10),
                   buildCircleK(
                     onClicked: () async {
                       final isAuthenticated = await LocalAuthApi.authenticate();
@@ -148,7 +146,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   ),
                 ],
               ),
-              sbh(25),
+              sizeBoxHeight(25),
               SizedBox(
                 width: SizeConfig.screenWidth,
                 child: const Text(
@@ -157,7 +155,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   style: kTextGrey16Normal,
                 ),
               ),
-              sbh(25),
+              sizeBoxHeight(25),
               SizedBox(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -170,7 +168,7 @@ class _BodyLoginState extends State<BodyLogin> {
                         ),
                         color: Colors.white,
                         onClicked: () {}),
-                    sbw(20),
+                    sizeBoxWidth(20),
                     buildCircleK(
                       onClicked: () {},
                       demo: SvgPicture.asset(sGg, alignment: Alignment.center),
@@ -179,7 +177,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   ],
                 ),
               ),
-              sbh(120),
+              sizeBoxHeight(120),
               buttonBottomLogin(
                   text: sCreateAccount, color: kBgCreateAccount, margin: 40),
               buttonBottomLogin(text: sTermOfUse, margin: 40),

@@ -29,7 +29,7 @@ AppBar buildAppBarHome(BuildContext context) {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            sbw(16),
+            sizeBoxWidth(16),
             Expanded(
               child: Container(
                 width: SizeConfig.screenWidth * 0.7,
@@ -41,7 +41,7 @@ AppBar buildAppBarHome(BuildContext context) {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    sbw(10),
+                    sizeBoxWidth(10),
                     Image(
                       image: const AssetImage(sReadyStock),
                       fit: BoxFit.cover,
@@ -78,7 +78,7 @@ AppBar buildAppBarHome(BuildContext context) {
                 ),
               ),
             ),
-            sbw(8),
+            sizeBoxWidth(8),
             buildCircleK(
                 width: getProportionateScreenWidth(45),
                 height: getProportionateScreenHeight(45),
@@ -95,7 +95,7 @@ AppBar buildAppBarHome(BuildContext context) {
                   color: Colors.yellow.shade400,
                 ),
                 color: kBgBoxSearch),
-            sbw(16),
+            sizeBoxWidth(16),
           ],
         ),
       ),

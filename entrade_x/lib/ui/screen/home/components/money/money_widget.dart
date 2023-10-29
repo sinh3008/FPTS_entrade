@@ -40,7 +40,7 @@ class MoneyWidget extends StatelessWidget {
                               '*** *** ***',
                               style: kTextWhite20Bold,
                             ),
-                      sbw(10),
+                      sizeBoxWidth(10),
                       GestureDetector(
                         onTap: () {},
                         child: Container(
@@ -74,7 +74,7 @@ class MoneyWidget extends StatelessWidget {
                                     : buildIconShowHide(imgPath: sShow),
                               ),
                             ),
-                            sbw(10),
+                            sizeBoxWidth(10),
                           ],
                         ),
                       ),
@@ -89,7 +89,7 @@ class MoneyWidget extends StatelessWidget {
                       sInfoCheck,
                       style: kTextGrey15Normal,
                     ),
-                    sbw(10),
+                    sizeBoxWidth(10),
                     InkWell(
                       onTap: () {
                         showToast('Hôm nay, khoản đầu tư của bạn tăng 0đ');
@@ -105,7 +105,7 @@ class MoneyWidget extends StatelessWidget {
                     )
                   ],
                 ),
-                sbh(4),
+                sizeBoxHeight(4),
                 const Text(
                   '0',
                   style: kTextGreen16Normal,

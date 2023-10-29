@@ -33,7 +33,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
             style: kTextGrey16Normal.copyWith(fontWeight: w500),
           ),
         ),
-        sbh(10),
+        sizeBoxHeight(10),
         Container(
           padding: EdgeInsets.symmetric(
               vertical: getProportionateScreenHeight(12),
@@ -43,7 +43,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
           child: Column(
             children: [
               const TimeWidget(),
-              sbh(10),
+              sizeBoxHeight(10),
               BlocBuilder<ChartBloc, ChartState>(
                 buildWhen: (previous, current) => previous != current,
                 builder: (context, state) {
@@ -89,7 +89,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                   }
                 },
               ),
-              sbh(5),
+              sizeBoxHeight(5),
               Row(
                 children: [
                   Expanded(
@@ -114,7 +114,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                   ),
                 ],
               ),
-              sbh(5),
+              sizeBoxHeight(5),
               BlocBuilder<IdeasBloc, IdeasState>(
                 builder: (context, state) {
                   if (state is IdeasLoadingState) {
@@ -123,11 +123,11 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                     return Row(
                       children: [
                         selectedMethod(state, SizeConfig.screenWidth, 0),
-                        sbw(4),
+                        sizeBoxWidth(4),
                         selectedMethod(state, SizeConfig.screenWidth, 1),
-                        sbw(4),
+                        sizeBoxWidth(4),
                         selectedMethod(state, SizeConfig.screenWidth, 2),
-                        sbw(4),
+                        sizeBoxWidth(4),
                       ],
                     );
                   } else {
@@ -211,7 +211,7 @@ class _TimeWidgetState extends State<TimeWidget> {
               textAlign: TextAlign.center, style: kTextWhite16Normal),
           color: selectIndex == 0 ? kRedButtonBG : Colors.black,
         ),
-        sbw(10),
+        sizeBoxWidth(10),
         buildRecBorder(
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 1));
@@ -223,7 +223,7 @@ class _TimeWidgetState extends State<TimeWidget> {
               textAlign: TextAlign.center, style: kTextWhite16Normal),
           color: selectIndex == 1 ? kRedButtonBG : Colors.black,
         ),
-        sbw(10),
+        sizeBoxWidth(10),
         buildRecBorder(
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 2));
@@ -238,7 +238,7 @@ class _TimeWidgetState extends State<TimeWidget> {
           ),
           color: selectIndex == 2 ? kRedButtonBG : Colors.black,
         ),
-        sbw(10),
+        sizeBoxWidth(10),
         buildRecBorder(
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 3));

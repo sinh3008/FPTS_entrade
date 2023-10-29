@@ -183,7 +183,7 @@ class BuocGiaContainer extends StatelessWidget {
                   ],
                 ),
               ),
-              sbh(8),
+              sizeBoxHeight(8),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -204,13 +204,13 @@ class BuocGiaContainer extends StatelessWidget {
                   )
                 ],
               ),
-              sbh(8),
+              sizeBoxHeight(8),
               Container(
                 width: SizeConfig.screenWidth,
                 height: 0.5,
                 color: kGrey,
               ),
-              sbh(8),
+              sizeBoxHeight(8),
               Column(
                 children: [
                   Row(
@@ -220,19 +220,19 @@ class BuocGiaContainer extends StatelessWidget {
                           text1: 'Sàn',
                           text2: '79.30',
                           color: const Color(0xff44caf3)),
-                      sbw(30),
+                      sizeBoxWidth(30),
                       buildRowSan(
                           text1: 'TC',
                           text2: '85.20',
                           color: const Color(0xffe8a722)),
-                      sbw(30),
+                      sizeBoxWidth(30),
                       buildRowSan(
                           text1: 'Trần',
                           text2: '91.10',
                           color: const Color(0xfff068fb)),
                     ],
                   ),
-                  sbh(10),
+                  sizeBoxHeight(10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -252,13 +252,13 @@ class BuocGiaContainer extends StatelessWidget {
                   )
                 ],
               ),
-              sbh(8),
+              sizeBoxHeight(8),
               Container(
                 width: SizeConfig.screenWidth,
                 height: 0.5,
                 color: kGrey,
               ),
-              sbh(8),
+              sizeBoxHeight(8),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -285,7 +285,7 @@ class BuocGiaContainer extends StatelessWidget {
                   )
                 ],
               ),
-              sbh(8),
+              sizeBoxHeight(8),
             ],
           ),
         )

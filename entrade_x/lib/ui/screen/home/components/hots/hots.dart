@@ -32,7 +32,7 @@ class _HostWidgetState extends State<HostWidget> {
                 txt3: 'trọn đời',
                 iconPath: sTransaction),
           ),
-          sbw(10),
+          sizeBoxWidth(10),
           Expanded(
             child: buildEventContainer(
               onTap: () => Navigator.push(

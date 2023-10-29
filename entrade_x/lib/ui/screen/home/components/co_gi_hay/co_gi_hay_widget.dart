@@ -14,7 +14,7 @@ class CoGiHayContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          sbh(4),
+          sizeBoxHeight(4),
           Padding(
             padding: EdgeInsets.only(left: getProportionateScreenWidth(10)),
             child: Text(
@@ -22,7 +22,7 @@ class CoGiHayContainer extends StatelessWidget {
               style: kTextGrey14Normal.copyWith(fontWeight: w500),
             ),
           ),
-          sbh(4),
+          sizeBoxHeight(4),
           ItemCoGiHay(
               backIconColor: const Color(0xff3c2140),
               imgPath: sGiftBox,
@@ -105,7 +105,7 @@ Container ItemCoGiHay({
             ),
           ),
         ),
-        sbw(10),
+        sizeBoxWidth(10),
         Expanded(
           flex: 4,
           child: Column(
@@ -115,7 +115,7 @@ Container ItemCoGiHay({
                 title,
                 style: const TextStyle(color: Colors.white),
               ),
-              sbh(10),
+              sizeBoxHeight(10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +124,7 @@ Container ItemCoGiHay({
                     image: AssetImage(imgPath2),
                     width: getProportionateScreenWidth(16),
                   ),
-                  sbw(6),
+                  sizeBoxWidth(6),
                   // Text(content1_1),
                   AutoSizeText(
                     content1_1,
@@ -139,14 +139,14 @@ Container ItemCoGiHay({
                   )
                 ],
               ),
-              sbh(6),
+              sizeBoxHeight(6),
               Row(
                 children: [
                   Image(
                     image: AssetImage(imgPath3),
                     width: 16,
                   ),
-                  sbw(6),
+                  sizeBoxWidth(6),
                   Text(content2_1),
                   Text(content2_2),
                 ],

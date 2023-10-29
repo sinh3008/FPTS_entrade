@@ -29,10 +29,10 @@ double getProportionateScreenWidth(double inputWidth) {
   return (inputWidth / 375.0) * screenWidth;
 }
 
-SizedBox sbw(double input) {
+SizedBox sizeBoxWidth(double input) {
   return SizedBox(width: getProportionateScreenWidth(input));
 }
 
-SizedBox sbh(double input) {
+SizedBox sizeBoxHeight(double input) {
   return SizedBox(height: getProportionateScreenHeight(input));
 }

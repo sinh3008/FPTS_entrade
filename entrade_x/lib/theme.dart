@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-<<<<<<< HEAD
-=======
+
 // ThemeData theme() {
 //   return ThemeData(
 //     colorScheme: const ColorScheme.dark().copyWith(
@@ -18,7 +17,7 @@ import 'package:flutter/material.dart';
 //   );
 // }
 
->>>>>>> origin/main
+
 final lightTheme = ThemeData(
   brightness: Brightness.light,
   primarySwatch: Colors.blue,

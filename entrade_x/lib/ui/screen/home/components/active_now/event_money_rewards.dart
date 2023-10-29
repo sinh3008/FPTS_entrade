@@ -58,7 +58,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
       width: SizeConfig.screenWidth,
       child: Column(
         children: [
-          sbh(20),
+          sizeBoxHeight(20),
           Container(
             padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(16)),
             child: Row(
@@ -85,7 +85,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
               ],
             ),
           ),
-          sbh(6),
+          sizeBoxHeight(6),
           const Text(
             '+0đ',
             style: kTextGreen16Normal,
@@ -182,7 +182,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
               ],
             ),
           ),
-          sbh(10),
+          sizeBoxHeight(10),
           ButtonLoginWidget(
             radius: 30,
             width: SizeConfig.screenWidth * 0.4,
@@ -197,7 +197,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
             },
             text: 'Nộp tiền ngay',
           ),
-          sbh(20),
+          sizeBoxHeight(20),
         ],
       ),
     );

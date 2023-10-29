@@ -39,7 +39,7 @@ GestureDetector buildEventContainer(
               ),
             ],
           ),
-          sbw(10),
+          sizeBoxWidth(10),
           buildCircleK(
             onClicked: onTap!,
             demo: Image(

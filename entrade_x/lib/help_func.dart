@@ -1,3 +1,6 @@
+import 'dart:core';
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -46,10 +49,9 @@ List<double> calculatePercentages2(List<DataKa> dataList2) {
 
 final List<double> percentages = calculatePercentages(dataList1);
 final List<double> percentages2 = calculatePercentages(dataList2);
-<<<<<<< HEAD
 
 
-String formatCurrency(int amount) {
+String formatCurrency(double amount) {
   final formatter = NumberFormat.currency(
     locale: 'vi_VN',
     symbol: '', // Để loại bỏ ký hiệu tiền tệ (VD: VNĐ)
@@ -71,5 +73,3 @@ class OrderTime {
         required this.price,
         required this.percent});
 }
-=======
->>>>>>> origin/main

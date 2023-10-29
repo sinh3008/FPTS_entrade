@@ -44,7 +44,7 @@ class IdeasContainer extends StatelessWidget {
                   color: Colors.yellow.shade500.withOpacity(0.4),
                 ),
               ),
-              sbw(20),
+              sizeBoxWidth(20),
               SizedBox(
                 width: SizeConfig.screenWidth * 0.8,
                 child: Column(
@@ -55,7 +55,7 @@ class IdeasContainer extends StatelessWidget {
                       sIdeas,
                       style: kTextGreen16Normal.copyWith(fontWeight: w500),
                     ),
-                    sbh(4),
+                    sizeBoxHeight(4),
                     const Text(
                       sSeeNow,
                       style: kTextWhite15Normal,
@@ -65,16 +65,16 @@ class IdeasContainer extends StatelessWidget {
               )
             ],
           ),
-          sbh(10),
+          sizeBoxHeight(10),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Row(
                 children: [
                   newMethod(),
-                  sbw(10),
+                  sizeBoxWidth(10),
                   newMethod(),
-                  sbw(10),
+                  sizeBoxWidth(10),
                   newMethod(),
                 ],
               ),
@@ -97,7 +97,7 @@ class IdeasContainer extends StatelessWidget {
               )
             ],
           ),
-          sbh(14),
+          sizeBoxHeight(14),
         ],
       ),
     );
@@ -124,7 +124,7 @@ Container newMethod() {
           style: kTextWhite16Bold,
         ),
         const Text('65.40 0.6%', style: kTextGreen15Normal),
-        sbh(4),
+        sizeBoxHeight(4),
         BlocBuilder<ChartBloc, ChartState>(
           buildWhen: (previous, current) => previous != current,
           builder: (context, state) {
