@@ -25,7 +25,6 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
   TextEditingController controllerKL = TextEditingController();
 
   int mass = 0;
-  static double money = 10000000;
   double price = 42.25;
 
   @override
@@ -47,7 +46,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
       child: Container(
         padding: EdgeInsets.only(bottom: getProportionateScreenHeight(8)),
         decoration: BoxDecoration(
-          color: Theme.of(context).appBarTheme.foregroundColor,
+          color: Theme
+              .of(context)
+              .appBarTheme
+              .foregroundColor,
           borderRadius: const BorderRadius.only(),
         ),
         child: BlocBuilder<ConditionalBloc, ConditionalState>(
@@ -99,9 +101,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     ),
                                     color: kRedButtonBG,
                                     onClicked: () {
-                                      setState(() {
-                                        money += 1000000000;
-                                      });
+                                      money += 1000000000;
+                                      context.read<ConditionalBloc>().add(
+                                          ClickFitPriceEvent(
+                                              0, money, cellingPrice));
                                     },
                                   )
                                 ],
@@ -122,7 +125,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                           )
                                         ],
                                         borderRadius:
-                                            BorderRadius.circular(20)),
+                                        BorderRadius.circular(20)),
                                   ),
                                   sizeBoxWidth(10),
                                   SizedBox(
@@ -148,7 +151,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                               Expanded(
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
                                       'Khi giá',
@@ -175,12 +178,12 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   vertical: getProportionateScreenHeight(3)),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         const Text(
                                           'Kích hoạt',
@@ -211,7 +214,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                         decoration: BoxDecoration(
                                           color: kRedButtonBG,
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                          BorderRadius.circular(20),
                                           boxShadow: [
                                             boxShadowFight(),
                                           ],
@@ -235,7 +238,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                               padding: const EdgeInsets.symmetric(vertical: 3),
                               child: Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   if (isSelected2[0])
                                     btnGiaDat()
@@ -255,16 +258,16 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                             children: [
                               Expanded(
                                   child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: getProportionateScreenWidth(60),
-                                    child: const Text(
-                                      'Hết hạn',
-                                    ),
-                                  ),
-                                  btnTime(context),
-                                ],
-                              )),
+                                    children: [
+                                      SizedBox(
+                                        width: getProportionateScreenWidth(60),
+                                        child: const Text(
+                                          'Hết hạn',
+                                        ),
+                                      ),
+                                      btnTime(context),
+                                    ],
+                                  )),
                               SizedBox(
                                 width: getProportionateScreenWidth(20),
                               ),
@@ -290,7 +293,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   width: SizeConfig.screenWidth * 0.46,
                                   demo: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       GestureDetector(
@@ -324,7 +327,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       ),
                                     ],
                                   ),
-                                  color: Colors.green,
+                                  color: controllerGiaStop.text.isEmpty ||
+                                      controllerGiaDat.text.isEmpty ||
+                                      controllerKL.text.isEmpty ? Colors.green.withOpacity(0.5) : Colors.green ,
                                   onClicked: () {},
                                 ),
                               ),
@@ -336,11 +341,11 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   borderRadius: BorderRadius.circular(4),
                                   shape: BoxShape.rectangle,
                                   padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
+                                  const EdgeInsets.symmetric(vertical: 6),
                                   width: SizeConfig.screenWidth * 0.46,
                                   demo: const Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                    CrossAxisAlignment.center,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
@@ -353,7 +358,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       ),
                                     ],
                                   ),
-                                  color: kRedButtonBG,
+                                  color: controllerGiaStop.text.isEmpty ||
+                                      controllerGiaDat.text.isEmpty ||
+                                      controllerKL.text.isEmpty ? kRedButtonBG.withOpacity(0.5) : kRedButtonBG ,
                                   onClicked: () {},
                                 ),
                               ),
@@ -391,7 +398,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
             children: [
               Text(getFormattedDate(departureDate, pattern: 'dd/MM/yyyy'),
                   style: TextStyle(
-                      color: Theme.of(context).colorScheme.onBackground)),
+                      color: Theme
+                          .of(context)
+                          .colorScheme
+                          .onBackground)),
               SizedBox(
                 width: getProportionateScreenWidth(10),
               ),
@@ -446,10 +456,17 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         ),
         height: getProportionateScreenHeight(40),
         child: TextField(
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
+          ],
           textAlign: TextAlign.center,
           controller: controllerGiaStop,
           style: kTextWhite15Normal.copyWith(
-              color: Theme.of(context).colorScheme.onBackground),
+            color: Theme
+                .of(context)
+                .colorScheme
+                .onBackground,
+          ),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
             hintText: 'Giá STOP',
@@ -461,12 +478,19 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   controllerGiaStop.text = (currentMass + 1).toStringAsFixed(2);
                 } else {
                   double currentMass = double.parse(controllerGiaStop.text);
-                  currentMass -= 1;
+                  if (currentMass <= 0.00) {
+                    currentMass = currentMass;
+                  } else {
+                    currentMass -= 1;
+                  }
                   controllerGiaStop.text = currentMass.toStringAsFixed(2);
                 }
               },
               child: nutBam(Alignment.centerLeft, Icons.remove,
-                  color: Theme.of(context).colorScheme.onBackground),
+                  color: Theme
+                      .of(context)
+                      .colorScheme
+                      .onBackground),
             ),
             contentPadding: const EdgeInsets.all(10),
             suffixIcon: GestureDetector(
@@ -482,7 +506,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                 }
               },
               child: nutBam(Alignment.centerRight, Icons.add,
-                  color: Theme.of(context).colorScheme.onBackground),
+                  color: Theme
+                      .of(context)
+                      .colorScheme
+                      .onBackground),
             ),
           ),
         ),
@@ -507,11 +534,17 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
           },
           style: controllerKL.text.isNotEmpty
               ? (money / 91100 > double.parse(controllerKL.text)
-                  ? kText16Normal.copyWith(
-                      color: Theme.of(context).colorScheme.onBackground)
-                  : kTextRed16Normal)
+              ? kText16Normal.copyWith(
+              color: Theme
+                  .of(context)
+                  .colorScheme
+                  .onBackground)
+              : kTextRed16Normal)
               : kText16Normal.copyWith(
-                  color: Theme.of(context).colorScheme.onBackground),
+              color: Theme
+                  .of(context)
+                  .colorScheme
+                  .onBackground),
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
@@ -539,7 +572,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               child: nutBam(
                 Alignment.centerLeft,
                 Icons.remove,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .onBackground,
               ),
             ),
             suffixIcon: GestureDetector(
@@ -561,7 +597,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               child: nutBam(
                 Alignment.centerRight,
                 Icons.add,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .onBackground,
               ),
             ),
             border: const UnderlineInputBorder(
@@ -577,9 +616,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
   }
 
   Expanded btnGiaKhongDuocDat() {
+    controllerGiaDat.clear();
     return Expanded(
       child: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             border: Border(bottom: BorderSide(width: 0.5, color: kGrey))),
         height: getProportionateScreenHeight(40),
         child: TextField(
@@ -590,7 +630,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
             hintText: 'Giá đặt',
             hintStyle: const TextStyle(color: kGrey),
             prefixIcon:
-                nutBam(Alignment.centerLeft, color: kGrey, Icons.remove),
+            nutBam(Alignment.centerLeft, color: kGrey, Icons.remove),
             suffixIcon: nutBam(color: kGrey, Alignment.centerRight, Icons.add),
           ),
         ),
@@ -608,10 +648,16 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         ),
         height: getProportionateScreenHeight(40),
         child: TextField(
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
+          ],
           textAlign: TextAlign.center,
           controller: controllerGiaDat,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onBackground,
+            color: Theme
+                .of(context)
+                .colorScheme
+                .onBackground,
           ),
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
@@ -625,14 +671,21 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   controllerGiaDat.text = (currentMass + 1).toStringAsFixed(2);
                 } else {
                   double currentMass = double.parse(controllerGiaDat.text);
-                  currentMass -= 1;
+                  if (currentMass > 0) {
+                    currentMass -= 1;
+                  } else {
+                    currentMass = 0;
+                  }
                   controllerGiaDat.text = currentMass.toStringAsFixed(2);
                 }
               },
               child: nutBam(
                 Alignment.centerLeft,
                 Icons.remove,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .onBackground,
               ),
             ),
             suffixIcon: GestureDetector(
@@ -650,7 +703,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               child: nutBam(
                 Alignment.centerRight,
                 Icons.add,
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .onBackground,
               ),
             ),
           ),
@@ -759,18 +815,20 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
     }
   }
 
-  Container moeCaiNut(
-      {required List<bool> isSelectedS,
-      required String text1,
-      required String text2,
-      double inputSizeBox = 0,
-      double fontSize = 20}) {
+  Container moeCaiNut({required List<bool> isSelectedS,
+    required String text1,
+    required String text2,
+    double inputSizeBox = 0,
+    double fontSize = 20}) {
     return Container(
       height: 30,
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).appBarTheme.foregroundColor,
+        color: Theme
+            .of(context)
+            .appBarTheme
+            .foregroundColor,
       ),
       child: Row(
         children: [
@@ -799,7 +857,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                 ],
                 color: isSelectedS[0]
                     ? AppColor.redPrimary
-                    : Theme.of(context).appBarTheme.backgroundColor,
+                    : Theme
+                    .of(context)
+                    .appBarTheme
+                    .backgroundColor,
               ),
               child: Center(
                 child: Text(
@@ -807,7 +868,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   style: TextStyle(
                       color: isSelectedS[0]
                           ? kWhite
-                          : Theme.of(context).colorScheme.onBackground,
+                          : Theme
+                          .of(context)
+                          .colorScheme
+                          .onBackground,
                       fontSize: fontSize),
                 ),
               ),
@@ -838,7 +902,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                 borderRadius: BorderRadius.circular(4),
                 color: isSelectedS[1]
                     ? AppColor.redPrimary
-                    : Theme.of(context).appBarTheme.backgroundColor,
+                    : Theme
+                    .of(context)
+                    .appBarTheme
+                    .backgroundColor,
               ),
               child: Center(
                 child: Text(
@@ -846,7 +913,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   style: TextStyle(
                       color: isSelectedS[1]
                           ? kWhite
-                          : Theme.of(context).colorScheme.onBackground,
+                          : Theme
+                          .of(context)
+                          .colorScheme
+                          .onBackground,
                       fontSize: fontSize),
                 ),
               ),

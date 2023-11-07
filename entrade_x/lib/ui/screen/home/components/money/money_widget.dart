@@ -26,6 +26,7 @@ class MoneyWidget extends StatelessWidget {
                 color: Theme.of(context).appBarTheme.backgroundColor),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
                   child: Row(

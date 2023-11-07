@@ -1,7 +1,9 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:entrade_x/blocs/theme/theme_bloc.dart';
 import 'package:entrade_x/other/routes.dart';
 import 'package:entrade_x/theme/theme.dart';
 import 'package:entrade_x/ui/screen/login/login_screen.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/bank/bankitem_bloc.dart';
@@ -14,7 +16,12 @@ import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/money/money_bloc.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      builder: (context) => const MyApp(),
+      enabled: kReleaseMode,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -39,6 +46,9 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp(
+            useInheritedMediaQuery: true,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
             debugShowCheckedModeBanner: false,
             theme: state.isDark ? darkThemeData : lightThemeData,
             routes: routes,

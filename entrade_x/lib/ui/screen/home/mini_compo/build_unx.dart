@@ -16,13 +16,10 @@ InkWell buildUnx({
   return InkWell(
     onTap: onTap,
     child: Container(
-      width: width * 0.3,
-      height: getProportionateScreenHeight(130),
-      padding: const EdgeInsets.only(left: 10, top: 12, bottom: 12, right: 6),
+      height: getProportionateScreenHeight(180),
+      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6), vertical: getProportionateScreenWidth(10)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          // color: const Color(0xff202123),
-          // color: isActive ? const Color(0xff54534c) : const Color(0xff202123),
           color: color2),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -32,7 +29,6 @@ InkWell buildUnx({
             width: 10,
             height: 10,
             decoration: BoxDecoration(
-              // color: isActive ? Colors.red : const Color(0xff202123),
               color: color,
               borderRadius: BorderRadius.circular(30),
             ),

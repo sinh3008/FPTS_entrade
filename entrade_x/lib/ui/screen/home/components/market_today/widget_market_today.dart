@@ -120,15 +120,18 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                   if (state is IdeasLoadingState) {
                     return const CircularProgressIndicator();
                   } else if (state is IdeasSuccessState) {
-                    return Row(
-                      children: [
-                        selectedMethod(state, SizeConfig.screenWidth, 0),
-                        sizeBoxWidth(4),
-                        selectedMethod(state, SizeConfig.screenWidth, 1),
-                        sizeBoxWidth(4),
-                        selectedMethod(state, SizeConfig.screenWidth, 2),
-                        sizeBoxWidth(4),
-                      ],
+                    return Container(
+                      width: SizeConfig.screenWidth,
+                      child: Row(
+                        children: [
+                          Expanded(child: selectedMethod(state, SizeConfig.screenWidth, 0)),
+                          sizeBoxWidth(4),
+                          Expanded(child: selectedMethod(state, SizeConfig.screenWidth, 1)),
+                          sizeBoxWidth(4),
+                          Expanded(child: selectedMethod(state, SizeConfig.screenWidth, 2)),
+                          sizeBoxWidth(4),
+                        ],
+                      ),
                     );
                   } else {
                     return Center(
@@ -179,7 +182,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
         '${state.stocks[index].totalPrice} tỷ',
         style: kTextGrey15Normal,
       ),
-      width: width,
+      width: width ,
       isActive: false,
     );
   }

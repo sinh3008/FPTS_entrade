@@ -73,5 +73,5 @@ class OrderTime {
         required this.percent});
 }
 
-double money = 999999999;
+double money = 10000000;
 double cellingPrice = 91.10;

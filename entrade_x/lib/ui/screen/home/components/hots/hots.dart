@@ -16,10 +16,12 @@ class HostWidget extends StatefulWidget {
 class _HostWidgetState extends State<HostWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      width: SizeConfig.screenWidth,
       padding:
           EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8.0)),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
             child: buildEventContainer(
@@ -34,7 +36,7 @@ class _HostWidgetState extends State<HostWidget> {
                 txt3: 'trọn đời',
                 iconPath: sTransaction),
           ),
-          sizeBoxWidth(10),
+            sizeBoxWidth(10),
           Expanded(
             child: buildEventContainer(
               context: context,

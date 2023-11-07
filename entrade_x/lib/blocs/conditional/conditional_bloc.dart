@@ -14,7 +14,7 @@ class ConditionalBloc extends Bloc<ConditionalEvent, ConditionalState> {
   FutureOr<void> _click(
       ClickFitPriceEvent event, Emitter<ConditionalState> emit) {
     emit(ConditionalFitLoadingState());
-    double values = money / cellingPrice;
+    double values = money / (cellingPrice * 1000);
     emit(ConditionalFitSuccessState(event.priceFit, values));
     // print(event.priceFit);
   }
