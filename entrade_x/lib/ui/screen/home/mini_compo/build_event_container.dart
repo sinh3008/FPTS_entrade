@@ -1,8 +1,8 @@
-import 'package:entrade_x/constrants.dart';
-import 'package:entrade_x/size_config.dart';
-import 'package:entrade_x/strings.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/other/strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../theme/size_config.dart';
 import '../../../components/circle_k.dart';
 
 GestureDetector buildEventContainer(
@@ -10,7 +10,9 @@ GestureDetector buildEventContainer(
     required String txt2,
     required void Function()? onTap,
     required String txt3,
-    String iconPath = sReadyStock}) {
+    String iconPath = sReadyStock,
+    required BuildContext context
+    }) {
   return GestureDetector(
     onTap: onTap,
     child: Container(
@@ -19,7 +21,7 @@ GestureDetector buildEventContainer(
           vertical: getProportionateScreenHeight(20)),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: kBgHomeContainer,
+        color: Theme.of(context).appBarTheme.backgroundColor
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

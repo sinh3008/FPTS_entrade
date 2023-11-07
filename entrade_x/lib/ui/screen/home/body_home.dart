@@ -1,12 +1,12 @@
 import 'package:entrade_x/blocs/conditional/conditional_bloc.dart';
 import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
-import 'package:entrade_x/size_config.dart';
+import 'package:entrade_x/other/help_func.dart';
+import 'package:entrade_x/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/bank/bankitem_bloc.dart';
 import '../../../blocs/chart/chart_bloc.dart';
 import '../../../blocs/money/money_bloc.dart';
-import '../../../constrants.dart';
 import 'components/active_now/event_money_rewards.dart';
 import 'components/co_gi_hay/co_gi_hay_widget.dart';
 import 'components/hots/hots.dart';
@@ -33,13 +33,13 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
     context.read<ChartBloc>().add(ChartClickItemEvent(id: 0));
     context.read<IdeasBloc>().add(IdeasShowEvent());
     context.read<BankitemBloc>().add(BankClickedItemEvent(0));
-    context.read<ConditionalBloc>().add(ClickFitPriceEvent(0));
+    context.read<ConditionalBloc>().add(ClickFitPriceEvent(0, money, cellingPrice));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBlackBackgroundCustom,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: buildAppBarHome(context),
       body: SingleChildScrollView(
         child: Column(

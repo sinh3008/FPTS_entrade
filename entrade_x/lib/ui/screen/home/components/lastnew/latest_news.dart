@@ -1,11 +1,12 @@
-import 'package:entrade_x/constrants.dart';
-import 'package:entrade_x/size_config.dart';
-import 'package:entrade_x/toast.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/other/toast.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../repo/informations.dart';
+import '../../../../../theme/size_config.dart';
 import 'last_new_all.dart';
 
+// ignore: must_be_immutable
 class LatestNewsWidget extends StatelessWidget {
   IDataInfoFake infoFake = IDataInfoFake();
 
@@ -15,6 +16,7 @@ class LatestNewsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        sizeBoxHeight(10),
         Padding(
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8)),
@@ -22,9 +24,10 @@ class LatestNewsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Tin vĩ mô',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    kTextGrey16Normal.copyWith(fontWeight: w500),
               ),
               sizeBoxWidth(30),
               InkWell(
@@ -62,7 +65,10 @@ class LatestNewsWidget extends StatelessWidget {
           ),
         ),
         sizeBoxHeight(10),
-        SizedBox(
+        Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).appBarTheme.backgroundColor,
+          ),
           width: SizeConfig.screenWidth,
           height: 120,
           child: PageView.builder(
@@ -71,8 +77,8 @@ class LatestNewsWidget extends StatelessWidget {
                   vertical: getProportionateScreenHeight(10),
                   horizontal: getProportionateScreenWidth(8)),
               width: SizeConfig.screenWidth,
-              color: kBgHomeContainer,
-              child: Container(
+              // color: kBgHomeContainer,
+              child: SizedBox(
                 height: 120,
                 child: Column(
                   children: [
@@ -87,8 +93,11 @@ class LatestNewsWidget extends StatelessWidget {
                               width: SizeConfig.screenWidth * 0.6,
                               child: Text(
                                 infoFake.list[index].title,
-                                style:
-                                    kTextWhite14Bold.copyWith(fontWeight: w500),
+                                style: kTextGrey16Normal.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground,
+                                ),
                                 maxLines: 2,
                               ),
                             ),
@@ -112,7 +121,6 @@ class LatestNewsWidget extends StatelessWidget {
                         ),
                       ],
                     ),
-
                     Expanded(
                       child: Text(
                         '${index + 1}/${infoFake.list.length}',

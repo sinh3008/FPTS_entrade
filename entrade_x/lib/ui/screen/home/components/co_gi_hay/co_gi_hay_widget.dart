@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:entrade_x/constrants.dart';
-import 'package:entrade_x/size_config.dart';
-import 'package:entrade_x/strings.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/theme/size_config.dart';
+import 'package:entrade_x/other/strings.dart';
 import 'package:flutter/material.dart';
 
 class CoGiHayContainer extends StatelessWidget {
@@ -16,7 +16,10 @@ class CoGiHayContainer extends StatelessWidget {
         children: [
           sizeBoxHeight(4),
           Padding(
-            padding: EdgeInsets.only(left: getProportionateScreenWidth(10)),
+            padding: EdgeInsets.only(
+                left: getProportionateScreenWidth(10),
+                bottom: getProportionateScreenHeight(10),
+                top: getProportionateScreenHeight(10)),
             child: Text(
               sCoGiHay,
               style: kTextGrey14Normal.copyWith(fontWeight: w500),
@@ -24,6 +27,7 @@ class CoGiHayContainer extends StatelessWidget {
           ),
           sizeBoxHeight(4),
           ItemCoGiHay(
+              context: context,
               backIconColor: const Color(0xff3c2140),
               imgPath: sGiftBox,
               imgPath2: sGiftBox,
@@ -34,10 +38,9 @@ class CoGiHayContainer extends StatelessWidget {
               content2_1: '9,452,415,766',
               content2_2: ' đã được gửi tặng',
               onTap: () {}),
-          SizedBox(
-            height: SizeConfig.screenHeight * 0.01,
-          ),
+          sizeBoxHeight(1),
           ItemCoGiHay(
+              context: context,
               backIconColor: const Color(0xff1e373e),
               imgPath: 'assets/images/cyber-security.png',
               imgPath2: 'assets/images/cyber-security.png',
@@ -48,10 +51,9 @@ class CoGiHayContainer extends StatelessWidget {
               content2_1: 'Miễn phí',
               content2_2: ' đăng ký',
               onTap: () {}),
-          SizedBox(
-            height: SizeConfig.screenHeight * 0.01,
-          ),
+          sizeBoxHeight(1),
           ItemCoGiHay(
+              context: context,
               backIconColor: const Color(0xff403521),
               imgPath: 'assets/images/mobile.png',
               imgPath2: 'assets/images/mobile.png',
@@ -61,7 +63,7 @@ class CoGiHayContainer extends StatelessWidget {
               content1_2: 'Hướng dẫn chi tiết',
               content2_1: '401',
               content2_2: ' người tìm được thông tin',
-              onTap: () {}),
+              onTap: () {})
         ],
       ),
     );
@@ -69,23 +71,23 @@ class CoGiHayContainer extends StatelessWidget {
 }
 
 // ignore: non_constant_identifier_names
-Container ItemCoGiHay({
-  required String imgPath,
-  required String imgPath2,
-  required String imgPath3,
-  required String title,
-  required String content1_1,
-  required String content1_2,
-  required String content2_1,
-  required String content2_2,
-  required Color backIconColor,
-  void Function()? onTap,
-}) {
+Container ItemCoGiHay(
+    {required String imgPath,
+    required String imgPath2,
+    required String imgPath3,
+    required String title,
+    required String content1_1,
+    required String content1_2,
+    required String content2_1,
+    required String content2_2,
+    required Color backIconColor,
+    void Function()? onTap,
+    required BuildContext context}) {
   return Container(
-    height: SizeConfig.screenHeight * 0.14,
+    height: SizeConfig.screenHeight * 0.15,
     width: SizeConfig.screenWidth,
+    color: Theme.of(context).appBarTheme.backgroundColor,
     padding: const EdgeInsets.all(12),
-    color: kBgHomeContainer,
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -113,7 +115,6 @@ Container ItemCoGiHay({
             children: [
               Text(
                 title,
-                style: const TextStyle(color: Colors.white),
               ),
               sizeBoxHeight(10),
               Row(
@@ -139,7 +140,7 @@ Container ItemCoGiHay({
                   )
                 ],
               ),
-              sizeBoxHeight(6),
+              sizeBoxHeight(16),
               Row(
                 children: [
                   Image(
@@ -148,7 +149,10 @@ Container ItemCoGiHay({
                   ),
                   sizeBoxWidth(6),
                   Text(content2_1),
-                  Text(content2_2),
+                  Text(
+                    content2_2,
+                    style: kTextGrey14Normal,
+                  ),
                 ],
               )
             ],

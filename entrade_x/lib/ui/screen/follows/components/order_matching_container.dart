@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../blocs/conditional/conditional_bloc.dart';
-import '../../../../constrants.dart';
-import '../../../../help_func.dart';
-import '../../../../models/dataka.dart';
-import '../../../../size_config.dart';
+import '../../../../theme/constrants.dart';
+import '../../../../other/help_func.dart';
+import '../../../../theme/size_config.dart';
 
 class OrderMatching extends StatefulWidget {
   const OrderMatching({super.key});
@@ -39,8 +35,9 @@ class _OrderMatchingState extends State<OrderMatching> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Padding(
-            padding: EdgeInsets.only(left: 12.0, top: getProportionateScreenHeight(6)),
+          Padding(
+            padding: EdgeInsets.only(
+                left: 12.0, top: getProportionateScreenHeight(6)),
             child: const Text(
               'Khớp lệnh theo thời gian',
               style: kTextGrey16Normal,
@@ -48,24 +45,44 @@ class _OrderMatchingState extends State<OrderMatching> {
           ),
           Center(
             child: DataTable(
-              horizontalMargin: 8,
+              horizontalMargin: 0.0,
               headingRowHeight: 30,
               dataRowMinHeight: getProportionateScreenHeight(30),
-              dataRowMaxHeight: getProportionateScreenHeight(34),
-              columnSpacing: 46.0,
+              dataRowMaxHeight: getProportionateScreenHeight(30),
+              columnSpacing: 44.0,
               columns: [
-                const DataColumn(
-                  label: Text('Thời gian'),
+                DataColumn(
+                  label: Text(
+                    'Thời gian',
+                    style: kTextWhite14Bold.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground),
+                  ),
                 ),
-                const DataColumn(
-                  label: Text('KL khớp'),
+                DataColumn(
+                  label: Text(
+                    'KL khớp',
+                    style: kTextWhite14Bold.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground),
+                  ),
                 ),
-                const DataColumn(
-                  label: Text('Giá khớp'),
+                DataColumn(
+                  label: Text(
+                    'Giá khớp',
+                    style: kTextWhite14Bold.copyWith(
+                        color: Theme.of(context).colorScheme.onBackground),
+                  ),
                 ),
                 DataColumn(
                   label: TextButton(
-                    child: !isSwap ? const Text('+/-', style: kTextWhite15Normal,) : const Text('%', style: kTextWhite15Normal,) ,
+                    child: !isSwap
+                        ? const Text(
+                            '+/-',
+                            style: kTextWhite14Bold,
+                          )
+                        : const Text(
+                            '%',
+                            style: kTextWhite14Bold,
+                          ),
                     onPressed: () {
                       if (isSwap == false) {
                         setState(() {
@@ -91,7 +108,9 @@ class _OrderMatchingState extends State<OrderMatching> {
                         height: getProportionateScreenHeight(26),
                         child: Text(
                           data[index].time.toString(),
-                          style: kTextWhite16Normal,
+                          style: kText16Normal.copyWith(
+                              color:
+                                  Theme.of(context).colorScheme.onBackground),
                         ),
                       ),
                     ),
@@ -103,7 +122,9 @@ class _OrderMatchingState extends State<OrderMatching> {
                         height: getProportionateScreenHeight(26),
                         child: Text(
                           data[index].number.toString(),
-                          style: kTextWhite16Normal,
+                          style: kText16Normal.copyWith(
+                              color:
+                                  Theme.of(context).colorScheme.onBackground),
                         ),
                       ),
                     ),
@@ -115,7 +136,9 @@ class _OrderMatchingState extends State<OrderMatching> {
                         height: getProportionateScreenHeight(26),
                         child: Text(
                           data[index].price.toString(),
-                          style: kTextWhite16Normal,
+                          style: kText16Normal.copyWith(
+                              color:
+                                  Theme.of(context).colorScheme.onBackground),
                         ),
                       ),
                     ),
@@ -128,7 +151,10 @@ class _OrderMatchingState extends State<OrderMatching> {
                               height: getProportionateScreenHeight(26),
                               child: Text(
                                 data[index].percent.toString(),
-                                style: kTextWhite16Normal,
+                                style: kText16Normal.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
                               ),
                             )
                           : Container(
@@ -138,7 +164,10 @@ class _OrderMatchingState extends State<OrderMatching> {
                               height: getProportionateScreenHeight(26),
                               child: Text(
                                 '${data[index].number.toString()}%',
-                                style: kTextWhite16Normal,
+                                style: kText16Normal.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
                               ),
                             ),
                     ),
@@ -147,6 +176,17 @@ class _OrderMatchingState extends State<OrderMatching> {
               ),
             ),
           ),
+          Container(
+            padding: EdgeInsets.only(
+                right: getProportionateScreenWidth(16),
+                top: getProportionateScreenHeight(8)),
+            width: SizeConfig.screenWidth,
+            alignment: Alignment.bottomRight,
+            child: const Text(
+              'Xem thêm',
+              style: kTextRed16Normal,
+            ),
+          )
         ],
       ),
     );
@@ -154,12 +194,7 @@ class _OrderMatchingState extends State<OrderMatching> {
 
   List<DataCell> getCells(List<dynamic> cells, double changePercent) {
     return cells.map((data) {
-      Color textColor = Theme.of(context).textTheme.bodyMedium!.color!;
-      if (data is double) {
-        textColor = changePercent == 0
-            ? Colors.yellow
-            : (changePercent < 0 ? Colors.red : Colors.green);
-      }
+      if (data is double) {}
 
       return DataCell(Center(
         child: Text(

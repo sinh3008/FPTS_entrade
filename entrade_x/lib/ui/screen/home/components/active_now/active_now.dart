@@ -1,4 +1,6 @@
-import 'package:entrade_x/toast.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/other/toast.dart';
+import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +20,7 @@ class ActiveNowPage extends StatelessWidget {
     double width = screenSize.width;
     double height = screenSize.height;
     return Scaffold(
-      backgroundColor: const Color(0xff131313),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text('Nộp tiền'),
       ),
@@ -43,16 +45,16 @@ class ActiveNowPage extends StatelessWidget {
                     readOnly: true,
                     decoration: InputDecoration(
                       hintText: state.bank.name,
-                      hintStyle: const TextStyle(color: Colors.white),
                       labelText: 'Chọn ngân hàng thụ hưởng',
-                      labelStyle:
-                          const TextStyle(fontSize: 12, color: Colors.white),
-                      suffixIcon: const Icon(
+                      labelStyle: const TextStyle(fontSize: 12),
+                      suffixIcon: Icon(
                         Icons.navigate_next_sharp,
-                        color: Colors.white,
+                        color: Theme.of(context).colorScheme.onBackground,
                       ),
-                      focusedBorder: const OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
                       ),
                     ),
                   ),
@@ -66,6 +68,7 @@ class ActiveNowPage extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   buildRow(
+                      context: context,
                       width: width,
                       state: state,
                       text: state.bank.stk.toString(),
@@ -77,6 +80,7 @@ class ActiveNowPage extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   buildRow(
+                      context: context,
                       width: width,
                       state: state,
                       text: state.bank.dvThuHuong.toString(),
@@ -88,6 +92,7 @@ class ActiveNowPage extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   buildRow(
+                    context: context,
                     onTap: () {
                       coppyCt = state.bank.nd.toString();
                       showToast('Coppy Thành công');
@@ -109,22 +114,24 @@ class ActiveNowPage extends StatelessWidget {
     );
   }
 
-  Row buildRow({
-    required double width,
-    required BankitemSuccessState state,
-    required String text,
-    void Function()? onTap,
-  }) {
+  Row buildRow(
+      {required double width,
+      required BankitemSuccessState state,
+      required String text,
+      void Function()? onTap,
+      required BuildContext context}) {
     return Row(
       children: [
         buildContainer(
-            demo: Container(
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.only(left: width * 0.06),
-                child: Text(text)),
-            color: const Color(0xff262626),
-            width: width * 0.7,
-            height: width * 0.13),
+          demo: Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: width * 0.06),
+            child: Text(text),
+          ),
+          color: Theme.of(context).appBarTheme.foregroundColor ?? kGrey,
+          width: width * 0.7,
+          height: width * 0.13,
+        ),
         SizedBox(
           width: width * 0.02,
         ),
@@ -132,7 +139,7 @@ class ActiveNowPage extends StatelessWidget {
           onTap: onTap,
           child: buildContainer(
             demo: const Icon(Icons.copy, size: 20),
-            color: const Color(0xff262626),
+            color: Theme.of(context).appBarTheme.foregroundColor ?? kGrey,
             width: width * 0.2,
             height: width * 0.13,
           ),

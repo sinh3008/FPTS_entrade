@@ -6,7 +6,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 class LastNewAll extends StatefulWidget {
   LastNewAll({super.key});
 
-  static const _biggerFont = TextStyle(fontSize: 14.0, color: Colors.white);
+  static const _biggerFont = TextStyle(fontSize: 16.0);
   IDataInfoFake infoFake = IDataInfoFake();
 
   @override
@@ -41,7 +41,7 @@ class _LastNewAllState extends State<LastNewAll> {
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                 width: width,
                 height: height * 0.2,
-                color: const Color(0xff202123),
+                color: Theme.of(context).appBarTheme.foregroundColor,
                 child: Column(
                   children: [
                     Row(

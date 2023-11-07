@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../constrants.dart';
-import '../../../../../../help_func.dart';
-import '../../../../../../size_config.dart';
-import '../../../../../../toast.dart';
+import '../../../../../../theme/constrants.dart';
+import '../../../../../../other/help_func.dart';
+import '../../../../../../theme/size_config.dart';
+import '../../../../../../other/toast.dart';
 
 class FormSelectedDate extends StatefulWidget {
   const FormSelectedDate({super.key});
@@ -16,6 +16,7 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
   DateTime? fromDate, toDate;
   TextEditingController fromDateController = TextEditingController();
   TextEditingController toDateController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +26,7 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
       ),
       width: SizeConfig.screenWidth * 1,
       decoration: BoxDecoration(
-        color: kGreyColorCustom,
+        color: Theme.of(context).appBarTheme.foregroundColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
@@ -39,6 +40,7 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
       ),
     );
   }
+
   Expanded buildFromDate(void Function()? onTap) {
     return Expanded(
       child: SizedBox(
@@ -46,22 +48,26 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              autofocus: true,
-              controller: fromDateController,
-              // Sử dụng fromDateController ở đây
-              onTap: onTap,
-              readOnly: true,
-              decoration: const InputDecoration(
-                labelText: 'Từ ngày',
-                labelStyle: TextStyle(color: kGrey),
-                hintStyle: TextStyle(fontSize: 14, color: kWhite),
-                suffixIcon: Icon(
-                  Icons.calendar_month,
-                  color: kGrey,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: kGrey),
+            Container(
+              decoration: const BoxDecoration(
+                  border: Border(bottom: BorderSide(color: kGrey, width: 1))),
+              child: TextField(
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onBackground),
+                controller: fromDateController,
+                onTap: onTap,
+                readOnly: true,
+                decoration: const InputDecoration(
+                  labelText: 'Từ ngày',
+                  labelStyle: TextStyle(color: kGrey),
+                  hintStyle: TextStyle(fontSize: 14),
+                  suffixIcon: Icon(
+                    Icons.calendar_month,
+                    color: kGrey,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
                 ),
               ),
             ),
@@ -71,7 +77,6 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
             const Text('Tổng KL khớp'),
             const Text(
               '-',
-              style: TextStyle(color: kWhite),
             ),
             SizedBox(
               height: getProportionateScreenHeight(20),
@@ -92,7 +97,6 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
             ),
             const Text(
               '-',
-              style: TextStyle(color: kWhite),
             ),
           ],
         ),
@@ -107,20 +111,27 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextField(
-              controller: toDateController, // Sử dụng toDateController ở đây
-              onTap: onTap,
-              readOnly: true,
-              decoration: const InputDecoration(
-                labelText: 'Đến ngày',
-                labelStyle: TextStyle(color: kGrey),
-                hintStyle: TextStyle(fontSize: 14, color: kWhite),
-                suffixIcon: Icon(
-                  Icons.calendar_month,
-                  color: kGrey,
-                ),
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: kGrey),
+            Container(
+              decoration: const BoxDecoration(
+                  border: Border(bottom: BorderSide(color: kGrey, width: 1))),
+              child: TextField(
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onBackground),
+                controller: toDateController,
+                autofocus: true,
+                onTap: onTap,
+                readOnly: true,
+                decoration: const InputDecoration(
+                  labelText: 'Đến ngày',
+                  labelStyle: TextStyle(color: kGrey),
+                  hintStyle: TextStyle(fontSize: 14),
+                  suffixIcon: Icon(
+                    Icons.calendar_month,
+                    color: kGrey,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
                 ),
               ),
             ),
@@ -130,7 +141,6 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
             const Text('Tổng KL khớp'),
             const Text(
               '-',
-              style: TextStyle(color: kWhite),
             ),
             SizedBox(
               height: getProportionateScreenHeight(20),
@@ -151,7 +161,6 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
             ),
             const Text(
               '-',
-              style: TextStyle(color: kWhite),
             ),
           ],
         ),
@@ -161,18 +170,34 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
 
   void _selectedFromDate() async {
     final fromDateSelected = await showDatePicker(
-      context: context,
-      initialDate: fromDate ?? DateTime.now(),
-      firstDate: DateTime.now(),
-      lastDate: DateTime.now().add(
-        const Duration(days: 360),
-      ),
-    );
+        context: context,
+        initialDate: fromDate ?? DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(
+          const Duration(days: 360),
+        ),
+        builder: (BuildContext context, Widget? child) {
+          return Theme(
+            data: ThemeData.light().copyWith(
+              primaryColor: Theme.of(context)
+                  .colorScheme
+                  .onBackground, // Customize the primary color
+              hintColor: Theme.of(context)
+                  .colorScheme
+                  .primary, // Customize the accent color
+              buttonTheme:
+                  const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+            ),
+            child: child!,
+          );
+        });
 
-    if (fromDateSelected != null && (toDate == null || fromDateSelected.isBefore(toDate!))) {
+    if (fromDateSelected != null &&
+        (toDate == null || fromDateSelected.isBefore(toDate!))) {
       setState(() {
         fromDate = fromDateSelected;
-        fromDateController.text = getFormattedDate(fromDate!, pattern: 'dd/MM/yyyy');
+        fromDateController.text =
+            getFormattedDate(fromDate!, pattern: 'dd/MM/yyyy');
       });
     } else {
       showToast('Khoảng thời gian không hợp lệ, vui lòng chọn lại!');
@@ -187,16 +212,32 @@ class _FormSelectedDateState extends State<FormSelectedDate> {
       lastDate: DateTime.now().add(
         const Duration(days: 360),
       ),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Theme.of(context)
+                .colorScheme
+                .onBackground, // Customize the primary color
+            hintColor: Theme.of(context)
+                .colorScheme
+                .primary, // Customize the accent color
+            buttonTheme:
+                const ButtonThemeData(textTheme: ButtonTextTheme.primary),
+          ),
+          child: child!,
+        );
+      },
     );
 
-    if (toDateSelected != null && (fromDate == null || toDateSelected.isAfter(fromDate!))) {
+    if (toDateSelected != null &&
+        (fromDate == null || toDateSelected.isAfter(fromDate!))) {
       setState(() {
         toDate = toDateSelected;
-        toDateController.text = getFormattedDate(toDate!, pattern: 'dd/MM/yyyy');
+        toDateController.text =
+            getFormattedDate(toDate!, pattern: 'dd/MM/yyyy');
       });
     } else {
       showToast('Khoảng thời gian không hợp lệ, vui lòng chọn lại!');
     }
   }
-
 }

@@ -1,30 +1,35 @@
-import 'package:entrade_x/strings.dart';
+import 'package:entrade_x/other/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import '../../../../constrants.dart';
-import '../../../../size_config.dart';
+import '../../../../theme/app_colors.dart';
+import '../../../../theme/constrants.dart';
+import '../../../../theme/size_config.dart';
 import '../../../components/circle_k.dart';
 import '../../../pages_test/order_page.dart';
 import '../../../pages_test/search_page.dart';
 import '../../home/components/ideas/investment_ideas.dart';
 
-
-AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
+AppBar buildAppBarFollows(
+    BuildContext context, void Function()? onTap, double price) {
   return AppBar(
-    toolbarHeight: getProportionateScreenHeight(120), // Set this height
+    toolbarHeight: getProportionateScreenHeight(120),
+    backgroundColor: Theme.of(context)
+        .appBarTheme
+        .backgroundColor
+        ?.withOpacity(0.9), // Set this height
     flexibleSpace: SafeArea(
       child: Container(
+        height: getProportionateScreenHeight(120),
         padding: const EdgeInsets.symmetric(horizontal: 0),
         margin: EdgeInsets.zero,
         width: SizeConfig.screenWidth * 1,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+        decoration:  BoxDecoration(
+          borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(12),
             bottomLeft: Radius.circular(12),
           ),
-          color: kBgAppbarGrey,
-          // color: Color(0xff262626),
+          color: Theme.of(context).appBarTheme.backgroundColor?.withOpacity(0.9),
         ),
         child: Column(
           children: [
@@ -37,10 +42,12 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                 children: [
                   const Icon(Icons.arrow_back, color: kRedButtonBG),
                   Container(
-                    width: SizeConfig.screenWidth * 0.7,
+                    width: SizeConfig.screenWidth * 0.68,
+                    height: getProportionateScreenHeight(40),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
-                      color: kBgBoxSearch,
+                      color: Theme.of(context).appBarTheme.foregroundColor,
+                      boxShadow: [boxShadowFight()],
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,22 +88,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                       ],
                     ),
                   ),
-                  buildCircleK(
-                      width: getProportionateScreenWidth(45),
-                      height: getProportionateScreenHeight(45),
-                      onClicked: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const InvestmentIdeas();
-                          },
-                        ));
-                      },
-                      demo: Image(
-                        image: const AssetImage(sLightBulb),
-                        fit: BoxFit.cover,
-                        color: Colors.yellow.shade400,
-                      ),
-                      color: kBgBoxSearch),
+                  lightBulbWidget(context),
                 ],
               ),
             ),
@@ -113,7 +105,7 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                         children: [
                           const Text(
                             'BVH ',
-                            style: kTextWhite20Bold,
+                            style: kText20Bold,
                           ),
                           const Text(
                             'HOUSE ',
@@ -121,40 +113,66 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                             textAlign: TextAlign.justify,
                           ),
                           sizeBoxWidth(6),
-                          buildCircleK(
-                            padding: EdgeInsets.zero,
-                            demo: const Icon(
-                              Icons.camera_enhance_outlined,
-                              size: 16,
-                              color: Colors.grey,
-                            ),
-                            color: kGreyColorCustom,
-                            width: getProportionateScreenWidth(30),
-                            height: getProportionateScreenHeight(30),
-                            onClicked: () {},
-                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return const InvestmentIdeas();
+                                  },
+                                ));
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(0),
+                                padding: EdgeInsets.zero,
+                                width: getProportionateScreenWidth(30),
+                                height: getProportionateScreenHeight(30),
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .appBarTheme
+                                        .foregroundColor,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [boxShadowFight()]),
+                                child: const Icon(
+                                  Icons.stacked_bar_chart,
+                                  size: 16,
+                                  color: Colors.grey,
+                                ),
+                              )),
                           sizeBoxWidth(6),
-                          buildCircleK(
-                            padding: EdgeInsets.zero,
-                            demo: const Icon(
-                              Icons.add,
-                              size: 16,
-                              color: Color(0xffd34343),
-                            ),
-                            color: kGreyColorCustom,
-                            width: getProportionateScreenWidth(30),
-                            height: getProportionateScreenHeight(30),
-                            onClicked: () {},
-                          )
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) {
+                                    return const InvestmentIdeas();
+                                  },
+                                ));
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(0),
+                                padding: EdgeInsets.zero,
+                                width: getProportionateScreenWidth(30),
+                                height: getProportionateScreenHeight(30),
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .appBarTheme
+                                        .foregroundColor,
+                                    shape: BoxShape.circle,
+                                    boxShadow: [boxShadowFight()]),
+                                child: const Icon(
+                                  Icons.add,
+                                  size: 16,
+                                  color: Colors.red,
+                                ),
+                              ))
                         ],
                       ),
-                      const Row(
+                      Row(
                         children: [
                           Text(
-                            '42.45 ',
+                            '$price ',
                             style: kTextGreen20Bold,
                           ),
-                          Text(
+                          const Text(
                             '(0.20 0.48%)',
                             style: kTextGreen15Normal,
                           ),
@@ -173,21 +191,26 @@ AppBar buildAppBarFollows(BuildContext context, void Function()? onTap) {
                           style: kTextGrey14Normal,
                         ),
                       ),
-                      const Row(
+                      Row(
                         children: [
                           Text(
                             '378.30 ',
-                            style: kTextWhite15Normal,
+                            style:
+                                kTextWhite15Normal.copyWith(fontWeight: w500),
                           ),
-                          Text(
+                          const Text(
                             'CP  ',
                             style: kTextGrey14Normal,
                           ),
                           Text(
                             '15.890 ',
-                            style: kTextWhite15Normal,
+                            style:
+                                kTextWhite15Normal.copyWith(fontWeight: w500),
                           ),
-                          Text('Tỷ', style: kTextGrey14Normal,),
+                          const Text(
+                            'Tỷ',
+                            style: kTextGrey14Normal,
+                          ),
                         ],
                       )
                     ],

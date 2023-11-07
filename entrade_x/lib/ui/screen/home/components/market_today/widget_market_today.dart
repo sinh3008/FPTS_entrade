@@ -1,12 +1,12 @@
 import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
-import 'package:entrade_x/constrants.dart';
-import 'package:entrade_x/size_config.dart';
+import 'package:entrade_x/theme/constrants.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../blocs/chart/chart_bloc.dart';
-import '../../../../../strings.dart';
+import '../../../../../other/strings.dart';
+import '../../../../../theme/size_config.dart';
 import '../../../../components/circle_k.dart';
 import '../../mini_compo/build_dot.dart';
 import '../../mini_compo/build_unx.dart';
@@ -38,7 +38,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
           padding: EdgeInsets.symmetric(
               vertical: getProportionateScreenHeight(12),
               horizontal: getProportionateScreenWidth(8)),
-          color: kBgHomeContainer,
+          color: Theme.of(context).appBarTheme.backgroundColor,
           width: SizeConfig.screenWidth,
           child: Column(
             children: [
@@ -147,8 +147,8 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
   InkWell selectedMethod(IdeasSuccessState state, double width, int index) {
     return buildUnx(
       color2: selectedIndex == index
-          ? const Color(0xff54534c).withOpacity(0.4)
-          : kBgHomeContainer,
+          ? const Color(0xff54534c).withOpacity(0.1)
+          : Theme.of(context).appBarTheme.backgroundColor,
       color: selectedIndex == index ? kRedButtonBG : Colors.transparent,
       onTap: () {
         setState(() {
@@ -157,7 +157,8 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
       },
       txt1: Text(
         '${state.stocks[index].name}-${state.stocks[index].producer}',
-        style: kTextWhite15Normal,
+        style: kTextWhite15Normal.copyWith(
+            color: Theme.of(context).colorScheme.onBackground),
       ),
       txt2: state.stocks[index].currentPrice - state.stocks[index].price > 0
           ? Text(
@@ -201,54 +202,75 @@ class _TimeWidgetState extends State<TimeWidget> {
     return Row(
       children: [
         buildRecBorder(
+          context: context,
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 0));
             setState(() {
               selectIndex = 0;
             });
           },
-          demo: const Text('1W',
-              textAlign: TextAlign.center, style: kTextWhite16Normal),
-          color: selectIndex == 0 ? kRedButtonBG : Colors.black,
+          demo: Text(
+            '1W',
+            textAlign: TextAlign.center,
+            style: selectIndex == 0 ? kText16Normal : kTextGrey16Normal,
+          ),
+          color: selectIndex == 0
+              ? kRedButtonBG
+              : Theme.of(context).colorScheme.background,
         ),
         sizeBoxWidth(10),
         buildRecBorder(
+          context: context,
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 1));
             setState(() {
               selectIndex = 1;
             });
           },
-          demo: const Text('1M',
-              textAlign: TextAlign.center, style: kTextWhite16Normal),
-          color: selectIndex == 1 ? kRedButtonBG : Colors.black,
+          demo: Text(
+            '1M',
+            textAlign: TextAlign.center,
+            style: selectIndex == 1 ? kText16Normal : kTextGrey16Normal,
+          ),
+          color: selectIndex == 1
+              ? kRedButtonBG
+              : Theme.of(context).colorScheme.background,
         ),
         sizeBoxWidth(10),
         buildRecBorder(
+          context: context,
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 2));
             setState(() {
               selectIndex = 2;
             });
           },
-          demo: const Text(
+          demo: Text(
             '6M',
             textAlign: TextAlign.center,
-            style: kTextWhite16Normal,
+            style: selectIndex == 2 ? kText16Normal : kTextGrey16Normal,
           ),
-          color: selectIndex == 2 ? kRedButtonBG : Colors.black,
+          color: selectIndex == 2
+              ? kRedButtonBG
+              : Theme.of(context).colorScheme.background,
         ),
         sizeBoxWidth(10),
         buildRecBorder(
+          context: context,
           func: () {
             context.read<ChartBloc>().add(ChartClickItemEvent(id: 3));
             setState(() {
               selectIndex = 3;
             });
           },
-          demo: const Text('1Y',
-              textAlign: TextAlign.center, style: kTextWhite16Normal),
-          color: selectIndex == 3 ? kRedButtonBG : Colors.black,
+          demo: Text(
+            '1Y',
+            textAlign: TextAlign.center,
+            style: selectIndex == 3 ? kText16Normal : kTextGrey16Normal,
+          ),
+          color: selectIndex == 3
+              ? kRedButtonBG
+              : Theme.of(context).colorScheme.background,
         ),
       ],
     );

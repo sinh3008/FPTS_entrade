@@ -1,9 +1,10 @@
-import 'package:entrade_x/constrants.dart';
-import 'package:entrade_x/size_config.dart';
-import 'package:entrade_x/toast.dart';
+import 'package:entrade_x/theme/app_textstyle.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/theme/size_config.dart';
+import 'package:entrade_x/other/toast.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../strings.dart';
+import '../../../../../other/strings.dart';
 import '../../../../components/button_default.dart';
 import '../../mini_compo/build_dot.dart';
 import '../../mini_compo/build_text_demo.dart';
@@ -54,41 +55,43 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xff202123),
+      decoration: BoxDecoration(
+        color: Theme.of(context).appBarTheme.backgroundColor
+      ),
       width: SizeConfig.screenWidth,
       child: Column(
         children: [
           sizeBoxHeight(20),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(16)),
+            padding: EdgeInsets.symmetric(
+                horizontal: getProportionateScreenWidth(16)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Text(
+                Text(
                   sEvent,
-                  style: kTextWhite15Normal,
+                  style: AppTextStyle.text15Normal.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground),
                 ),
                 InkWell(
                   onTap: () {
                     showToast(s200k);
                   },
-                  child:  SizedBox(
+                  child: SizedBox(
                     width: getProportionateScreenWidth(25),
                     height: getProportionateScreenHeight(25),
-                    child: const Image(
-                      image: AssetImage(sHelp),
-                      color: Colors.white,
-                      fit: BoxFit.scaleDown,
-                    ),
+                    child: Icon(Icons.info_outline_rounded,
+                        color: Theme.of(context).primaryColor),
                   ),
                 ),
               ],
             ),
           ),
           sizeBoxHeight(6),
-          const Text(
+          Text(
             '+0đ',
-            style: kTextGreen16Normal,
+            style: AppTextStyle.text16Normal
+                .copyWith(color: kGreen.shade400, fontWeight: w700, fontSize: 20),
           ),
           const SizedBox(
             height: 10,

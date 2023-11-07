@@ -6,7 +6,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import '../../pages_test/order_page.dart';
 import '../../pages_test/wallet_page.dart';
 import '../../pages_test/message_page.dart';
-import '../../pages_test/menu_page.dart';
+import '../menu/menu_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   static String routeName = "/home";
@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
     PersistentTabController controller;
     controller = PersistentTabController(initialIndex: 0);
 
+    // ignore: no_leading_underscores_for_local_identifiers
     List<Widget> _buildScreens() {
       return [
         const BodyHomeScreen(),
@@ -29,43 +30,44 @@ class HomeScreen extends StatelessWidget {
       ];
     }
 
+    // ignore: no_leading_underscores_for_local_identifiers
     List<PersistentBottomNavBarItem> _navBarsItems() {
       return [
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.home),
           title: ('Home'),
           activeColorPrimary: Colors.red,
-          inactiveColorPrimary: Colors.white,
+          inactiveColorPrimary: Theme.of(context).colorScheme.onBackground,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.area_chart),
           title: ("Follow"),
           activeColorPrimary: Colors.red,
-          inactiveColorPrimary: Colors.white,
+          inactiveColorPrimary: Theme.of(context).colorScheme.onBackground,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.note_alt_outlined),
           title: ("Order"),
           activeColorPrimary: Colors.red,
-          inactiveColorPrimary: Colors.white,
+          inactiveColorPrimary: Theme.of(context).colorScheme.onBackground,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.wallet),
           title: ("Wallet"),
           activeColorPrimary: Colors.red,
-          inactiveColorPrimary: Colors.white,
+          inactiveColorPrimary: Theme.of(context).colorScheme.onBackground,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.message),
           title: ("Message"),
           activeColorPrimary: Colors.red,
-          inactiveColorPrimary: Colors.white,
+          inactiveColorPrimary: Theme.of(context).colorScheme.onBackground,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.menu),
           title: ("Menu"),
           activeColorPrimary: Colors.red,
-          inactiveColorPrimary: Colors.white,
+          inactiveColorPrimary: Theme.of(context).colorScheme.onBackground,
         )
       ];
     }
@@ -76,7 +78,8 @@ class HomeScreen extends StatelessWidget {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.black,
+      backgroundColor:
+          Theme.of(context).colorScheme.background.withOpacity(0.8),
       handleAndroidBackButtonPress: true,
       resizeToAvoidBottomInset: true,
       stateManagement: true,

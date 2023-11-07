@@ -1,11 +1,11 @@
-import 'package:entrade_x/constrants.dart';
-import 'package:entrade_x/size_config.dart';
-import 'package:entrade_x/strings.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/other/strings.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../blocs/chart/chart_bloc.dart';
+import '../../../../../theme/size_config.dart';
 import '../../../../components/circle_k.dart';
 import 'investment_ideas.dart';
 
@@ -17,7 +17,9 @@ class IdeasContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8)),
       width: SizeConfig.screenWidth,
-      color: kBgHomeContainer,
+      decoration: BoxDecoration(
+        color: Theme.of(context).appBarTheme.foregroundColor
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,12 +55,13 @@ class IdeasContainer extends StatelessWidget {
                   children: [
                     Text(
                       sIdeas,
-                      style: kTextGreen16Normal.copyWith(fontWeight: w500),
+                      style: kTextGrey16Normal.copyWith(fontWeight: w500),
                     ),
                     sizeBoxHeight(4),
-                    const Text(
+                    Text(
                       sSeeNow,
-                      style: kTextWhite15Normal,
+                      style: kTextWhite15Normal.copyWith(
+                          color: Theme.of(context).colorScheme.onBackground),
                     ),
                   ],
                 ),
@@ -79,6 +82,7 @@ class IdeasContainer extends StatelessWidget {
                 ],
               ),
               Expanded(
+                // ignore: avoid_unnecessary_containers
                 child: Container(
                   child: TextButton(
                     child: const Icon(

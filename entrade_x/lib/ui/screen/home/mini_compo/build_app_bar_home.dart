@@ -1,29 +1,33 @@
-import 'package:entrade_x/size_config.dart';
+import 'package:entrade_x/theme/app_colors.dart';
+import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 
-import '../../../../constrants.dart';
-import '../../../../strings.dart';
-import '../../../components/circle_k.dart';
+import '../../../../theme/constrants.dart';
+import '../../../../other/strings.dart';
+import '../../../../theme/size_config.dart';
 import '../../../pages_test/order_page.dart';
 import '../../../pages_test/search_page.dart';
 import '../components/ideas/investment_ideas.dart';
 
 AppBar buildAppBarHome(BuildContext context) {
   return AppBar(
+    backgroundColor:
+        Theme.of(context).appBarTheme.backgroundColor?.withOpacity(0.9),
     automaticallyImplyLeading: false,
-    toolbarHeight: getProportionateScreenHeight(80), // Set this height
+    elevation: 1,
+    toolbarHeight: getProportionateScreenHeight(80),
+    // Set this height
     flexibleSpace: SafeArea(
       child: Container(
         padding: EdgeInsets.only(bottom: getProportionateScreenHeight(16)),
         width: SizeConfig.screenWidth,
         height: SizeConfig.screenHeight * 0.2,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(12),
             bottomLeft: Radius.circular(12),
           ),
-          color: kBgBoxSearch.withOpacity(0.4),
           // color: Color(0xff262626),
         ),
         child: Row(
@@ -33,10 +37,11 @@ AppBar buildAppBarHome(BuildContext context) {
             Expanded(
               child: Container(
                 width: SizeConfig.screenWidth * 0.7,
+                height: getProportionateScreenHeight(40),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: kBgBoxSearch,
-                ),
+                    borderRadius: BorderRadius.circular(30),
+                    color: Theme.of(context).appBarTheme.foregroundColor,
+                    boxShadow: [boxShadowFight()]),
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,22 +84,30 @@ AppBar buildAppBarHome(BuildContext context) {
               ),
             ),
             sizeBoxWidth(8),
-            buildCircleK(
-                width: getProportionateScreenWidth(45),
-                height: getProportionateScreenHeight(45),
-                onClicked: () {
+            GestureDetector(
+                onTap: () {
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
                       return const InvestmentIdeas();
                     },
                   ));
                 },
-                demo: Image(
-                  image: const AssetImage(sLightBulb),
-                  fit: BoxFit.cover,
-                  color: Colors.yellow.shade400,
-                ),
-                color: kBgBoxSearch),
+                child: Container(
+                  margin: const EdgeInsets.all(0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  width: getProportionateScreenWidth(40),
+                  height: getProportionateScreenHeight(40),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).appBarTheme.foregroundColor,
+                      shape: BoxShape.circle,
+                      boxShadow: [boxShadowFight()]),
+                  child: Image(
+                    image: const AssetImage(sLightBulb),
+                    fit: BoxFit.cover,
+                    color: Colors.yellow.shade400,
+                  ),
+                )),
             sizeBoxWidth(16),
           ],
         ),

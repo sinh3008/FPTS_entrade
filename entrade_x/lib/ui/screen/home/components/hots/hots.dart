@@ -1,8 +1,8 @@
-import 'package:entrade_x/size_config.dart';
+import 'package:entrade_x/theme/size_config.dart';
 import 'package:entrade_x/ui/screen/home/components/hots/transition_fees/transition_free.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../strings.dart';
+import '../../../../../other/strings.dart';
 import '../../mini_compo/build_event_container.dart';
 import 'hatch_gold/hatch_gold.dart';
 
@@ -17,11 +17,13 @@ class _HostWidgetState extends State<HostWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8.0)),
+      padding:
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8.0)),
       child: Row(
         children: [
           Expanded(
             child: buildEventContainer(
+                context: context,
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -35,6 +37,7 @@ class _HostWidgetState extends State<HostWidget> {
           sizeBoxWidth(10),
           Expanded(
             child: buildEventContainer(
+              context: context,
               onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(

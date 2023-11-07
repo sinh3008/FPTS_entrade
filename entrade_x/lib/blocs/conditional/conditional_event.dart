@@ -4,13 +4,14 @@ abstract class ConditionalEvent {}
 
 class ClickFitPriceEvent extends ConditionalEvent {
   double priceFit;
+  double money;
+  double cellingPrice;
 
-  ClickFitPriceEvent(this.priceFit);
+  ClickFitPriceEvent(this.priceFit, this.money, this.cellingPrice);
 }
 
 class UpdateBuyEvent extends ConditionalEvent {
-  double? quantity;
-  double? setPrice;
+  int number;
 
-  UpdateBuyEvent(this.quantity, this.setPrice);
+  UpdateBuyEvent(this.number);
 }

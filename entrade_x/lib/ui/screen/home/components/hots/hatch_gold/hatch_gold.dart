@@ -20,37 +20,37 @@ class _HatchGoldPageState extends State<HatchGoldPage> {
     double width = screenSize.width;
     double height = screenSize.height;
     Eggs eggss = Eggs();
+    // ignore: no_leading_underscores_for_local_identifiers
     List<Egg> _lists = eggss.list;
     return Scaffold(
-      backgroundColor: const Color(0xff131313),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text('Trứng vàng Entrade X'),
         actions: [
           buildCircleK(
-              width: 30,
-              padding: const EdgeInsets.all(0),
-              height: 30,
-              border: Border.all(color: Colors.red, strokeAlign: 1, width: 2),
-              demo: const Center(
-                  child: Icon(
-                Icons.question_mark_sharp,
-                size: 16,
-                color: Colors.red,
-              )),
-              color: const Color(0xff222222),
-              onClicked: () {}),
+            width: 30,
+            padding: const EdgeInsets.all(0),
+            height: 30,
+            border: Border.all(color: Colors.red, strokeAlign: 1, width: 2),
+            demo: const Center(
+                child: Icon(
+              Icons.question_mark_sharp,
+              size: 16,
+              color: Colors.red,
+            )),
+            color: Theme.of(context).appBarTheme.foregroundColor,
+            onClicked: () {},
+          ),
           const SizedBox(
             width: 10,
           )
         ],
-        backgroundColor: const Color(0xff222222),
-        elevation: 0,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            color: const Color(0xff222222),
+            color:Theme.of(context).appBarTheme.foregroundColor,
             padding: const EdgeInsets.all(12),
             width: width,
             height: 80,
@@ -84,6 +84,7 @@ class _HatchGoldPageState extends State<HatchGoldPage> {
                         child: const Icon(
                           Icons.add,
                           size: 18,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -111,6 +112,7 @@ class _HatchGoldPageState extends State<HatchGoldPage> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
+                    // ignore: avoid_print
                     print('object $index');
                   },
                   child: Container(
@@ -118,7 +120,7 @@ class _HatchGoldPageState extends State<HatchGoldPage> {
                     width: width,
                     height: height * 0.14,
                     padding: const EdgeInsets.all(12),
-                    color: const Color(0xff222222),
+                    color:Theme.of(context).appBarTheme.foregroundColor,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,

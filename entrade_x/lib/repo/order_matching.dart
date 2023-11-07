@@ -1,7 +1,11 @@
 class KhopLenh{
+  // ignore: non_constant_identifier_names
   String thoi_gian;
+  // ignore: non_constant_identifier_names
   double khoi_luong;
+  // ignore: non_constant_identifier_names
   double gia_khop;
+  // ignore: non_constant_identifier_names
   double chenh_lech;
   KhopLenh(this.thoi_gian, this.khoi_luong,this.gia_khop, this.chenh_lech);
   

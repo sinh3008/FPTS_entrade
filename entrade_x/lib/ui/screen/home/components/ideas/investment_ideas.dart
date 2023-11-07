@@ -1,5 +1,6 @@
 import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
 import 'package:entrade_x/models/stock.dart';
+import 'package:entrade_x/theme/constrants.dart';
 import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,8 +30,9 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
     PageController pageController =
         PageController(viewportFraction: 0.8, keepPage: true);
     return Scaffold(
-      backgroundColor: const Color(0xff131313),
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Ý tưởng'),
+      ),
       body: BlocBuilder<IdeasBloc, IdeasState>(
         builder: (context, state) {
           if (state is IdeasLoadingState) {
@@ -63,9 +65,8 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                           horizontal: 6, vertical: 16),
                       width: width,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xff1e1e20),
-                      ),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Theme.of(context).appBarTheme.foregroundColor),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,7 +204,10 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                                     color: Colors.red,
                                     size: 16,
                                   ),
-                                  color: const Color(0xff393a3c),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.2),
                                   onClicked: () {
                                     showMenu(
                                         context: context,
@@ -231,33 +235,41 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                               SizedBox(
                                 width: width * 0.1,
                               ),
-                              buildCircleK(
-                                padding: EdgeInsets.zero,
-                                width: 30,
-                                height: 30,
-                                demo: const Icon(
-                                  Icons.handyman,
-                                  color: Colors.grey,
-                                  size: 16,
+                              Tooltip(
+                                message: 'Thêm',
+                                child: buildCircleK(
+                                  padding: EdgeInsets.zero,
+                                  width: 30,
+                                  height: 30,
+                                  demo: Icon(
+                                    Icons.handyman,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .background,
+                                    size: 16,
+                                  ),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground
+                                      .withOpacity(0.2),
+                                  onClicked: () {
+                                    showMenu(
+                                        context: context,
+                                        position: const RelativeRect.fromLTRB(
+                                            200.0, 500.0, 50.0, 0.0),
+                                        items: [
+                                          const PopupMenuItem<String>(
+                                              value: '1',
+                                              child: Text('option 1')),
+                                          const PopupMenuItem<String>(
+                                              value: '2',
+                                              child: Text('option 2')),
+                                          const PopupMenuItem<String>(
+                                              value: '3',
+                                              child: Text('option 3')),
+                                        ]);
+                                  },
                                 ),
-                                color: const Color(0xff393a3c),
-                                onClicked: () {
-                                  showMenu(
-                                      context: context,
-                                      position: const RelativeRect.fromLTRB(
-                                          200.0, 500.0, 50.0, 0.0),
-                                      items: [
-                                        const PopupMenuItem<String>(
-                                            value: '1',
-                                            child: Text('option 1')),
-                                        const PopupMenuItem<String>(
-                                            value: '2',
-                                            child: Text('option 2')),
-                                        const PopupMenuItem<String>(
-                                            value: '3',
-                                            child: Text('option 3')),
-                                      ]);
-                                },
                               ),
                               const Text(
                                 '109',
@@ -329,7 +341,7 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
             child: Icon(
               Icons.check,
               size: 14,
-              color: Colors.black,
+              color: kWhite,
             ),
           ),
         ),

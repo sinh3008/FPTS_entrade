@@ -1,5 +1,5 @@
-import 'package:entrade_x/constrants.dart';
-import 'package:entrade_x/size_config.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/theme/size_config.dart';
 import 'package:entrade_x/ui/screen/home/components/hots/transition_fees/form_selected_date.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +16,8 @@ class _TransitionFeesState extends State<TransitionFees> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBlackBackgroundCustom,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: kGreyColorCustom,
         title: const Text('Lịch sử khớp lệnh'),
       ),
       body: SizedBox(

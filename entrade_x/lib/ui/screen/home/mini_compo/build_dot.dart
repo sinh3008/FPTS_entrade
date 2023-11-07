@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../constrants.dart';
+import '../../../../theme/constrants.dart';
 
 AnimatedContainer buildDot({
   int? index,

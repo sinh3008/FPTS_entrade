@@ -1,9 +1,10 @@
 import 'package:entrade_x/blocs/conditional/conditional_bloc.dart';
-import 'package:entrade_x/constrants.dart';
+import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/other/help_func.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../models/dataka.dart';
-import '../../../../size_config.dart';
+import '../../.././../theme/size_config.dart';
 
 class BuocGiaContainer extends StatelessWidget {
   const BuocGiaContainer({
@@ -66,11 +67,12 @@ class BuocGiaContainer extends StatelessWidget {
                         children: [
                           Text(
                             dataList1[index].price.toString(),
-                            style: kTextWhite16Normal,
+                            style: kText16Normal,
                           ),
                           GestureDetector(
                             onTap: () => context.read<ConditionalBloc>().add(
-                                ClickFitPriceEvent(dataList1[index].number)),
+                                ClickFitPriceEvent(dataList1[index].number,
+                                    money, cellingPrice)),
                             child: Padding(
                               padding: EdgeInsets.only(
                                   right: getProportionateScreenWidth(16)),
@@ -115,7 +117,7 @@ class BuocGiaContainer extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () => context.read<ConditionalBloc>().add(
-                                  ClickFitPriceEvent(dataList2[index].number)),
+                                  ClickFitPriceEvent(dataList2[index].number, money, cellingPrice)),
                               child: Padding(
                                 padding: EdgeInsets.only(
                                     left: getProportionateScreenWidth(16)),
@@ -129,7 +131,7 @@ class BuocGiaContainer extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 0.0),
                               // padding: const EdgeInsets.only(left: 16.0),
                               child: Text(dataList2[index].price.toString(),
-                                  style: kTextWhite16Normal),
+                                  style: kText16Normal),
                             ),
                           ],
                         ),

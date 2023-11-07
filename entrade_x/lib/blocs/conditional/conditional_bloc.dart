@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:entrade_x/other/help_func.dart';
 
 part 'conditional_event.dart';
+
 part 'conditional_state.dart';
 
 class ConditionalBloc extends Bloc<ConditionalEvent, ConditionalState> {
@@ -12,6 +14,8 @@ class ConditionalBloc extends Bloc<ConditionalEvent, ConditionalState> {
   FutureOr<void> _click(
       ClickFitPriceEvent event, Emitter<ConditionalState> emit) {
     emit(ConditionalFitLoadingState());
-    emit(ConditionalFitSuccessState(event.priceFit));
+    double values = money / cellingPrice;
+    emit(ConditionalFitSuccessState(event.priceFit, values));
+    // print(event.priceFit);
   }
 }

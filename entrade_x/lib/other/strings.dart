@@ -18,6 +18,8 @@ const String sCheckNow = 'Thị trường hôm nay?';
 const String sIdeas = 'Có 3 ý tưởng đầu tư mới cho bạn';
 const String sSeeNow = 'Xem ngay, đừng bỏ lỡ';
 const String sCoGiHay = 'Có gì hay cho bạn? ';
+const String sNameUser = 'Lê Xuân Sinh';
+const String sCodeUser = '064C518568';
 
 //image
 const String sReadyStock = 'assets/images/ready_stock.png';
@@ -33,3 +35,4 @@ const String sEggGold = 'assets/images/golden-egg.png';
 const String sGiftBox = 'assets/images/gift-box.png';
 const String sDola = 'assets/images/dollar.png';
 const String sTrade = 'assets/images/trade.jpg';
+const String sIconUser = 'assets/images/turtle.png';

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'size_config.dart';
-
+import '../theme/size_config.dart';
 
 Container lineBreak() {
   return Container(
     width: SizeConfig.screenWidth,
     height: 0.5,
-    color: Colors.white.withOpacity(0.2),
+    color: Colors.grey.withOpacity(0.2),
   );
 }
 
@@ -25,7 +24,7 @@ const kRedButtonBG = Color(0xffd34343);
 const kBgBoxSearch = Color(0xff272729);
 const kBgBottomSheet = Color(0xff202123);
 const kBgHomeContainer = Color(0xff262626);
-const kBgItemFollows =  Color(0xff1c1c1c);
+const kBgItemFollows = Color(0xff1c1c1c);
 
 const kWhite = Colors.white;
 const kGrey = Colors.grey;
@@ -51,19 +50,17 @@ const kTextGrey14Normal =
     TextStyle(color: kGrey, fontSize: 14, fontWeight: w400);
 
 const kTextWhite14Bold =
-    TextStyle(color: kWhite, fontSize: 14, fontWeight: w500);
+    TextStyle( fontSize: 14, fontWeight: w500);
 
 const kTextGrey15Normal =
     TextStyle(color: kGrey, fontSize: 15, fontWeight: w400);
 
-const kTextWhite15Normal =
-    TextStyle(color: kWhite, fontSize: 15, fontWeight: w400);
+const kTextWhite15Normal = TextStyle(fontSize: 15, fontWeight: w400);
 
 const kTextGreen15Normal =
     TextStyle(color: kGreen, fontSize: 15, fontWeight: w400);
 
-const kTextWhite16Normal =
-    TextStyle(color: kWhite, fontSize: 16, fontWeight: w400);
+const kText16Normal = TextStyle(color: kWhite, fontSize: 16, fontWeight: w400);
 
 const kTextRed16Normal =
     TextStyle(color: kRedButtonBG, fontSize: 16, fontWeight: w400);
@@ -74,11 +71,9 @@ const kTextGrey16Normal =
 const kTextGreen16Normal =
     TextStyle(color: kGreen, fontSize: 16, fontWeight: w400);
 
-const kTextWhite16Bold =
-    TextStyle(color: kWhite, fontSize: 16, fontWeight: bold);
+const kTextWhite16Bold = TextStyle(fontSize: 16, fontWeight: bold);
 
-const kTextWhite20Bold =
-    TextStyle(color: kWhite, fontSize: 20, fontWeight: bold);
+const kText20Bold = TextStyle(fontSize: 20, fontWeight: bold);
 
 const kTextGreen20Bold =
     TextStyle(color: Colors.green, fontSize: 20, fontWeight: FontWeight.w600);
@@ -86,9 +81,7 @@ const kTextGreen20Bold =
 const kTextGrey20Bold =
     TextStyle(color: Colors.grey, fontSize: 20, fontWeight: FontWeight.bold);
 // logo
-const kTextWhite30Bold =
-    TextStyle(fontSize: 30, color: kWhite, fontWeight: w500);
+const kText30Bold = TextStyle(fontSize: 30, fontWeight: w500);
 
 //size
 const kSizeIcons = 24.0;
-

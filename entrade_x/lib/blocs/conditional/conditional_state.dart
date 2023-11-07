@@ -5,16 +5,19 @@ abstract class ConditionalState {}
 class ConditionalInitial extends ConditionalState {}
 
 class ConditionalSuccessState extends ConditionalState {
-  bool isAbility;
-  int number;
-
-  ConditionalSuccessState(this.isAbility, this.number);
+  bool isActive;
+  ConditionalSuccessState(this.isActive);
 }
 
 class ConditionalFitLoadingState extends ConditionalState {}
 
 class ConditionalFitSuccessState extends ConditionalState {
   double priceFit;
+  double number;
 
-  ConditionalFitSuccessState(this.priceFit);
+  ConditionalFitSuccessState(this.priceFit, this.number);
+}
+
+class UpdateBuyLoadingState extends ConditionalState{
+
 }

@@ -1,3 +1,4 @@
+import 'package:entrade_x/theme/size_config.dart';
 import 'package:flutter/material.dart';
 
 InkWell buildUnx({
@@ -6,8 +7,8 @@ InkWell buildUnx({
   required Text txt2,
   required Text txt3,
   required Text txt4,
-  required Color color,
-  required Color color2,
+   Color? color = Colors.white,
+   Color? color2 = Colors.black,
   required bool isActive,
   void Function()? onTap,
   final int index = 0,
@@ -16,6 +17,7 @@ InkWell buildUnx({
     onTap: onTap,
     child: Container(
       width: width * 0.3,
+      height: getProportionateScreenHeight(130),
       padding: const EdgeInsets.only(left: 10, top: 12, bottom: 12, right: 6),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),

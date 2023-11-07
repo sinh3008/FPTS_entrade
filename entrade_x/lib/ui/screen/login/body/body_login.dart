@@ -1,4 +1,3 @@
-import 'package:entrade_x/size_config.dart';
 import 'package:entrade_x/ui/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,8 +6,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../api/local_auth_api.dart';
 import '../../../../blocs/login/login_bloc.dart';
-import '../../../../constrants.dart';
-import '../../../../strings.dart';
+import '../../../../theme/constrants.dart';
+import '../../../../other/strings.dart';
+import '../../../../theme/size_config.dart';
 import '../../../components/button_default.dart';
 import '../../../components/circle_k.dart';
 
@@ -28,16 +28,14 @@ class _BodyLoginState extends State<BodyLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBlackBackgroundCustom,
       appBar: AppBar(
-
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
         title: const Text(
           sVersionApp,
           style: kTextGrey11Normal,
         ),
         centerTitle: true,
-        elevation: 0,
-
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -61,7 +59,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   ),
                   const Text(
                     sAppTitle,
-                    style: kTextWhite30Bold,
+                    style: kText30Bold,
                   ),
                   const Text(
                     'X',
@@ -74,12 +72,16 @@ class _BodyLoginState extends State<BodyLogin> {
                 onChanged: (value) {
                   email = value;
                 },
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground),
                 decoration: const InputDecoration(
                   hintText: sHintEmailLogin,
                 ),
               ),
               TextFormField(
                 obscureText: true,
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onBackground),
                 onChanged: (value) {
                   pass = value;
                 },
@@ -179,7 +181,10 @@ class _BodyLoginState extends State<BodyLogin> {
               ),
               sizeBoxHeight(120),
               buttonBottomLogin(
-                  text: sCreateAccount, color: kBgCreateAccount, margin: 40),
+                  text: sCreateAccount,
+                  color: Colors.transparent.withOpacity(0.2),
+                  margin: 40,
+                  style: kTextRed16Normal.copyWith(fontWeight: w500)),
               buttonBottomLogin(text: sTermOfUse, margin: 40),
               buttonBottomLogin(text: sSupOnline, margin: 40),
             ],
@@ -193,6 +198,7 @@ class _BodyLoginState extends State<BodyLogin> {
     double margin = 0,
     double padding = 12,
     double radius = 30,
+    TextStyle style = kTextRed16Normal,
     required String text,
     Color color = Colors.transparent,
   }) {
@@ -208,7 +214,7 @@ class _BodyLoginState extends State<BodyLogin> {
         width: SizeConfig.screenWidth,
         child: Text(
           text,
-          style: kTextRed16Normal,
+          style: style,
           textAlign: TextAlign.center,
         ),
       ),

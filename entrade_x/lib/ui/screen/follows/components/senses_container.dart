@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:entrade_x/strings.dart';
+import 'package:entrade_x/other/strings.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../constrants.dart';
-import '../../../../models/news_follows.dart';
-import '../../../../size_config.dart';
+import '../../../../repo/news_follows_list.dart';
+import '../../../../theme/constrants.dart';
+import '../../../../theme/size_config.dart';
 import '../../home/components/lastnew/last_new_all.dart';
 
 class SensesContainer extends StatefulWidget {
@@ -20,17 +20,19 @@ class _SensesContainerState extends State<SensesContainer> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8)),
       width: SizeConfig.screenWidth,
-      decoration: const BoxDecoration(
-        color: kBgItemFollows,
+      decoration: BoxDecoration(
+        color: Theme.of(context).appBarTheme.foregroundColor,
       ),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Senses',
-                style: kTextWhite16Normal,
+                style: kText16Normal.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground,
+                    fontWeight: w700),
               ),
               TextButton(
                 onPressed: () {},
@@ -125,10 +127,10 @@ class _SensesContainerState extends State<SensesContainer> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                'Tin liên quan',
-                style: kTextWhite16Normal,
-              ),
+              Text('Tin liên quan',
+                  style: kText16Normal.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      fontWeight: w700)),
               TextButton(
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(
@@ -237,7 +239,8 @@ class _SensesContainerState extends State<SensesContainer> {
                           Expanded(
                             flex: 1,
                             child: Container(
-                              margin:EdgeInsets.only(top: getProportionateScreenHeight(6)),
+                              margin: EdgeInsets.only(
+                                  top: getProportionateScreenHeight(6)),
                               width: getProportionateScreenWidth(80),
                               height: getProportionateScreenHeight(80),
                               decoration: BoxDecoration(

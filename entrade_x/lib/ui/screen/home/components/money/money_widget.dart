@@ -1,11 +1,11 @@
-import 'package:entrade_x/size_config.dart';
-import 'package:entrade_x/strings.dart';
-import 'package:entrade_x/toast.dart';
+import 'package:entrade_x/other/strings.dart';
+import 'package:entrade_x/other/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../blocs/money/money_bloc.dart';
-import '../../../../../constrants.dart';
+import '../../../../../theme/constrants.dart';
+import '../../../../../theme/size_config.dart';
 
 class MoneyWidget extends StatelessWidget {
   const MoneyWidget({super.key});
@@ -21,9 +21,9 @@ class MoneyWidget extends StatelessWidget {
                 horizontal: getProportionateScreenWidth(8)),
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: kBgHomeContainer,
-            ),
+                borderRadius: BorderRadius.circular(10),
+                // color: kBgHomeContainer,
+                color: Theme.of(context).appBarTheme.backgroundColor),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -34,11 +34,11 @@ class MoneyWidget extends StatelessWidget {
                       state.isShow == true
                           ? const Text(
                               '0',
-                              style: kTextWhite20Bold,
+                              style: kText20Bold,
                             )
                           : const Text(
                               '*** *** ***',
-                              style: kTextWhite20Bold,
+                              style: kText20Bold,
                             ),
                       sizeBoxWidth(10),
                       GestureDetector(
@@ -52,9 +52,10 @@ class MoneyWidget extends StatelessWidget {
                                 color: kRedButtonBG,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(4))),
-                            child: const Icon(
+                            child:  Icon(
                               Icons.add,
                               size: 18,
+                              color: Theme.of(context).colorScheme.background,
                             )),
                       ),
                       Expanded(
@@ -70,8 +71,14 @@ class MoneyWidget extends StatelessWidget {
                                       .add(ShowHideMoneyEvent());
                                 },
                                 child: state.isShow
-                                    ? buildIconShowHide(imgPath: sHide)
-                                    : buildIconShowHide(imgPath: sShow),
+                                    ? Icon(
+                                        Icons.visibility_off,
+                                        color: Theme.of(context).primaryColor,
+                                      )
+                                    : Icon(
+                                        Icons.visibility,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
                               ),
                             ),
                             sizeBoxWidth(10),

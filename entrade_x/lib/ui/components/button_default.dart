@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constrants.dart';
+import '../../theme/constrants.dart';
 
 class ButtonLoginWidget extends StatelessWidget {
   const ButtonLoginWidget(
@@ -32,7 +32,7 @@ class ButtonLoginWidget extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: kTextWhite16Normal,
+          style: kText16Normal,
         ),
       ),
     );
