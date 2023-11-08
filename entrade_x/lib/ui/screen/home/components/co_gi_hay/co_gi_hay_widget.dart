@@ -1,4 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:entrade_x/theme/constrants.dart';
 import 'package:entrade_x/theme/size_config.dart';
 import 'package:entrade_x/other/strings.dart';
@@ -26,19 +26,22 @@ class CoGiHayContainer extends StatelessWidget {
             ),
           ),
           sizeBoxHeight(4),
-          Item2(),
+          Item2(context: context,  bgImg: const Color(0xfff3d5f7),),
           sizeBoxHeight(1),
           Item2(
-            bgImg: const Color(0xff1e373e),
+            context: context,
+            bgImg: const Color(0xffd4eaf5),
+            // bgImg: const Color(0xfff3d5f7),
             imgPath: 'assets/images/cyber-security.png',
             title: 'Smart OTP',
             content1_1: '21,922 ',
-            content1_2: 'KH đã sử dụng an toàn và bảo mật',
+            content1_2: 'KH sử dụng an toàn và bảo mật',
             content2_1: 'Miễn phí',
             content2_2: ' đăng ký',
           ),
           sizeBoxHeight(1),
           Item2(
+            context: context,
             bgImg: const Color(0xff403521),
             imgPath: 'assets/images/mobile.png',
             title: 'Hướng dẫn giao dịch',
@@ -55,21 +58,22 @@ class CoGiHayContainer extends StatelessWidget {
 }
 
 // ignore: non_constant_identifier_names
-Container Item2({
-  Color bgImg = Colors.red,
-  String imgPath = 'assets/images/gift-box.png',
-  String title = 'Quà tặng - Gift X',
-  IconData iconData1 = Icons.person,
-  IconData iconData2 = Icons.person,
-  String content1_1 = '2,504 ',
-  String content1_2 = 'món quà đã tạo',
-  String content2_1 = '21,992 ',
-  String content2_2 = 'KH đã sử dụng an toàn và bảo mật',
-}) {
+Container Item2(
+    {Color bgImg = Colors.red,
+    String imgPath = 'assets/images/gift-box.png',
+    String title = 'Quà tặng - Gift X',
+    IconData iconData1 = Icons.person,
+    IconData iconData2 = Icons.person,
+    String content1_1 = '2,504 ',
+    String content1_2 = 'món quà đã tạo',
+    String content2_1 = '21,992 ',
+    String content2_2 = 'KH đã sử dụng an toàn và bảo mật',
+    required BuildContext context}) {
   double width = SizeConfig.screenWidth;
   double height = SizeConfig.screenHeight;
   return Container(
-    decoration: const BoxDecoration(color: Colors.white),
+    decoration:
+        BoxDecoration(color: Theme.of(context).appBarTheme.foregroundColor),
     width: SizeConfig.screenWidth,
     height: SizeConfig.screenHeight * 0.13,
     child: Row(
@@ -82,7 +86,7 @@ Container Item2({
             margin: const EdgeInsets.all(14),
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-                color: Colors.red, borderRadius: BorderRadius.circular(8)),
+                color: bgImg, borderRadius: BorderRadius.circular(8)),
             child: Image(
               image: AssetImage(imgPath),
             ),
@@ -138,12 +142,11 @@ Container Item2({
                       style: const TextStyle(fontSize: 14),
                     ),
                     SizedBox(
-                        width: width * 0.5,
                         child: Text(
-                          content2_2,
-                          style: const TextStyle(fontSize: 12),
-                          maxLines: 2,
-                        )),
+                      content2_2,
+                      style: const TextStyle(fontSize: 12),
+                      maxLines: 2,
+                    )),
                   ],
                 ),
               ],

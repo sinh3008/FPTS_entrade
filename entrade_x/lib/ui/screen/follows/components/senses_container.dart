@@ -165,23 +165,25 @@ class _SensesContainerState extends State<SensesContainer> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       sizeBoxHeight(10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          container(
-                              text: listNewsFl[index].content,
-                              color: Colors.green),
-                          sizeBoxWidth(10),
-                          container(
-                              text: listNewsFl[index].content,
-                              color: Colors.redAccent),
-                          sizeBoxWidth(10),
-                          container(
-                              text: listNewsFl[index].content,
-                              color: Colors.redAccent),
-                          sizeBoxWidth(10),
-                          container(text: '+1', color: Colors.redAccent),
-                        ],
+                      Container(
+                        width: SizeConfig.screenWidth,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            container(
+                                text: listNewsFl[index].content,
+                                color: Colors.green),
+                            sizeBoxWidth(10),
+                            container(
+                                text: listNewsFl[index].content,
+                                color: Colors.redAccent),
+                            sizeBoxWidth(10),
+                            container(
+                                text: listNewsFl[index].content,
+                                color: Colors.redAccent),
+                            sizeBoxWidth(10),
+                          ],
+                        ),
                       ),
                       sizeBoxHeight(10),
                       Row(

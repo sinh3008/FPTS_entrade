@@ -120,7 +120,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
                   if (state is IdeasLoadingState) {
                     return const CircularProgressIndicator();
                   } else if (state is IdeasSuccessState) {
-                    return Container(
+                    return SizedBox(
                       width: SizeConfig.screenWidth,
                       child: Row(
                         children: [

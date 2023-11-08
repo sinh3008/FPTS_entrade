@@ -16,9 +16,13 @@ import '../../../blocs/login/login_bloc.dart';
 import '../../../blocs/money/money_bloc.dart';
 
 void main() {
-  runApp(
-    const MyApp(),
-  );
+  // runApp(
+  //   DevicePreview(
+  //     enabled: !kReleaseMode,
+  //     builder: (context) => const MyApp(), // Wrap your app
+  //   ),
+  // );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

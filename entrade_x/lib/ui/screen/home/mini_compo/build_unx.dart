@@ -16,7 +16,7 @@ InkWell buildUnx({
   return InkWell(
     onTap: onTap,
     child: Container(
-      height: getProportionateScreenHeight(100),
+      height: getProportionateScreenHeight(130),
       padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6), vertical: getProportionateScreenWidth(10)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),

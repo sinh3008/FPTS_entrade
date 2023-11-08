@@ -24,71 +24,78 @@ AppBar buildAppBarFollows(
         padding: const EdgeInsets.symmetric(horizontal: 0),
         margin: EdgeInsets.zero,
         width: SizeConfig.screenWidth * 1,
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.circular(12),
             bottomLeft: Radius.circular(12),
           ),
-          color: Theme.of(context).appBarTheme.backgroundColor?.withOpacity(0.9),
+          color:
+              Theme.of(context).appBarTheme.backgroundColor?.withOpacity(0.9),
         ),
         child: Column(
           children: [
             sizeBoxHeight(6),
-            Padding(
+            Container(
+              width: SizeConfig.screenWidth,
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(16)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(Icons.arrow_back, color: kRedButtonBG),
-                  Container(
-                    width: SizeConfig.screenWidth * 0.68,
-                    height: getProportionateScreenHeight(40),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Theme.of(context).appBarTheme.foregroundColor,
-                      boxShadow: [boxShadowFight()],
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        sizeBoxWidth(10),
-                        Image(
-                          image: const AssetImage(sReadyStock),
-                          fit: BoxFit.cover,
-                          width: getProportionateScreenWidth(26),
-                          height: getProportionateScreenHeight(26),
-                          color: kRedButtonBG,
-                        ),
-                        Expanded(
-                          child: TextField(
-                            canRequestFocus: false,
-                            autofocus: false,
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintText: sSearchCoin,
-                              hintStyle: kTextGrey15Normal,
-                            ),
-                            onTap: () {
-                              pushNewScreenWithRouteSettings(
-                                context,
-                                settings: RouteSettings(name: Page2.routerName),
-                                screen: const SearchPage(),
-                                pageTransitionAnimation:
-                                    PageTransitionAnimation.fade,
-                              );
-                            },
+                  const Expanded(
+                      flex: 1,
+                      child: Icon(Icons.arrow_back, color: kRedButtonBG)),
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      height: getProportionateScreenHeight(40),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                        color: Theme.of(context).appBarTheme.foregroundColor,
+                        boxShadow: [boxShadowFight()],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          sizeBoxWidth(10),
+                          Image(
+                            image: const AssetImage(sReadyStock),
+                            fit: BoxFit.cover,
+                            width: getProportionateScreenWidth(26),
+                            height: getProportionateScreenHeight(26),
+                            color: kRedButtonBG,
                           ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.search),
-                          color: kGrey,
-                          onPressed: () {},
-                        ),
-                      ],
+                          Expanded(
+                            child: TextField(
+                              canRequestFocus: false,
+                              autofocus: false,
+                              decoration: const InputDecoration(
+                                border: InputBorder.none,
+                                hintText: sSearchCoin,
+                                hintStyle: kTextGrey15Normal,
+                              ),
+                              onTap: () {
+                                pushNewScreenWithRouteSettings(
+                                  context,
+                                  settings:
+                                      RouteSettings(name: Page2.routerName),
+                                  screen: const SearchPage(),
+                                  pageTransitionAnimation:
+                                      PageTransitionAnimation.fade,
+                                );
+                              },
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.search),
+                            color: kGrey,
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  lightBulbWidget(context),
+                  Expanded(flex: 1, child: lightBulbWidget(context)),
                 ],
               ),
             ),

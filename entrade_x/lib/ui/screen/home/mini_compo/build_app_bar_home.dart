@@ -35,6 +35,7 @@ AppBar buildAppBarHome(BuildContext context) {
           children: [
             sizeBoxWidth(16),
             Expanded(
+              flex: 7,
               child: Container(
                 width: SizeConfig.screenWidth * 0.7,
                 height: getProportionateScreenHeight(40),
@@ -84,30 +85,33 @@ AppBar buildAppBarHome(BuildContext context) {
               ),
             ),
             sizeBoxWidth(8),
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return const InvestmentIdeas();
-                    },
-                  ));
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(0),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  width: getProportionateScreenWidth(40),
-                  height: getProportionateScreenHeight(40),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).appBarTheme.foregroundColor,
-                      shape: BoxShape.circle,
-                      boxShadow: [boxShadowFight()]),
-                  child: Image(
-                    image: const AssetImage(sLightBulb),
-                    fit: BoxFit.cover,
-                    color: Colors.yellow.shade400,
-                  ),
-                )),
+            Expanded(
+              flex: 1,
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return const InvestmentIdeas();
+                      },
+                    ));
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(0),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    width: getProportionateScreenWidth(40),
+                    height: getProportionateScreenHeight(40),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).appBarTheme.foregroundColor,
+                        shape: BoxShape.circle,
+                        boxShadow: [boxShadowFight()]),
+                    child: Image(
+                      image: const AssetImage(sLightBulb),
+                      fit: BoxFit.cover,
+                      color: Colors.yellow.shade400,
+                    ),
+                  )),
+            ),
             sizeBoxWidth(16),
           ],
         ),
