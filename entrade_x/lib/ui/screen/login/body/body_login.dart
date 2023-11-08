@@ -31,7 +31,7 @@ class _BodyLoginState extends State<BodyLogin> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        title: const Text(
+        title:  Text(
           sVersionApp,
           style: kTextGrey11Normal,
         ),
@@ -63,7 +63,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   ),
                   const Text(
                     'X',
-                    style: kTextWhite16Bold,
+                    style: kTextWhite15Bold,
                   ),
                 ],
               ),
@@ -95,7 +95,7 @@ class _BodyLoginState extends State<BodyLogin> {
                 onPressed: () {},
                 child: const Text(
                   sForgotPassLogin,
-                  style: kTextRed16Normal,
+                  style: kTextRed15Normal,
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -154,7 +154,7 @@ class _BodyLoginState extends State<BodyLogin> {
                 child: const Text(
                   sOrUse,
                   textAlign: TextAlign.center,
-                  style: kTextGrey16Normal,
+                  style: kTextGrey15Normal,
                 ),
               ),
               sizeBoxHeight(25),
@@ -184,7 +184,7 @@ class _BodyLoginState extends State<BodyLogin> {
                   text: sCreateAccount,
                   color: Colors.transparent.withOpacity(0.2),
                   margin: 40,
-                  style: kTextRed16Normal.copyWith(fontWeight: w500)),
+                  style: kTextRed15Normal.copyWith(fontWeight: w500)),
               buttonBottomLogin(text: sTermOfUse, margin: 40),
               buttonBottomLogin(text: sSupOnline, margin: 40),
             ],
@@ -198,7 +198,7 @@ class _BodyLoginState extends State<BodyLogin> {
     double margin = 0,
     double padding = 12,
     double radius = 30,
-    TextStyle style = kTextRed16Normal,
+    TextStyle style = kTextRed15Normal,
     required String text,
     Color color = Colors.transparent,
   }) {

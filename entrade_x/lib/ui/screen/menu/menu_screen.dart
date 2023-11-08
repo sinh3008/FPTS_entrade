@@ -255,7 +255,7 @@ class MenuScreen extends StatelessWidget {
                     },
                     child: Text(
                       'Đăng xuất',
-                      style: kText16Normal.copyWith(
+                      style: kText15Normal.copyWith(
                           color: Theme.of(context).colorScheme.onBackground),
                     ),
                   ),
@@ -307,7 +307,7 @@ class MenuScreen extends StatelessWidget {
             flex: 8,
             child: Text(
               text,
-              style: kText16Normal.copyWith(
+              style: kText15Normal.copyWith(
                   color: Theme.of(context).colorScheme.onBackground),
             ),
           ),

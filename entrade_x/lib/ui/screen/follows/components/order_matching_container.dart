@@ -40,7 +40,7 @@ class _OrderMatchingState extends State<OrderMatching> {
                 left: 12.0, top: getProportionateScreenHeight(6)),
             child: const Text(
               'Khớp lệnh theo thời gian',
-              style: kTextGrey16Normal,
+              style: kTextGrey15Normal,
             ),
           ),
           Center(
@@ -108,7 +108,7 @@ class _OrderMatchingState extends State<OrderMatching> {
                         height: getProportionateScreenHeight(26),
                         child: Text(
                           data[index].time.toString(),
-                          style: kText16Normal.copyWith(
+                          style: kText15Normal.copyWith(
                               color:
                                   Theme.of(context).colorScheme.onBackground),
                         ),
@@ -122,7 +122,7 @@ class _OrderMatchingState extends State<OrderMatching> {
                         height: getProportionateScreenHeight(26),
                         child: Text(
                           data[index].number.toString(),
-                          style: kText16Normal.copyWith(
+                          style: kText15Normal.copyWith(
                               color:
                                   Theme.of(context).colorScheme.onBackground),
                         ),
@@ -136,7 +136,7 @@ class _OrderMatchingState extends State<OrderMatching> {
                         height: getProportionateScreenHeight(26),
                         child: Text(
                           data[index].price.toString(),
-                          style: kText16Normal.copyWith(
+                          style: kText15Normal.copyWith(
                               color:
                                   Theme.of(context).colorScheme.onBackground),
                         ),
@@ -151,7 +151,7 @@ class _OrderMatchingState extends State<OrderMatching> {
                               height: getProportionateScreenHeight(26),
                               child: Text(
                                 data[index].percent.toString(),
-                                style: kText16Normal.copyWith(
+                                style: kText15Normal.copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onBackground),
@@ -164,7 +164,7 @@ class _OrderMatchingState extends State<OrderMatching> {
                               height: getProportionateScreenHeight(26),
                               child: Text(
                                 '${data[index].number.toString()}%',
-                                style: kText16Normal.copyWith(
+                                style: kText15Normal.copyWith(
                                     color: Theme.of(context)
                                         .colorScheme
                                         .onBackground),
@@ -184,7 +184,7 @@ class _OrderMatchingState extends State<OrderMatching> {
             alignment: Alignment.bottomRight,
             child: const Text(
               'Xem thêm',
-              style: kTextRed16Normal,
+              style: kTextRed15Normal,
             ),
           )
         ],

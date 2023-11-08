@@ -90,7 +90,7 @@ class _EventMoneyRewardsWidgetState extends State<EventMoneyRewardsWidget>
           sizeBoxHeight(6),
           Text(
             '+0đ',
-            style: AppTextStyle.text16Normal
+            style: AppTextStyle.text15Normal
                 .copyWith(color: kGreen.shade400, fontWeight: w700, fontSize: 20),
           ),
           const SizedBox(

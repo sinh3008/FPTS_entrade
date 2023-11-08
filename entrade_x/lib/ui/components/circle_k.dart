@@ -132,6 +132,6 @@ BoxShadow boxShadowFight() {
     color: AppColor.blackPrimary.withOpacity(0.1),
     spreadRadius: 1,
     blurRadius: 2,
-    offset: const Offset(0, 1),
+    offset: const Offset(0, 2),
   );
 }

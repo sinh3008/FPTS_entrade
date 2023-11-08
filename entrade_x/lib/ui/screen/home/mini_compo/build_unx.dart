@@ -16,7 +16,7 @@ InkWell buildUnx({
   return InkWell(
     onTap: onTap,
     child: Container(
-      height: getProportionateScreenHeight(180),
+      height: getProportionateScreenHeight(100),
       padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(6), vertical: getProportionateScreenWidth(10)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -33,17 +33,18 @@ InkWell buildUnx({
               borderRadius: BorderRadius.circular(30),
             ),
           ),
-          const SizedBox(
-            width: 1,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(width: width * 0.23, child: txt1),
-              SizedBox(width: width * 0.23, child: txt2),
-              SizedBox(width: width * 0.23, child: txt3),
-              SizedBox(width: width * 0.23, child: txt4),
-            ],
+          sizeBoxWidth(1),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(width: width * 0.23, child: txt1),
+                SizedBox(width: width * 0.23, child: txt2),
+                SizedBox(width: width * 0.23, child: txt3),
+                SizedBox(width: width * 0.23, child: txt4),
+              ],
+            ),
           ),
         ],
       ),

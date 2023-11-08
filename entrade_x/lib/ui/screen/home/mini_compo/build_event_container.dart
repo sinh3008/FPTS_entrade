@@ -37,7 +37,7 @@ GestureDetector buildEventContainer(
                   style: kTextGrey15Normal,
                 ),
                 Text(txt2.toUpperCase(),
-                    style: kTextGreen16Normal.copyWith(fontWeight: w500)),
+                    style: kTextGreen15Normal.copyWith(fontWeight: w500)),
                 Text(
                   txt3,
                   style: kTextGrey15Normal,

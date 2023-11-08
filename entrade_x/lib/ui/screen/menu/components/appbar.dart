@@ -134,13 +134,13 @@ AppBar appBar(BuildContext context) {
                   children: [
                     Text(
                       sNameUser,
-                      style: kText16Normal.copyWith(
+                      style: kText15Normal.copyWith(
                           color: Theme.of(context).colorScheme.onBackground),
                     ),
                     sizeBoxHeight(8),
                     const Text(
                       sCodeUser,
-                      style: kTextGrey16Normal,
+                      style: kTextGrey15Normal,
                     ),
                   ],
                 )

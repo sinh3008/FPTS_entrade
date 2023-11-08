@@ -30,14 +30,14 @@ final ThemeData darkThemeData = ThemeData(
 //text theme --
 final TextTheme lightTextTheme = TextTheme(
   bodyLarge: AppTextStyle.text30Bold.copyWith(color: _lightTextColor),
-  bodyMedium: AppTextStyle.text16Normal.copyWith(color: _lightTextColor),
-  bodySmall: AppTextStyle.text11Normal.copyWith(color: _lightTextColor),
+  bodyMedium: AppTextStyle.text15Normal.copyWith(color: _lightTextColor),
+  bodySmall: AppTextStyle.text14Normal.copyWith(color: _lightTextColor),
 );
 
 final TextTheme darkTextTheme = TextTheme(
   bodyLarge: AppTextStyle.text30Bold.copyWith(color: _darkTextColor),
-  bodyMedium: AppTextStyle.text16Normal.copyWith(color: _darkTextColor),
-  bodySmall: AppTextStyle.text11Normal.copyWith(color: _darkTextColor),
+  bodyMedium: AppTextStyle.text15Normal.copyWith(color: _darkTextColor),
+  bodySmall: AppTextStyle.text14Normal.copyWith(color: _darkTextColor),
 );
 
 //Icon theme --
@@ -57,7 +57,7 @@ final AppBarTheme _lightAppBarTheme = AppBarTheme(
       color: Colors.black
   ),
   centerTitle: false,
-  titleTextStyle: AppTextStyle.text16Normal.copyWith(
+  titleTextStyle: AppTextStyle.text15Normal.copyWith(
     color: AppColor.blackPrimary,
     fontWeight: FontWeight.w700,
   ),
@@ -72,7 +72,7 @@ final AppBarTheme _darkAppBarTheme = AppBarTheme(
   backgroundColor: AppColor.bgAppBarDark,
   foregroundColor: AppColor.fgAppBarDark,
   centerTitle: false,
-  titleTextStyle: AppTextStyle.text16Normal.copyWith(
+  titleTextStyle: AppTextStyle.text15Normal.copyWith(
     color: AppColor.whitePrimary,
     fontWeight: FontWeight.w700,
   ),

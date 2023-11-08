@@ -55,7 +55,7 @@ class IdeasContainer extends StatelessWidget {
                   children: [
                     Text(
                       sIdeas,
-                      style: kTextGrey16Normal.copyWith(fontWeight: w500),
+                      style: kTextGrey15Normal.copyWith(fontWeight: w500),
                     ),
                     sizeBoxHeight(4),
                     Text(
@@ -125,7 +125,7 @@ Container newMethod() {
       children: [
         const Text(
           'GMD',
-          style: kTextWhite16Bold,
+          style: kTextWhite15Bold,
         ),
         const Text('65.40 0.6%', style: kTextGreen15Normal),
         sizeBoxHeight(4),

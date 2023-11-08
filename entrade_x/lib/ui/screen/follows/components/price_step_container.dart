@@ -67,7 +67,7 @@ class BuocGiaContainer extends StatelessWidget {
                         children: [
                           Text(
                             dataList1[index].price.toString(),
-                            style: kText16Normal.copyWith(
+                            style: kText15Normal.copyWith(
                                 color: Theme.of(context)
                                     .colorScheme
                                     .onBackground),
@@ -81,7 +81,7 @@ class BuocGiaContainer extends StatelessWidget {
                                   right: getProportionateScreenWidth(16)),
                               child: Text(
                                 dataList1[index].number.toString(),
-                                style: kTextGreen16Normal,
+                                style: kTextGreen15Normal,
                               ),
                             ),
                           ),
@@ -127,7 +127,7 @@ class BuocGiaContainer extends StatelessWidget {
                                     left: getProportionateScreenWidth(16)),
                                 child: Text(
                                   dataList2[index].number.toString(),
-                                  style: kTextGreen16Normal,
+                                  style: kTextGreen15Normal,
                                 ),
                               ),
                             ),
@@ -135,7 +135,7 @@ class BuocGiaContainer extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 0.0),
                               // padding: const EdgeInsets.only(left: 16.0),
                               child: Text(dataList2[index].price.toString(),
-                                  style: kText16Normal.copyWith(
+                                  style: kText15Normal.copyWith(
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onBackground)),
@@ -228,17 +228,17 @@ class BuocGiaContainer extends StatelessWidget {
                       buildRowSan(
                           text1: 'Sàn',
                           text2: '79.30',
-                          color: const Color(0xff44caf3)),
+                          color: const Color(0xff44caf3), context: context),
                       sizeBoxWidth(30),
                       buildRowSan(
                           text1: 'TC',
                           text2: '85.20',
-                          color: const Color(0xffe8a722)),
+                          color: const Color(0xffe8a722), context: context),
                       sizeBoxWidth(30),
                       buildRowSan(
                           text1: 'Trần',
                           text2: '91.10',
-                          color: const Color(0xfff068fb)),
+                          color: const Color(0xfff068fb), context: context),
                     ],
                   ),
                   sizeBoxHeight(10),
@@ -246,17 +246,17 @@ class BuocGiaContainer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       buildRowSan(
-                          text1: 'Thấp', text2: '84.30', color: kRedButtonBG),
+                          text1: 'Thấp', text2: '84.30', color: kRedButtonBG, context: context),
                       SizedBox(
                         width: getProportionateScreenWidth(30),
                       ),
                       buildRowSan(
-                          text1: 'TB', text2: '84.54', color: kRedButtonBG),
+                          text1: 'TB', text2: '84.54', color: kRedButtonBG, context: context),
                       SizedBox(
                         width: getProportionateScreenWidth(30),
                       ),
                       buildRowSan(
-                          text1: 'Cao', text2: '85.10', color: kRedButtonBG),
+                          text1: 'Cao', text2: '85.10', color: kRedButtonBG, context: context),
                     ],
                   )
                 ],
@@ -303,7 +303,7 @@ class BuocGiaContainer extends StatelessWidget {
   }
 
   Expanded buildRowSan(
-      {required String text1, required String text2, required Color color}) {
+      {required String text1, required String text2, required Color color, required BuildContext context}) {
     return Expanded(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -311,9 +311,14 @@ class BuocGiaContainer extends StatelessWidget {
           Text(
             text1,
           ),
-          Text(
-            text2,
-            style: TextStyle(color: color),
+          GestureDetector(
+            onTap:() => context.read<ConditionalBloc>().add(
+                ClickFitPriceEvent(double.parse(text2),
+                    money, cellingPrice)) ,
+            child: Text(
+              text2,
+              style: TextStyle(color: color),
+            ),
           )
         ],
       ),

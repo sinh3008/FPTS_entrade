@@ -30,7 +30,7 @@ class _SensesContainerState extends State<SensesContainer> {
             children: [
               Text(
                 'Senses',
-                style: kText16Normal.copyWith(
+                style: kText15Normal.copyWith(
                     color: Theme.of(context).colorScheme.onBackground,
                     fontWeight: w700),
               ),
@@ -38,7 +38,7 @@ class _SensesContainerState extends State<SensesContainer> {
                 onPressed: () {},
                 child: Text(
                   'Xem thêm',
-                  style: kTextRed16Normal.copyWith(fontWeight: w700),
+                  style: kTextRed15Normal.copyWith(fontWeight: w700),
                 ),
               ),
             ],
@@ -128,7 +128,7 @@ class _SensesContainerState extends State<SensesContainer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text('Tin liên quan',
-                  style: kText16Normal.copyWith(
+                  style: kText15Normal.copyWith(
                       color: Theme.of(context).colorScheme.onBackground,
                       fontWeight: w700)),
               TextButton(
@@ -141,7 +141,7 @@ class _SensesContainerState extends State<SensesContainer> {
                 },
                 child: Text(
                   'Xem thêm',
-                  style: kTextRed16Normal.copyWith(fontWeight: w700),
+                  style: kTextRed15Normal.copyWith(fontWeight: w700),
                 ),
               ),
             ],

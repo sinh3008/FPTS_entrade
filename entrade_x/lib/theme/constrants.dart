@@ -40,8 +40,27 @@ const bold = FontWeight.bold;
 //const
 const kLabelChartStyle = TextStyle(fontSize: 15);
 
-const kTextGrey11Normal =
-    TextStyle(color: kGrey, fontSize: 11, fontWeight: w400);
+const kText11 = TextStyle(fontSize: 11, fontWeight: w400);
+const kText13 = TextStyle(fontSize: 13, fontWeight: w400);
+const kText14 = TextStyle(fontSize: 14, fontWeight: w400);
+const kText15 = TextStyle(fontSize: 15, fontWeight: w400);
+const kText16 = TextStyle(fontSize: 16, fontWeight: w400);
+const kText20 = TextStyle(fontSize: 20, fontWeight: w400);
+const kText30 = TextStyle(fontSize: 30, fontWeight: w400);
+
+final kTextGrey11Normal = kText11.copyWith(color: kGrey);
+// final kTextGrey13Normal = kText13.copyWith(color: kGrey);
+// final kTextGrey14Normal = kText14.copyWith(color: kGrey);
+// final kTextGrey15Normal = kText15.copyWith(color: kGrey);
+// final kTextGrey16Normal = kText16.copyWith(color: kGrey);
+// final kTextGrey20Normal = kText20.copyWith(color: kGrey);
+//
+// final kTextRed11Normal = kText11.copyWith(color: kGrey);
+// final kTextRed13Normal = kText13.copyWith(color: kGrey);
+// final kTextRed14Normal = kText14.copyWith(color: kGrey);
+// final kTextRed15Normal = kText15.copyWith(color: kGrey);
+// final kTextRed16Normal = kText16.copyWith(color: kGrey);
+// final kTextRed20Normal = kText20.copyWith(color: kGrey);
 
 const kTextGrey13Normal =
     TextStyle(color: kGrey, fontSize: 13, fontWeight: w400);
@@ -49,29 +68,21 @@ const kTextGrey13Normal =
 const kTextGrey14Normal =
     TextStyle(color: kGrey, fontSize: 14, fontWeight: w400);
 
-const kTextWhite14Bold =
-    TextStyle( fontSize: 14, fontWeight: w500);
+const kTextWhite14Bold = TextStyle(fontSize: 14, fontWeight: w500);
+
+const kTextWhite15Normal = TextStyle(fontSize: 15, fontWeight: w400);
+const kText15Normal = TextStyle(color: kWhite, fontSize: 15, fontWeight: w400);
+
+const kTextRed15Normal =
+    TextStyle(color: kRedButtonBG, fontSize: 15, fontWeight: w400);
 
 const kTextGrey15Normal =
     TextStyle(color: kGrey, fontSize: 15, fontWeight: w400);
 
-const kTextWhite15Normal = TextStyle(fontSize: 15, fontWeight: w400);
-
 const kTextGreen15Normal =
     TextStyle(color: kGreen, fontSize: 15, fontWeight: w400);
 
-const kText16Normal = TextStyle(color: kWhite, fontSize: 16, fontWeight: w400);
-
-const kTextRed16Normal =
-    TextStyle(color: kRedButtonBG, fontSize: 16, fontWeight: w400);
-
-const kTextGrey16Normal =
-    TextStyle(color: kGrey, fontSize: 16, fontWeight: w400);
-
-const kTextGreen16Normal =
-    TextStyle(color: kGreen, fontSize: 16, fontWeight: w400);
-
-const kTextWhite16Bold = TextStyle(fontSize: 16, fontWeight: bold);
+const kTextWhite15Bold = TextStyle(fontSize: 15, fontWeight: bold);
 
 const kText20Bold = TextStyle(fontSize: 20, fontWeight: bold);
 
@@ -85,3 +96,5 @@ const kText30Bold = TextStyle(fontSize: 30, fontWeight: w500);
 
 //size
 const kSizeIcons = 24.0;
+
+const kSizeIconsHost = 16.0;

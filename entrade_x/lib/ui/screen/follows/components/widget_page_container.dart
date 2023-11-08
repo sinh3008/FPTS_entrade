@@ -67,7 +67,7 @@ class BuocGiaContainer extends StatelessWidget {
                         children: [
                           Text(
                             dataList1[index].price.toString(),
-                            style: kText16Normal,
+                            style: kText15Normal,
                           ),
                           GestureDetector(
                             onTap: () => context.read<ConditionalBloc>().add(
@@ -78,7 +78,7 @@ class BuocGiaContainer extends StatelessWidget {
                                   right: getProportionateScreenWidth(16)),
                               child: Text(
                                 dataList1[index].number.toString(),
-                                style: kTextGreen16Normal,
+                                style: kTextGreen15Normal,
                               ),
                             ),
                           ),
@@ -123,7 +123,7 @@ class BuocGiaContainer extends StatelessWidget {
                                     left: getProportionateScreenWidth(16)),
                                 child: Text(
                                   dataList2[index].number.toString(),
-                                  style: kTextGreen16Normal,
+                                  style: kTextGreen15Normal,
                                 ),
                               ),
                             ),
@@ -131,7 +131,7 @@ class BuocGiaContainer extends StatelessWidget {
                               padding: const EdgeInsets.only(left: 0.0),
                               // padding: const EdgeInsets.only(left: 16.0),
                               child: Text(dataList2[index].price.toString(),
-                                  style: kText16Normal),
+                                  style: kText15Normal),
                             ),
                           ],
                         ),

@@ -27,7 +27,7 @@ class LatestNewsWidget extends StatelessWidget {
               Text(
                 'Tin vĩ mô',
                 style:
-                    kTextGrey16Normal.copyWith(fontWeight: w500),
+                    kTextGrey15Normal.copyWith(fontWeight: w500),
               ),
               sizeBoxWidth(30),
               InkWell(
@@ -93,7 +93,7 @@ class LatestNewsWidget extends StatelessWidget {
                               width: SizeConfig.screenWidth * 0.6,
                               child: Text(
                                 infoFake.list[index].title,
-                                style: kTextGrey16Normal.copyWith(
+                                style: kTextGrey15Normal.copyWith(
                                   color: Theme.of(context)
                                       .colorScheme
                                       .onBackground,

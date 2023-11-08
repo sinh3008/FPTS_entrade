@@ -111,7 +111,7 @@ class _SettingPageState extends State<SettingPage> {
             flex: 8,
             child: Text(
               text,
-              style: kText16Normal.copyWith(color: Theme.of(context).colorScheme.onBackground),
+              style: kText15Normal.copyWith(color: Theme.of(context).colorScheme.onBackground),
             ),
           ),
           Expanded(

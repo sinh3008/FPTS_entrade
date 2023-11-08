@@ -116,7 +116,7 @@ class MoneyWidget extends StatelessWidget {
                 sizeBoxHeight(4),
                 const Text(
                   '0',
-                  style: kTextGreen16Normal,
+                  style: kTextGreen15Normal,
                 )
               ],
             ),

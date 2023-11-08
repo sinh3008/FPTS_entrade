@@ -17,10 +17,7 @@ import '../../../blocs/money/money_bloc.dart';
 
 void main() {
   runApp(
-    DevicePreview(
-      builder: (context) => const MyApp(),
-      enabled: kReleaseMode,
-    ),
+    const MyApp(),
   );
 }
 
@@ -46,9 +43,9 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp(
-            useInheritedMediaQuery: true,
-            locale: DevicePreview.locale(context),
-            builder: DevicePreview.appBuilder,
+            // useInheritedMediaQuery: true,
+            // locale: DevicePreview.locale(context),
+            // builder: DevicePreview.appBuilder,
             debugShowCheckedModeBanner: false,
             theme: state.isDark ? darkThemeData : lightThemeData,
             routes: routes,

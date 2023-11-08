@@ -49,13 +49,17 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
           color: Theme.of(context).appBarTheme.foregroundColor,
           borderRadius: const BorderRadius.only(),
         ),
-        child: BlocBuilder<ConditionalBloc, ConditionalState>(
-          builder: (context, state) {
+        child: BlocConsumer<ConditionalBloc, ConditionalState>(
+          listener: (context, state) {
             if (state is ConditionalFitSuccessState) {
               if (state.priceFit != 0.0) {
                 controllerGiaDat.text = state.priceFit.toString();
                 controllerGiaStop.text = state.priceFit.toString();
               } else {}
+            }
+          },
+          builder: (context, state) {
+            if (state is ConditionalFitSuccessState) {
               return Column(
                 children: [
                   lineBreak(),
@@ -76,7 +80,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                 children: [
                                   const Text(
                                     'Sức mua:',
-                                    style: kTextGrey16Normal,
+                                    style: kTextGrey15Normal,
                                   ),
                                   sizeBoxWidth(4),
                                   AutoSizeText(
@@ -238,7 +242,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   if (isSelected2[0])
-                                    btnGiaDat()
+                                    btnGiaDat(price1: state.priceFit)
                                   else
                                     btnGiaKhongDuocDat(),
                                   sizeBoxWidth(20),
@@ -295,23 +299,24 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     children: [
                                       GestureDetector(
                                         onTap: () {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text('Có lỗi xảy ra'),
-                                              // Nội dung thông báo
-                                              backgroundColor: Colors.red,
-                                              // Màu nền của thông báo
-                                              action: SnackBarAction(
-                                                label: 'Đóng',
-                                                // Nhãn cho nút đóng
-                                                onPressed: () {
-                                                  ScaffoldMessenger.of(context)
-                                                      .hideCurrentSnackBar(); // Đóng thông báo khi nút được nhấn
-                                                },
-                                              ),
-                                            ),
-                                          );
+                                          // ScaffoldMessenger.of(context)
+                                          //     .showSnackBar(
+                                          //   SnackBar(
+                                          //     content: Text('Có lỗi xảy ra'),
+                                          //     // behavior: SnackBarBehavior.floating,
+                                          //     // Nội dung thông báo
+                                          //     backgroundColor: Colors.red,
+                                          //     // Màu nền của thông báo
+                                          //     action: SnackBarAction(
+                                          //       label: 'Đóng',
+                                          //       // Nhãn cho nút đóng
+                                          //       onPressed: () {
+                                          //         ScaffoldMessenger.of(context)
+                                          //             .hideCurrentSnackBar(); // Đóng thông báo khi nút được nhấn
+                                          //       },
+                                          //     ),
+                                          //   ),
+                                          // );
                                         },
                                         child: const Text(
                                           'MUA',
@@ -325,8 +330,14 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     ],
                                   ),
                                   color: controllerGiaStop.text.isEmpty ||
-                                          controllerGiaDat.text.isEmpty ||
-                                          controllerKL.text.isEmpty
+                                          controllerKL.text.isEmpty ||
+                                          (isSelected2[1] == false &&
+                                              controllerGiaDat.text.isEmpty)
+                                      // || double.parse(controllerGiaStop.text) <
+                                      //         0 ||
+                                      //     double.parse(controllerKL.text) < 0 ||
+                                      //     double.parse(controllerGiaDat.text) <
+                                      //         0
                                       ? Colors.green.withOpacity(0.5)
                                       : Colors.green,
                                   onClicked: () {},
@@ -358,8 +369,12 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     ],
                                   ),
                                   color: controllerGiaStop.text.isEmpty ||
-                                          controllerGiaDat.text.isEmpty ||
                                           controllerKL.text.isEmpty
+                                      // || double.parse(controllerGiaStop.text) <
+                                      //         0 ||
+                                      //     double.parse(controllerKL.text) < 0 ||
+                                      //     double.parse(controllerGiaDat.text) <
+                                      //         0
                                       ? kRedButtonBG.withOpacity(0.5)
                                       : kRedButtonBG,
                                   onClicked: () {},
@@ -474,10 +489,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   double currentMass = 42.25;
                   currentMass -= 1;
                   controllerGiaStop.text = (currentMass + 1).toStringAsFixed(2);
-                } else {
+                } else if (controllerGiaStop.text.isNotEmpty) {
                   double currentMass = double.parse(controllerGiaStop.text);
                   if (currentMass <= 0.00) {
-                    currentMass = currentMass;
+                    currentMass = 42.25;
                   } else {
                     currentMass -= 1;
                   }
@@ -495,9 +510,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   double currentMass = 42.25;
                   currentMass += 1;
                   controllerGiaStop.text = (currentMass - 1).toStringAsFixed(2);
-                } else {
+                } else if (controllerGiaStop.text.isNotEmpty) {
                   double currentMass = double.parse(controllerGiaStop.text);
-                  currentMass += 1;
+                  if (currentMass == 0) {
+                    currentMass = 42.25;
+                  } else {
+                    currentMass += 1;
+                  }
                   controllerGiaStop.text = currentMass.toStringAsFixed(2);
                 }
                 setState(() {});
@@ -511,7 +530,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
     );
   }
 
-  Expanded btnKhoiLuong({TextStyle style = kText16Normal}) {
+  Expanded btnKhoiLuong({TextStyle style = kText15Normal}) {
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(
@@ -521,6 +540,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         ),
         height: getProportionateScreenHeight(40),
         child: TextField(
+          // onTapOutside:(event) {
+          //   return FocusScope.of(context).unfocus();
+          // },
           textAlign: TextAlign.center,
           controller: controllerKL,
           onChanged: (value) {
@@ -528,10 +550,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
           },
           style: controllerKL.text.isNotEmpty
               ? (money / 91100 > double.parse(controllerKL.text)
-                  ? kText16Normal.copyWith(
+                  ? kText15Normal.copyWith(
                       color: Theme.of(context).colorScheme.onBackground)
-                  : kTextRed16Normal)
-              : kText16Normal.copyWith(
+                  : kTextRed15Normal)
+              : kText15Normal.copyWith(
                   color: Theme.of(context).colorScheme.onBackground),
           keyboardType: TextInputType.number,
           inputFormatters: <TextInputFormatter>[
@@ -610,7 +632,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
           style: const TextStyle(color: Colors.grey),
           decoration: InputDecoration(
             hintText: 'Giá đặt',
-            hintStyle: const TextStyle(color: kGrey),
+            hintStyle: kTextGrey15Normal,
             prefixIcon:
                 nutBam(Alignment.centerLeft, color: kGrey, Icons.remove),
             suffixIcon: nutBam(color: kGrey, Alignment.centerRight, Icons.add),
@@ -620,7 +642,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
     );
   }
 
-  Expanded btnGiaDat() {
+  Expanded btnGiaDat({double price1 = 0}) {
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(
@@ -630,9 +652,9 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         ),
         height: getProportionateScreenHeight(40),
         child: TextField(
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
-          ],
+          // inputFormatters: <TextInputFormatter>[
+          //   FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
+          // ],
           textAlign: TextAlign.center,
           controller: controllerGiaDat,
           style: TextStyle(
@@ -640,12 +662,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
           ),
           keyboardType: TextInputType.number,
           onChanged: (value) {
-            setState(() {
-
-            });
+            setState(() {});
           },
           decoration: InputDecoration(
-            hintStyle: kTextGrey16Normal,
+            hintStyle: kTextGrey15Normal,
             hintText: 'Giá đặt',
             prefixIcon: GestureDetector(
               onTap: () {
@@ -654,7 +674,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                   currentMass -= 1;
                   controllerGiaDat.text = (currentMass + 1).toStringAsFixed(2);
                 } else {
-                  double currentMass = double.parse(controllerGiaDat.text);
+                  double currentMass = price1;
                   if (currentMass > 0) {
                     currentMass -= 1;
                   } else {

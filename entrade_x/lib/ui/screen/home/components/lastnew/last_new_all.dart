@@ -1,4 +1,5 @@
 import 'package:entrade_x/repo/informations.dart';
+import 'package:entrade_x/theme/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -16,9 +17,6 @@ class LastNewAll extends StatefulWidget {
 class _LastNewAllState extends State<LastNewAll> {
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    double width = screenSize.width;
-    double height = screenSize.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tin vĩ mô'),
@@ -39,40 +37,44 @@ class _LastNewAllState extends State<LastNewAll> {
               child: Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                width: width,
-                height: height * 0.2,
+                width: SizeConfig.screenWidth,
+                height: SizeConfig.screenHeight * 0.2,
                 color: Theme.of(context).appBarTheme.foregroundColor,
                 child: Column(
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: width * 0.6,
-                              child: Text(
-                                widget.infoFake.list[index].title,
-                                style: LastNewAll._biggerFont,
-                                maxLines: 2,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(widget.infoFake.list[index].time),
-                                const SizedBox(
-                                  width: 30,
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                width: SizeConfig.screenHeight * 0.6,
+                                child: Text(
+                                  widget.infoFake.list[index].title,
+                                  style: LastNewAll._biggerFont,
+                                  maxLines: 2,
                                 ),
-                                Text(widget.infoFake.list[index].author),
-                              ],
-                            ),
-                          ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(widget.infoFake.list[index].time),
+                                  const SizedBox(
+                                    width: 30,
+                                  ),
+                                  Text(widget.infoFake.list[index].author),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        SizedBox(
-                          width: width * 0.3,
+                        Expanded(
+                          flex: 1,
                           child: Image(
-                            image: AssetImage(
-                                widget.infoFake.list[index].imagePath),
+                            image:
+                                AssetImage(widget.infoFake.list[index].imagePath),
                           ),
                         ),
                       ],

@@ -30,7 +30,7 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
           padding: EdgeInsets.only(left: getProportionateScreenWidth(12)),
           child: Text(
             sCheckNow,
-            style: kTextGrey16Normal.copyWith(fontWeight: w500),
+            style: kTextGrey15Normal.copyWith(fontWeight: w500),
           ),
         ),
         sizeBoxHeight(10),
@@ -166,17 +166,17 @@ class _MarketTodayWidgetState extends State<MarketTodayWidget> {
       txt2: state.stocks[index].currentPrice - state.stocks[index].price > 0
           ? Text(
               '${state.stocks[index].currentPrice}',
-              style: kTextGreen16Normal.copyWith(fontWeight: w500),
+              style: kTextGreen15Normal.copyWith(fontWeight: w500),
             )
           : Text(
               '${state.stocks[index].currentPrice}',
-              style: kTextRed16Normal.copyWith(fontWeight: w500),
+              style: kTextRed15Normal.copyWith(fontWeight: w500),
             ),
       txt3: Text(
         '${state.stocks[index].profit}(${state.stocks[index].revenue})',
         style: state.stocks[index].profit > 0
-            ? kTextGreen16Normal
-            : kTextRed16Normal,
+            ? kTextGreen15Normal
+            : kTextRed15Normal,
       ),
       txt4: Text(
         '${state.stocks[index].totalPrice} tỷ',
@@ -215,7 +215,7 @@ class _TimeWidgetState extends State<TimeWidget> {
           demo: Text(
             '1W',
             textAlign: TextAlign.center,
-            style: selectIndex == 0 ? kText16Normal : kTextGrey16Normal,
+            style: selectIndex == 0 ? kText15Normal : kTextGrey15Normal,
           ),
           color: selectIndex == 0
               ? kRedButtonBG
@@ -233,7 +233,7 @@ class _TimeWidgetState extends State<TimeWidget> {
           demo: Text(
             '1M',
             textAlign: TextAlign.center,
-            style: selectIndex == 1 ? kText16Normal : kTextGrey16Normal,
+            style: selectIndex == 1 ? kText15Normal : kTextGrey15Normal,
           ),
           color: selectIndex == 1
               ? kRedButtonBG
@@ -251,7 +251,7 @@ class _TimeWidgetState extends State<TimeWidget> {
           demo: Text(
             '6M',
             textAlign: TextAlign.center,
-            style: selectIndex == 2 ? kText16Normal : kTextGrey16Normal,
+            style: selectIndex == 2 ? kText15Normal : kTextGrey15Normal,
           ),
           color: selectIndex == 2
               ? kRedButtonBG
@@ -269,7 +269,7 @@ class _TimeWidgetState extends State<TimeWidget> {
           demo: Text(
             '1Y',
             textAlign: TextAlign.center,
-            style: selectIndex == 3 ? kText16Normal : kTextGrey16Normal,
+            style: selectIndex == 3 ? kText15Normal : kTextGrey15Normal,
           ),
           color: selectIndex == 3
               ? kRedButtonBG

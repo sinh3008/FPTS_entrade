@@ -32,7 +32,7 @@ class ButtonLoginWidget extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: kText16Normal,
+          style: kText15Normal,
         ),
       ),
     );

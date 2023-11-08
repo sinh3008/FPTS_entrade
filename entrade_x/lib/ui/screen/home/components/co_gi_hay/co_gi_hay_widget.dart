@@ -26,44 +26,28 @@ class CoGiHayContainer extends StatelessWidget {
             ),
           ),
           sizeBoxHeight(4),
-          ItemCoGiHay(
-              context: context,
-              backIconColor: const Color(0xff3c2140),
-              imgPath: sGiftBox,
-              imgPath2: sGiftBox,
-              imgPath3: sDola,
-              title: 'Quà tặng - Gift X',
-              content1_1: '23,62 ',
-              content1_2: 'Món quà đã được trao',
-              content2_1: '9,452,415,766',
-              content2_2: ' đã được gửi tặng',
-              onTap: () {}),
+          Item2(),
           sizeBoxHeight(1),
-          ItemCoGiHay(
-              context: context,
-              backIconColor: const Color(0xff1e373e),
-              imgPath: 'assets/images/cyber-security.png',
-              imgPath2: 'assets/images/cyber-security.png',
-              imgPath3: 'assets/images/dollar.png',
-              title: 'Smart OTP',
-              content1_1: '',
-              content1_2: '21,922 KH đã sử dụng an toàn\n và bảo mật',
-              content2_1: 'Miễn phí',
-              content2_2: ' đăng ký',
-              onTap: () {}),
+          Item2(
+            bgImg: const Color(0xff1e373e),
+            imgPath: 'assets/images/cyber-security.png',
+            title: 'Smart OTP',
+            content1_1: '21,922 ',
+            content1_2: 'KH đã sử dụng an toàn và bảo mật',
+            content2_1: 'Miễn phí',
+            content2_2: ' đăng ký',
+          ),
           sizeBoxHeight(1),
-          ItemCoGiHay(
-              context: context,
-              backIconColor: const Color(0xff403521),
-              imgPath: 'assets/images/mobile.png',
-              imgPath2: 'assets/images/mobile.png',
-              imgPath3: 'assets/images/dollar.png',
-              title: 'Hướng dẫn giao dịch',
-              content1_1: '80 ',
-              content1_2: 'Hướng dẫn chi tiết',
-              content2_1: '401',
-              content2_2: ' người tìm được thông tin',
-              onTap: () {})
+          Item2(
+            bgImg: const Color(0xff403521),
+            imgPath: 'assets/images/mobile.png',
+            title: 'Hướng dẫn giao dịch',
+            content1_1: '80 ',
+            content1_2: 'Hướng dẫn chi tiết',
+            content2_1: '401',
+            content2_2: ' người tìm được thông tin',
+          ),
+          sizeBoxHeight(10),
         ],
       ),
     );
@@ -71,104 +55,109 @@ class CoGiHayContainer extends StatelessWidget {
 }
 
 // ignore: non_constant_identifier_names
-Container ItemCoGiHay(
-    {required String imgPath,
-    required String imgPath2,
-    required String imgPath3,
-    required String title,
-    required String content1_1,
-    required String content1_2,
-    required String content2_1,
-    required String content2_2,
-    required Color backIconColor,
-    void Function()? onTap,
-    required BuildContext context}) {
+Container Item2({
+  Color bgImg = Colors.red,
+  String imgPath = 'assets/images/gift-box.png',
+  String title = 'Quà tặng - Gift X',
+  IconData iconData1 = Icons.person,
+  IconData iconData2 = Icons.person,
+  String content1_1 = '2,504 ',
+  String content1_2 = 'món quà đã tạo',
+  String content2_1 = '21,992 ',
+  String content2_2 = 'KH đã sử dụng an toàn và bảo mật',
+}) {
+  double width = SizeConfig.screenWidth;
+  double height = SizeConfig.screenHeight;
   return Container(
-    height: SizeConfig.screenHeight * 0.15,
+    decoration: const BoxDecoration(color: Colors.white),
     width: SizeConfig.screenWidth,
-    color: Theme.of(context).appBarTheme.backgroundColor,
-    padding: const EdgeInsets.all(12),
+    height: SizeConfig.screenHeight * 0.13,
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Expanded(
+          flex: 2,
+          child: Container(
+            width: width,
+            height: height,
+            margin: const EdgeInsets.all(14),
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+                color: Colors.red, borderRadius: BorderRadius.circular(8)),
+            child: Image(
+              image: AssetImage(imgPath),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 8,
+          child: Container(
+            width: width,
+            height: height,
+            margin: const EdgeInsets.only(top: 14, right: 14, bottom: 14),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(fontSize: 16),
+                  textAlign: TextAlign.start,
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      iconData1,
+                      size: kSizeIconsHost,
+                    ),
+                    Text(
+                      content1_1,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    Text(
+                      content1_2,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 2,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      iconData2,
+                      size: kSizeIconsHost,
+                    ),
+                    Text(
+                      content2_1,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                    SizedBox(
+                        width: width * 0.5,
+                        child: Text(
+                          content2_2,
+                          style: const TextStyle(fontSize: 12),
+                          maxLines: 2,
+                        )),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
         Expanded(
           flex: 1,
           child: Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(8)),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: backIconColor,
-            ),
-            child: Image(
-              image: AssetImage(imgPath),
-              width: getProportionateScreenWidth(40),
-              height: SizeConfig.screenHeight * 0.12,
-            ),
-          ),
-        ),
-        sizeBoxWidth(10),
-        Expanded(
-          flex: 4,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-              ),
-              sizeBoxHeight(10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image(
-                    image: AssetImage(imgPath2),
-                    width: getProportionateScreenWidth(16),
-                  ),
-                  sizeBoxWidth(6),
-                  // Text(content1_1),
-                  AutoSizeText(
-                    content1_1,
-                    style: kTextGrey14Normal,
-                    maxLines: 2,
-                  ),
-                  // Text(content1_2),
-                  AutoSizeText(
-                    content1_2,
-                    style: kTextGrey14Normal,
-                    maxLines: 2,
-                  )
-                ],
-              ),
-              sizeBoxHeight(16),
-              Row(
-                children: [
-                  Image(
-                    image: AssetImage(imgPath3),
-                    width: 16,
-                  ),
-                  sizeBoxWidth(6),
-                  Text(content2_1),
-                  Text(
-                    content2_2,
-                    style: kTextGrey14Normal,
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-        Expanded(
-          flex: 1,
-          child: GestureDetector(
-            onTap: onTap,
-            child: Container(
-              alignment: Alignment.bottomRight,
-              child: const Icon(
-                Icons.navigate_next,
-                color: Colors.green,
-              ),
-            ),
+            width: width,
+            alignment: Alignment.bottomRight,
+            height: height,
+            margin: const EdgeInsets.only(top: 14, right: 14, bottom: 14),
+            child: const Icon(Icons.navigate_next),
           ),
         ),
       ],
