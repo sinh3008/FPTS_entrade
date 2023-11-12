@@ -70,7 +70,7 @@ class LatestNewsWidget extends StatelessWidget {
             color: Theme.of(context).appBarTheme.backgroundColor,
           ),
           width: SizeConfig.screenWidth,
-          height: 120,
+          height: getProportionateScreenHeight(120),
           child: PageView.builder(
             itemBuilder: (context, index) => Container(
               padding: EdgeInsets.symmetric(
