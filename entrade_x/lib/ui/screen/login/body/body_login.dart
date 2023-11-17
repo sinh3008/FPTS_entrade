@@ -31,7 +31,7 @@ class _BodyLoginState extends State<BodyLogin> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
-        title:  Text(
+        title: Text(
           sVersionApp,
           style: kTextGrey11Normal,
         ),
@@ -73,7 +73,9 @@ class _BodyLoginState extends State<BodyLogin> {
                   email = value;
                 },
                 style: TextStyle(
-                    color: Theme.of(context).colorScheme.onBackground),
+                  color: Theme.of(context).colorScheme.onBackground,
+                  fontSize: 15
+                ),
                 decoration: const InputDecoration(
                   hintText: sHintEmailLogin,
                 ),
@@ -81,6 +83,7 @@ class _BodyLoginState extends State<BodyLogin> {
               TextFormField(
                 obscureText: true,
                 style: TextStyle(
+                    fontSize: 15,
                     color: Theme.of(context).colorScheme.onBackground),
                 onChanged: (value) {
                   pass = value;

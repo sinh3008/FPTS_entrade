@@ -351,7 +351,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   borderRadius: BorderRadius.circular(4),
                                   shape: BoxShape.rectangle,
                                   padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
+                                      const EdgeInsets.only(top: 6),
                                   width: SizeConfig.screenWidth * 0.46,
                                   demo: const Column(
                                     crossAxisAlignment:

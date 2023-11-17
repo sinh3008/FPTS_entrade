@@ -277,7 +277,7 @@ class _FollowsScreenState extends State<FollowsScreen> {
                       margin: EdgeInsets.only(
                           top: getProportionateScreenHeight(10)),
                       width: SizeConfig.screenWidth,
-                      height: SizeConfig.screenHeight * 0.34,
+                      height: SizeConfig.screenHeight * 0.36,
                       decoration: BoxDecoration(
                         color: Theme.of(context).appBarTheme.foregroundColor,
                       ),
