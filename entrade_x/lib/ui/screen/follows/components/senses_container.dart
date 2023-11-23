@@ -147,7 +147,7 @@ class _SensesContainerState extends State<SensesContainer> {
             ],
           ),
           SizedBox(
-            height: getProportionateScreenHeight(360),
+            height: getProportionateScreenHeight(380),
             width: SizeConfig.screenWidth,
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -165,7 +165,7 @@ class _SensesContainerState extends State<SensesContainer> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       sizeBoxHeight(10),
-                      Container(
+                      SizedBox(
                         width: SizeConfig.screenWidth,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,

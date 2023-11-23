@@ -1,6 +1,7 @@
 import 'package:entrade_x/blocs/ideas/ideas_bloc.dart';
 import 'package:entrade_x/models/stock.dart';
 import 'package:entrade_x/theme/constrants.dart';
+import 'package:entrade_x/theme/size_config.dart';
 import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,9 +25,6 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    double height = screenSize.height;
-    double width = screenSize.width;
     PageController pageController =
         PageController(viewportFraction: 0.8, keepPage: true);
     return Scaffold(
@@ -47,7 +45,7 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
               controller: pageController,
               itemCount: state.stocks.length,
               itemBuilder: (context, index) {
-                var scale = _selectedIndex == index ? 1.0 : 0.88;
+                var scale = _selectedIndex == index ? 1.0 : 0.9;
                 return TweenAnimationBuilder(
                     builder: (context, value, child) {
                       return Transform.scale(
@@ -63,7 +61,7 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                           top: 12, left: 16, right: 16, bottom: 0),
                       margin: const EdgeInsets.symmetric(
                           horizontal: 6, vertical: 16),
-                      width: width,
+                      width: SizeConfig.screenWidth,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Theme.of(context).appBarTheme.foregroundColor),
@@ -75,7 +73,7 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                             children: [
                               Text(state.stocks[index].name),
                               SizedBox(
-                                width: width * 0.02,
+                                width: SizeConfig.screenWidth * 0.02,
                               ),
                               state.stocks[index].revenue > 0
                                   ? Text(
@@ -97,7 +95,7 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                                 return const CircularProgressIndicator();
                               } else if (state is ChartSuccessState) {
                                 return SizedBox(
-                                  height: height * 0.1,
+                                  height: SizeConfig.screenHeight * 0.1,
                                   child: LineChart(
                                     LineChartData(
                                       gridData: const FlGridData(show: false),
@@ -174,22 +172,23 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                             height: 10,
                           ),
                           bodyContainer(
-                            width,
-                            height,
+                            SizeConfig.screenWidth,
+                            SizeConfig.screenHeight,
                             state.stocks[index],
                           ),
-                          contentValidate(width, height, state.stocks[index]),
+                          contentValidate(SizeConfig.screenWidth,
+                              SizeConfig.screenHeight, state.stocks[index]),
                           SizedBox(
-                            height: height * 0.02,
+                            height: SizeConfig.screenHeight * 0.02,
                           ),
                           Container(
                             height: 0.2,
-                            width: width,
+                            width: SizeConfig.screenWidth,
                             color: Colors.white,
                             alignment: Alignment.center,
                           ),
                           SizedBox(
-                            height: height * 0.02,
+                            height: SizeConfig.screenHeight * 0.02,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -226,14 +225,14 @@ class _InvestmentIdeasState extends State<InvestmentIdeas> {
                                         ]);
                                   }),
                               SizedBox(
-                                width: width * 0.01,
+                                width: SizeConfig.screenWidth * 0.01,
                               ),
                               const Text(
                                 '54',
                                 style: TextStyle(fontSize: 18),
                               ),
                               SizedBox(
-                                width: width * 0.1,
+                                width: SizeConfig.screenWidth * 0.1,
                               ),
                               Tooltip(
                                 message: 'Thêm',

@@ -1,6 +1,5 @@
 import 'package:entrade_x/theme/constrants.dart';
 import 'package:entrade_x/ui/components/circle_k.dart';
-import 'package:entrade_x/ui/screen/login/login_screen.dart';
 import 'package:entrade_x/ui/screen/menu/page/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';

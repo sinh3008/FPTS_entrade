@@ -5,7 +5,6 @@ import '../../other/strings.dart';
 import '../../theme/constrants.dart';
 import '../../theme/size_config.dart';
 import '../components/circle_k.dart';
-import '../screen/home/components/ideas/investment_ideas.dart';
 import 'order_page.dart';
 
 class SearchPage extends StatelessWidget {

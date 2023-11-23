@@ -13,7 +13,6 @@ import '../../pages_test/order_page.dart';
 import '../../pages_test/search_page.dart';
 import '../home/components/ideas/investment_ideas.dart';
 import 'components/bottom_sheet.dart';
-import 'components/build_app_bar.dart';
 import 'components/price_step_container.dart';
 import 'components/order_matching_container.dart';
 import 'components/senses_container.dart';
@@ -33,12 +32,6 @@ class _FollowsScreenState extends State<FollowsScreen> {
   Widget build(BuildContext context) {
     return KeyboardDismisser(
       child: Scaffold(
-        // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        // appBar: buildAppBarFollows(context, () {
-        //   setState(() {
-        //     widget.price = 42.25;
-        //   });
-        // }, widget.price),
         body: SafeArea(
           child: Stack(
             children: [
@@ -277,11 +270,14 @@ class _FollowsScreenState extends State<FollowsScreen> {
                       margin: EdgeInsets.only(
                           top: getProportionateScreenHeight(10)),
                       width: SizeConfig.screenWidth,
-                      height: SizeConfig.screenHeight * 0.34,
+                      height: SizeConfig.screenHeight * 0.36,
                       decoration: BoxDecoration(
                         color: Theme.of(context).appBarTheme.foregroundColor,
                       ),
                       child: ContainedTabBarView(
+                        tabBarViewProperties: const TabBarViewProperties(
+                          physics: NeverScrollableScrollPhysics(),
+                        ),
                         tabBarProperties: TabBarProperties(
                           labelPadding: EdgeInsets.only(
                               left: getProportionateScreenWidth(16)),
@@ -292,10 +288,13 @@ class _FollowsScreenState extends State<FollowsScreen> {
                           alignment: TabBarAlignment.start,
                           indicatorColor: kRedButtonBG,
                           indicatorSize: TabBarIndicatorSize.label,
-                          width: SizeConfig.screenWidth * 0.78,
+                          width: SizeConfig.screenWidth * 1,
                           unselectedLabelColor:
                               Theme.of(context).colorScheme.onBackground,
                           isScrollable: true,
+                          // background: Container(
+                          //   color: Colors.green,
+                          // ),
                           margin: const EdgeInsets.all(0),
                           labelColor: kRedButtonBG,
                         ),
@@ -336,12 +335,11 @@ class _FollowsScreenState extends State<FollowsScreen> {
                 ),
               ),
               // sbh(80),
-              Positioned(
+              const Positioned(
                 bottom: 0,
                 left: 0,
                 right: 0,
-                child: const CustomerBottomSheet(),
-
+                child: CustomerBottomSheet(),
               ),
             ],
           ),

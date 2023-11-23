@@ -9,9 +9,14 @@ import '../../../../../theme/size_config.dart';
 import '../../../../components/circle_k.dart';
 import 'investment_ideas.dart';
 
-class IdeasContainer extends StatelessWidget {
+class IdeasContainer extends StatefulWidget {
   const IdeasContainer({super.key});
 
+  @override
+  State<IdeasContainer> createState() => _IdeasContainerState();
+}
+
+class _IdeasContainerState extends State<IdeasContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(

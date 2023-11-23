@@ -1,4 +1,3 @@
-import 'package:entrade_x/other/strings.dart';
 
 class NewsFollow {
   String title;

@@ -288,6 +288,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                             children: [
                               Expanded(
                                 child: buildCircleK(
+                                  height: 55,
                                   borderRadius: BorderRadius.circular(4),
                                   shape: BoxShape.rectangle,
                                   padding: const EdgeInsets.only(top: 6),
@@ -298,26 +299,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       GestureDetector(
-                                        onTap: () {
-                                          // ScaffoldMessenger.of(context)
-                                          //     .showSnackBar(
-                                          //   SnackBar(
-                                          //     content: Text('Có lỗi xảy ra'),
-                                          //     // behavior: SnackBarBehavior.floating,
-                                          //     // Nội dung thông báo
-                                          //     backgroundColor: Colors.red,
-                                          //     // Màu nền của thông báo
-                                          //     action: SnackBarAction(
-                                          //       label: 'Đóng',
-                                          //       // Nhãn cho nút đóng
-                                          //       onPressed: () {
-                                          //         ScaffoldMessenger.of(context)
-                                          //             .hideCurrentSnackBar(); // Đóng thông báo khi nút được nhấn
-                                          //       },
-                                          //     ),
-                                          //   ),
-                                          // );
-                                        },
+                                        onTap: () {},
                                         child: const Text(
                                           'MUA',
                                           style: TextStyle(color: kWhite),
@@ -333,11 +315,6 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                           controllerKL.text.isEmpty ||
                                           (isSelected2[1] == false &&
                                               controllerGiaDat.text.isEmpty)
-                                      // || double.parse(controllerGiaStop.text) <
-                                      //         0 ||
-                                      //     double.parse(controllerKL.text) < 0 ||
-                                      //     double.parse(controllerGiaDat.text) <
-                                      //         0
                                       ? Colors.green.withOpacity(0.5)
                                       : Colors.green,
                                   onClicked: () {},
@@ -348,10 +325,10 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                               ),
                               Expanded(
                                 child: buildCircleK(
+                                  height: 55,
                                   borderRadius: BorderRadius.circular(4),
                                   shape: BoxShape.rectangle,
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
+                                  padding: const EdgeInsets.only(top: 6),
                                   width: SizeConfig.screenWidth * 0.46,
                                   demo: const Column(
                                     crossAxisAlignment:
@@ -370,11 +347,6 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   ),
                                   color: controllerGiaStop.text.isEmpty ||
                                           controllerKL.text.isEmpty
-                                      // || double.parse(controllerGiaStop.text) <
-                                      //         0 ||
-                                      //     double.parse(controllerKL.text) < 0 ||
-                                      //     double.parse(controllerGiaDat.text) <
-                                      //         0
                                       ? kRedButtonBG.withOpacity(0.5)
                                       : kRedButtonBG,
                                   onClicked: () {},

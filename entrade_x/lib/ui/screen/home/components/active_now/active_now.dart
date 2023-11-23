@@ -1,6 +1,5 @@
 import 'package:entrade_x/theme/constrants.dart';
 import 'package:entrade_x/other/toast.dart';
-import 'package:entrade_x/ui/components/circle_k.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
