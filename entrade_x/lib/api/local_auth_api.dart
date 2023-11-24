@@ -28,7 +28,7 @@ class LocalAuthApi {
 
     try {
       return await _auth.authenticate(
-        localizedReason: 'Scan Fingerprint to Authenticate',
+        localizedReason: 'Vui lòng quét vân tay',
         options: const AuthenticationOptions(
           useErrorDialogs: true,
           stickyAuth: true,

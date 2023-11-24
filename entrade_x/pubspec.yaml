@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.1.2 <4.0.0'
+  sdk: '>=3.2.0 <4.0.0'
 
 
 # Dependencies specify other packages that your package needs in order to work.
@@ -35,18 +35,6 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-<<<<<<< HEAD
-  cupertino_icons:
-  flutter_bloc:
-  bloc:
-  equatable:
-  flutter_svg:
-  fluttertoast: ^8.0.2
-  fl_chart:
-  flutter_screenutil:
-  font_awesome_flutter:
-  local_auth:
-=======
 
   cupertino_icons: ^1.0.2
   flutter_bloc: ^8.1.3
@@ -59,7 +47,6 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   local_auth: ^2.1.7
   persistent_bottom_nav_bar: ^5.0.2
->>>>>>> origin
   webview_flutter:
   auto_size_text:
   intl:

@@ -33,7 +33,7 @@ class _BodyHomeScreenState extends State<BodyHomeScreen> {
     context.read<ChartBloc>().add(ChartClickItemEvent(id: 0));
     context.read<IdeasBloc>().add(IdeasShowEvent());
     context.read<BankitemBloc>().add(BankClickedItemEvent(0));
-    context.read<ConditionalBloc>().add(ClickFitPriceEvent(0, money, cellingPrice));
+    context.read<ConditionalBloc>().add(ClickFitPriceEvent(42.25, money, cellingPrice));
   }
 
   @override

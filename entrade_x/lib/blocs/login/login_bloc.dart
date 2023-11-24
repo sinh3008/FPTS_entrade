@@ -24,7 +24,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       Navigator.pushReplacementNamed(event.context, HomeScreen.routeName);
     }else{
       emit(LoginFalseState('Lỗi'));
-
     }
   }
 }

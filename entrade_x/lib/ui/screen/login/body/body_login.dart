@@ -72,18 +72,16 @@ class _BodyLoginState extends State<BodyLogin> {
                 onChanged: (value) {
                   email = value;
                 },
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onBackground,
-                  fontSize: 15
-                ),
+                style: kText15Normal.copyWith(
+                    color: Theme.of(context).colorScheme.onBackground),
                 decoration: const InputDecoration(
                   hintText: sHintEmailLogin,
+                  hoverColor: Colors.transparent,
                 ),
               ),
               TextFormField(
                 obscureText: true,
-                style: TextStyle(
-                    fontSize: 15,
+                style: kText15Normal.copyWith(
                     color: Theme.of(context).colorScheme.onBackground),
                 onChanged: (value) {
                   pass = value;

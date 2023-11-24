@@ -311,12 +311,13 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                       ),
                                     ],
                                   ),
-                                  color: controllerGiaStop.text.isEmpty ||
-                                          controllerKL.text.isEmpty ||
-                                          (isSelected2[1] == false &&
-                                              controllerGiaDat.text.isEmpty)
+                                  color: (controllerGiaStop.text.isEmpty ||
+                                      controllerKL.text.isEmpty ||
+                                      (isSelected2[1] == false && controllerGiaDat.text.isEmpty) ||
+                                      int.tryParse(controllerKL.text)! < 1)
                                       ? Colors.green.withOpacity(0.5)
                                       : Colors.green,
+
                                   onClicked: () {},
                                 ),
                               ),
@@ -328,9 +329,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   height: 55,
                                   borderRadius: BorderRadius.circular(4),
                                   shape: BoxShape.rectangle,
-                                  padding:
-                                      const EdgeInsets.only(top: 6),
-
+                                  padding: const EdgeInsets.only(top: 6),
                                   width: SizeConfig.screenWidth * 0.46,
                                   demo: const Column(
                                     crossAxisAlignment:
@@ -349,6 +348,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                                   ),
                                   color: controllerGiaStop.text.isEmpty ||
                                           controllerKL.text.isEmpty
+                                         ||int.tryParse(controllerKL.text)! < 1
                                       ? kRedButtonBG.withOpacity(0.5)
                                       : kRedButtonBG,
                                   onClicked: () {},
@@ -626,9 +626,6 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
         ),
         height: getProportionateScreenHeight(40),
         child: TextField(
-          // inputFormatters: <TextInputFormatter>[
-          //   FilteringTextInputFormatter.allow(RegExp(r'^\d+')),
-          // ],
           textAlign: TextAlign.center,
           controller: controllerGiaDat,
           style: TextStyle(
@@ -645,14 +642,16 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
               onTap: () {
                 if (controllerGiaDat.text.isEmpty) {
                   double currentMass = price;
-                  currentMass -= 1;
-                  controllerGiaDat.text = (currentMass + 1).toStringAsFixed(2);
-                } else {
-                  double currentMass = price1;
                   if (currentMass > 0) {
                     currentMass -= 1;
-                  } else {
-                    currentMass = 0;
+                  }
+                  controllerGiaDat.text = currentMass.toStringAsFixed(2);
+                } else {
+                  double currentMass = double.parse(controllerGiaDat.text);
+                  if (currentMass > 0) {
+                    currentMass -= 1;
+                  } else if (currentMass == 0) {
+                    currentMass = 42.25;
                   }
                   controllerGiaDat.text = currentMass.toStringAsFixed(2);
                 }
@@ -669,7 +668,7 @@ class _CustomerBottomSheetState extends State<CustomerBottomSheet> {
                 if (controllerGiaDat.text.isEmpty) {
                   double currentMass = price;
                   currentMass += 1;
-                  controllerGiaDat.text = (currentMass - 1).toStringAsFixed(2);
+                  controllerGiaDat.text = currentMass.toStringAsFixed(2);
                 } else {
                   double currentMass = double.parse(controllerGiaDat.text);
                   currentMass += 1;

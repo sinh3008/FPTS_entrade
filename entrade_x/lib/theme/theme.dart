@@ -7,25 +7,24 @@ const _lightTextColor = Colors.black;
 const _darkTextColor = Colors.white;
 
 final ThemeData lightThemeData = ThemeData(
-  scaffoldBackgroundColor: AppColor.bgLight,
-  textTheme: lightTextTheme,
-  colorScheme: _lightColorScheme,
-  primaryColor: AppColor.greyCustomPrimary,
-  hintColor: AppColor.greyCustomPrimary,
-  appBarTheme: _lightAppBarTheme,
-  iconTheme: _lightIconThemeData,
-
-);
+    scaffoldBackgroundColor: AppColor.bgLight,
+    textTheme: lightTextTheme,
+    colorScheme: _lightColorScheme,
+    primaryColor: AppColor.greyCustomPrimary,
+    hintColor: AppColor.greyCustomPrimary,
+    appBarTheme: _lightAppBarTheme,
+    iconTheme: _lightIconThemeData,
+    useMaterial3: false);
 
 final ThemeData darkThemeData = ThemeData(
-  scaffoldBackgroundColor: AppColor.bgDark,
-  textTheme: darkTextTheme,
-  primaryColor: AppColor.greyCustomPrimary,
-  hintColor: AppColor.greyCustomPrimary,
-  colorScheme: _darkColorScheme,
-  appBarTheme: _darkAppBarTheme,
-  iconTheme: _darkIconThemeData,
-);
+    scaffoldBackgroundColor: AppColor.bgDark,
+    textTheme: darkTextTheme,
+    primaryColor: AppColor.greyCustomPrimary,
+    hintColor: AppColor.greyCustomPrimary,
+    colorScheme: _darkColorScheme,
+    appBarTheme: _darkAppBarTheme,
+    iconTheme: _darkIconThemeData,
+    useMaterial3: false);
 
 //text theme --
 final TextTheme lightTextTheme = TextTheme(
@@ -53,9 +52,7 @@ final AppBarTheme _lightAppBarTheme = AppBarTheme(
   titleSpacing: 16.0,
   backgroundColor: AppColor.bgAppBarLight,
   foregroundColor: AppColor.fgAppBarLight,
-  iconTheme: const IconThemeData(
-      color: Colors.black
-  ),
+  iconTheme: const IconThemeData(color: Colors.black),
   centerTitle: false,
   titleTextStyle: AppTextStyle.text15Normal.copyWith(
     color: AppColor.blackPrimary,
@@ -66,9 +63,7 @@ final AppBarTheme _lightAppBarTheme = AppBarTheme(
 final AppBarTheme _darkAppBarTheme = AppBarTheme(
   elevation: 2,
   titleSpacing: 16.0,
-  iconTheme: const IconThemeData(
-    color: Colors.white
-  ),
+  iconTheme: const IconThemeData(color: Colors.white),
   backgroundColor: AppColor.bgAppBarDark,
   foregroundColor: AppColor.fgAppBarDark,
   centerTitle: false,
